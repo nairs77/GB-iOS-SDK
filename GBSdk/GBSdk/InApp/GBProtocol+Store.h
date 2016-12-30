@@ -1,12 +1,12 @@
 //
-//  JoypleProtocol+Store.h
-//  Joyple
+//  GBProtocol+Store.h
+//  GB
 //
 //  Created by Professional on 2014. 6. 13..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleProtocol.h"
+#import "GBProtocol.h"
 
 enum {
     JOYPLE_MARKET_INFO,
@@ -23,8 +23,8 @@ enum {
     
 };
 
-@interface JoypleProtocol (Store)
+@interface GBProtocol (Store)
 
-+ (JoypleProtocol *)makeRequestPayment:(NSUInteger)command param:(NSDictionary *)parameter;
++ (GBProtocol *)makeRequestPayment:(NSUInteger)command param:(NSDictionary *)parameter;
 
 @end

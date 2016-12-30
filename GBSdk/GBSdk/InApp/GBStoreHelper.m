@@ -1,30 +1,30 @@
 //
-//  JoypleStoreHelper.m
-//  Joyple
+//  GBStoreHelper.m
+//  GB
 //
 //  Created by Professional on 2014. 6. 12..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleStoreHelper.h"
-#import "JoypleProtocol+Store.h"
-#import "JoypleLog+Store.h"
-#import "JoypleError.h"
-#import "NSBundle+Joyple.h"
-#import "JoypleDeviceUtil.h"
-#import "JoypleReceiptVerificator.h"
+#import "GBStoreHelper.h"
+#import "GBProtocol+Store.h"
+#import "GBLog+Store.h"
+#import "GBError.h"
+#import "NSBundle+GB.h"
+#import "GBDeviceUtil.h"
+#import "GBReceiptVerificator.h"
 #import "NSData+Formatter.h"
 #import "NSString+Hex.h"
-//#import "JoypleRestoreManager.h"
+//#import "GBRestoreManager.h"
 
 #define IS_IOS7_OR_MORE ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
-@interface JoypleStoreHelper() <SKRequestDelegate>
+@interface GBStoreHelper() <SKRequestDelegate>
 @property (nonatomic, copy) NSString *paymentKey;
-- (JoypleError *)makeBillingError:(NSDictionary *)errorDictionary underlyingError:(NSError *)underlayingError;
+- (GBError *)makeBillingError:(NSDictionary *)errorDictionary underlyingError:(NSError *)underlayingError;
 @end
 
-@implementation JoypleStoreHelper
+@implementation GBStoreHelper
 {
     NSMutableDictionary     *validateProducts_;
     NSMutableDictionary     *paymentAction_;
@@ -34,16 +34,16 @@
     
     SKReceiptRefreshRequest *refreshReceiptRequest_;
     
-    void (^refreshReceiptFailureBlock)(JoypleError *error);
+    void (^refreshReceiptFailureBlock)(GBError *error);
     void (^refreshReceiptSuccessBlock)();
 }
 
-+ (JoypleStoreHelper *)defaultStore
++ (GBStoreHelper *)defaultStore
 {
     static id _instance = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
-        _instance = [[JoypleStoreHelper alloc] init];
+        _instance = [[GBStoreHelper alloc] init];
     });
     
     return _instance;
@@ -61,7 +61,7 @@
         paymentAction_ = [NSMutableDictionary dictionary];
         requestDelegateSet_ = [NSMutableSet set];
         //paymentKeys_ = [[NSMutableArray alloc] initWithCapacity:0];
-        //  [self _requestNewReceipt:^(BOOL success, JoypleError *error) {
+        //  [self _requestNewReceipt:^(BOOL success, GBError *error) {
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
         //  }];
         
@@ -82,7 +82,7 @@
     return self;
 }
 
-- (void)savedReception:(void(^)(NSString *paymentKey, JoypleError *error))resultBlock;
+- (void)savedReception:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
 {
     for (SKPaymentTransaction *transaction in [self transactions]) {
         
@@ -96,11 +96,11 @@
         }
         
         
-        JoypleReceiptVerificator *receiptVerificator = [[JoypleReceiptVerificator alloc] init];
+        GBReceiptVerificator *receiptVerificator = [[GBReceiptVerificator alloc] init];
         
         [receiptVerificator verifyTransaction:transaction success:^(NSString *base64EncodingData) {
             
-            [self didRestoreTransaction:transaction queue:[SKPaymentQueue defaultQueue] receipt:base64EncodingData ResultBlock:^(NSString *paymentKey, JoypleError *error) {
+            [self didRestoreTransaction:transaction queue:[SKPaymentQueue defaultQueue] receipt:base64EncodingData ResultBlock:^(NSString *paymentKey, GBError *error) {
                 
                 if (resultBlock != nil) {
                     resultBlock(paymentKey, error);
@@ -108,26 +108,26 @@
                 
             }];
             
-        } failure:^(JoypleError *error) {
+        } failure:^(GBError *error) {
             JLogVerbose(@"verifyTranscation is failed!!!");
-            [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Restore transactions but still nothing receipt..",@"UserKey":[JoypleSetting currentSetting].userKey}];
+            [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Restore transactions but still nothing receipt..",@"UserKey":[GBSetting currentSetting].userKey}];
         }];
     }
     
 }
 
-- (void)didRestoreTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue receipt:(NSString *)receipt ResultBlock:(void(^)(NSString *paymentKey, JoypleError *error))resultBlock;
+- (void)didRestoreTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue receipt:(NSString *)receipt ResultBlock:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
 {
     SKPayment *payment = transaction.payment;
     
-    NSDictionary *parameter = @{@"payment_key": self.paymentKey /*!=nil?self.paymentKey:[[JoypleRestoreManager loadRestorePaymentKeysViaNSMutableArray]lastObject]*/,
+    NSDictionary *parameter = @{@"payment_key": self.paymentKey /*!=nil?self.paymentKey:[[GBRestoreManager loadRestorePaymentKeysViaNSMutableArray]lastObject]*/,
                                 @"product_id" : [payment productIdentifier],
                                 @"order_id" : [NSString stringWithFormat:@"%d", (int)transaction.hash],
                                 @"receipt" : [transaction transactionIdentifier],
                                 @"transaction" : receipt};
     
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         
@@ -149,7 +149,7 @@
                 [self finishedTransaction:transaction queue:queue];
             }
             
-            JoypleError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
+            GBError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
             
             if (resultBlock != nil) {
                 resultBlock(nil, errorResult);
@@ -158,7 +158,7 @@
         
     } failure:^(NSError *error, id JSON) {
         
-        JoypleError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
+        GBError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
         
         if (resultBlock != nil) {
             resultBlock(nil, errorResult);
@@ -173,10 +173,10 @@
     return [[SKPaymentQueue defaultQueue]transactions];
 }
 
-- (void)requestPaymentsWithMarketInfo:(void(^)(BOOL success, JoypleError *error))resultBlock
+- (void)requestPaymentsWithMarketInfo:(void(^)(BOOL success, GBError *error))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_MARKET_INFO param:nil];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_MARKET_INFO param:nil];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     JLogVerbose(@"Request Market Info");
     
@@ -192,35 +192,35 @@
             NSString *xorBundleID = [NSString stringFromHex:[marketInfo objectForKey:@"bundleID"]];
             NSData *encodeBundleData = [xorBundleID dataUsingEncoding:NSUTF8StringEncoding];
             
-            NSString *bundleID = [encodeBundleData dataXORWithData:[JoypleSetting currentSetting].clientSecretKey];
+            NSString *bundleID = [encodeBundleData dataXORWithData:[GBSetting currentSetting].clientSecretKey];
             
-            //if ([[JoypleSetting bundleIdentifier] isEqualToString:bundleID]) {
+            //if ([[GBSetting bundleIdentifier] isEqualToString:bundleID]) {
             NSString *appBundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
             
             if ([appBundleID isEqualToString:bundleID]) {
                 resultBlock(YES, nil);
             } else {
                 JLogInfo(@"Not Register Bundle ID = %@", bundleID);
-                resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_INVALID_APP userInfo:nil]);
+                resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INVALID_APP userInfo:nil]);
             }
             
         } else {
-            resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_INITIALIZE userInfo:nil]);
+            resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INITIALIZE userInfo:nil]);
         }
     } failure:^(NSError *error, id JSON) {
-        resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_INITIALIZE userInfo:@{NSUnderlyingErrorKey :error}]);
+        resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INITIALIZE userInfo:@{NSUnderlyingErrorKey :error}]);
     }];
 }
 
 - (void)requestProducts:(NSSet *)identifiers
-                success:(JoypleProductsRequestSuccessBlock)successBlock
-                failure:(JoypleProductsRequestFailureBlock)failureBlock
+                success:(GBProductsRequestSuccessBlock)successBlock
+                failure:(GBProductsRequestFailureBlock)failureBlock
 {
     //TODO: Unit Test
     //[_productsRequestDelegates addObject:requestDelegate];
     
     JLogVerbose(@"Requet Product Information to App Store");
-    JoypleProductRequestDelegate *requestDelegate = [[JoypleProductRequestDelegate alloc] init];
+    GBProductRequestDelegate *requestDelegate = [[GBProductRequestDelegate alloc] init];
     requestDelegate.store = self;
     requestDelegate.successBlock = successBlock;
     requestDelegate.failureBlock = failureBlock;
@@ -233,15 +233,15 @@
     [productsRequest start];
 }
 
-- (void)preparePayment:(void(^)(JoypleError *))errorHandler
+- (void)preparePayment:(void(^)(GBError *))errorHandler
 {
     NSDictionary *parameter = nil;
     if (self.extraData != nil) {
         parameter = @{@"extra_data" : self.extraData};
     }
     
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_GET_IAB_TOKEN param:parameter];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_GET_IAB_TOKEN param:parameter];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     JLogVerbose(@"Request IAB Token to Billing Server");
     
@@ -263,7 +263,7 @@
         } else {
             NSDictionary *errorDictionary = [JSON objectForKey:@"error"];
             
-            JoypleError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
+            GBError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
             
             
             if (errorHandler != nil) {
@@ -272,7 +272,7 @@
         }
     } failure:^(NSError *error, id JSON) {
         //FIXME:
-        JoypleError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
+        GBError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
         
         if (errorHandler != nil) {
             errorHandler(errorResult);
@@ -290,7 +290,7 @@
     
     if (product == nil) {
         
-        JoypleAddPaymentAction *action = paymentAction_[productIdentifier];
+        GBAddPaymentAction *action = paymentAction_[productIdentifier];
         [paymentAction_ removeObjectForKey:productIdentifier];
         
         
@@ -298,7 +298,7 @@
         //[paymentKeys_ removeLastObject];
         
         if (action.failureBlock != nil) {
-            JoypleError *wrappedError = [JoypleError errorWithDomain:JoypleErrorDomain
+            GBError *wrappedError = [GBError errorWithDomain:GBErrorDomain
                                                                 code:BILLING_ERROR_INVALID_PRODUCT_ID
                                                             userInfo:nil];
             action.failureBlock(wrappedError);
@@ -319,8 +319,8 @@
 
 - (void)restorePayment:(void (^)(NSArray *))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_RESTORE param:nil];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_RESTORE param:nil];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     JLogVerbose(@"Reuqest to restore a items...");
     
@@ -345,7 +345,7 @@
 }
 - (void)retryPayment:(void (^)(NSArray *retryPaymentKeys))resultBlock
 {
-    //    if ([JoypleRestoreManager existRestorePaymentkeys]) {
+    //    if ([GBRestoreManager existRestorePaymentkeys]) {
     //        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
     //
     //            NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
@@ -359,7 +359,7 @@
     //                        resultBlock(nil);
     //                }];
     //            } else {
-    //                [self _requestNewReceipt:^(BOOL success, JoypleError *error) {
+    //                [self _requestNewReceipt:^(BOOL success, GBError *error) {
     //                    if (success) {
     //                        [self _saveReceipt:receiptURL RetryPaymentKeys:^(NSArray *retryPaymentKeys) {
     //                            if (retryPaymentKeys)
@@ -388,7 +388,7 @@
     return validateProducts_[productIdentifier];
 }
 
-- (void)removeProductsRequestDelegate:(JoypleProductRequestDelegate *)delegate
+- (void)removeProductsRequestDelegate:(GBProductRequestDelegate *)delegate
 {
     [requestDelegateSet_ removeObject:delegate];
 }
@@ -411,7 +411,7 @@
                 break;
             case SKPaymentTransactionStateRestored:
                 JLogVerbose(@"Purchase Restore!!!");
-                [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Apple":@"Apple Purchase Restored",@"UserKey":[JoypleSetting currentSetting].userKey}];
+                [GBLog sendToGBServerAboutExceptionLog:@{@"Apple":@"Apple Purchase Restored",@"UserKey":[GBSetting currentSetting].userKey}];
                 [self didRestoreTransaction:transaction queue:queue];
                 break;
             default:
@@ -436,8 +436,8 @@
             
             NSDictionary *transactionIds = @{@"transaction_id" : transaction.transactionIdentifier, @"original_transaction_id" : transaction.originalTransaction.transactionIdentifier};
             
-            JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_CHECK_SUBSCRIPTION param:transactionIds];
-            JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+            GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_CHECK_SUBSCRIPTION param:transactionIds];
+            GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
             
             [request excuteRequestWithBlock:^(id JSON) {
                 [self finishedTransaction:transaction queue:queue];
@@ -451,26 +451,26 @@
         }
     }
     
-    JoypleReceiptVerificator *receiptVerificator = [[JoypleReceiptVerificator alloc] init];
+    GBReceiptVerificator *receiptVerificator = [[GBReceiptVerificator alloc] init];
     
     [receiptVerificator verifyTransaction:transaction success:^(NSString *base64EncodingData) {
         
         [self didVerifyTransaction:transaction queue:queue receipt:base64EncodingData];
         
-    } failure:^(JoypleError *error) {
+    } failure:^(GBError *error) {
         JLogVerbose(@"verifyTranscation is failed!!!");
         
-        [self _requestNewReceipt:^(BOOL success, JoypleError *error) {
+        [self _requestNewReceipt:^(BOOL success, GBError *error) {
             if (success) {
                 
                 [receiptVerificator verifyTransaction:transaction success:^(NSString *base64EncodingData) {
                     [self didVerifyTransaction:transaction queue:queue receipt:base64EncodingData];
-                } failure:^(JoypleError *error) {
-                    [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Retryed receipt but still nothing receipt..",@"UserKey":[JoypleSetting currentSetting].userKey}];
+                } failure:^(GBError *error) {
+                    [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Retryed receipt but still nothing receipt..",@"UserKey":[GBSetting currentSetting].userKey}];
                 }];
                 
             } else {
-                [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Retryed receipt but user may cancel that request app store re-login",@"UserKey":[JoypleSetting currentSetting].userKey}];
+                [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Retryed receipt but user may cancel that request app store re-login",@"UserKey":[GBSetting currentSetting].userKey}];
             }
         }];
         
@@ -483,11 +483,11 @@
     
     SKPayment *payment = [transaction payment];
     
-    JoypleAddPaymentAction *action = paymentAction_[payment.productIdentifier];
+    GBAddPaymentAction *action = paymentAction_[payment.productIdentifier];
     
-    [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Apple":@"Apple Purchase Failed",@"UserKey":[JoypleSetting currentSetting].userKey,@"Error Code":[NSNumber numberWithInteger:[error code]]}];
+    [GBLog sendToGBServerAboutExceptionLog:@{@"Apple":@"Apple Purchase Failed",@"UserKey":[GBSetting currentSetting].userKey,@"Error Code":[NSNumber numberWithInteger:[error code]]}];
     
-    //[JoypleRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
+    //[GBRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
     
     [queue finishTransaction:transaction];
     
@@ -495,12 +495,12 @@
         
         int errorCode = (int)[error code];
         
-        JoypleError *wrappedError = nil;
+        GBError *wrappedError = nil;
         
         if (errorCode == SKErrorPaymentCancelled) {
-            wrappedError = [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_FROM_STORE_CANCELED userInfo:nil];
+            wrappedError = [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_FROM_STORE_CANCELED userInfo:nil];
         } else {
-            wrappedError = [JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}];
+            wrappedError = [GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}];
         }
         
         //[paymentAction_ removeObjectForKey:payment.productIdentifier];
@@ -514,7 +514,7 @@
         NSError *transactionError = [transaction error];
         
         if (action.failureBlock != nil) {
-            action.failureBlock([JoypleError errorWithDomain:JoypleErrorDomain
+            action.failureBlock([GBError errorWithDomain:GBErrorDomain
                                                         code:[transactionError code]
                                                     userInfo:@{NSUnderlyingErrorKey : transactionError}]);
         }
@@ -525,14 +525,14 @@
     JLogError(@"Transaction Error is NULL!!!!");
     
     /*
-     JoypleReceiptVerificator *receiptVerificator = [[JoypleReceiptVerificator alloc] init];
+     GBReceiptVerificator *receiptVerificator = [[GBReceiptVerificator alloc] init];
      
      [receiptVerificator verifyTransaction:transaction
      success:^(NSString *base64EncodingData) {
      [self didVerifyTransaction:transaction queue:queue receipt:base64EncodingData];
-     } failure:^(JoypleError *error) {
+     } failure:^(GBError *error) {
      if (action.failureBlock != nil)
-     action.failureBlock([JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
+     action.failureBlock([GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
      }];
      */
 }
@@ -543,13 +543,13 @@
     
     SKPayment *payment = [transaction payment];
     
-    JoypleAddPaymentAction *action = paymentAction_[payment.productIdentifier];
+    GBAddPaymentAction *action = paymentAction_[payment.productIdentifier];
     
     NSError *transactionError = [transaction error];
     
     if (transactionError != nil) {
         if (action.failureBlock != nil) {
-            action.failureBlock([JoypleError errorWithDomain:JoypleErrorDomain
+            action.failureBlock([GBError errorWithDomain:GBErrorDomain
                                                         code:[transactionError code]
                                                     userInfo:@{NSUnderlyingErrorKey : transactionError}]);
         }
@@ -559,19 +559,19 @@
         return;
     }
     
-    JoypleReceiptVerificator *receiptVerificator = [[JoypleReceiptVerificator alloc] init];
+    GBReceiptVerificator *receiptVerificator = [[GBReceiptVerificator alloc] init];
     
     [receiptVerificator verifyTransaction:transaction success:^(NSString *base64EncodingData) {
         [self didVerifyTransaction:transaction queue:queue receipt:base64EncodingData];
-    } failure:^(JoypleError *error) {
+    } failure:^(GBError *error) {
         JLogVerbose(@"didRestoreTransaction - verifyTranscation is failed!!!");
-        [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Retryed receipt but still nothing receipt...",@"UserKey":[JoypleSetting currentSetting].userKey}];
+        [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Retryed receipt but still nothing receipt...",@"UserKey":[GBSetting currentSetting].userKey}];
         if (action.failureBlock != nil){
-            action.failureBlock([JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
+            action.failureBlock([GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
         }
     }];
     
-    //[JoypleRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
+    //[GBRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
     
     [queue finishTransaction: transaction];
     
@@ -609,22 +609,22 @@
     
     JLogVerbose(@"payment Key = %@", self.paymentKey);
     
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         
         int errorStatus = [[JSON objectForKey:@"status"] intValue];
         NSDictionary *result = [JSON objectForKey:@"result"];
         
-        [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Received Joyple Purchase Success Callback!!!",@"UserKey":[JoypleSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
+        [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Received GB Purchase Success Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
         
         if (errorStatus != 0) {
             [self finishedTransaction:transaction queue:queue];
             
             NSString *paymentKey = [result objectForKey:@"payment_key"];
             
-            JoypleAddPaymentAction *action = paymentAction_[payment.productIdentifier];
+            GBAddPaymentAction *action = paymentAction_[payment.productIdentifier];
             [paymentAction_ removeObjectForKey:payment.productIdentifier];
             
             if (action.successBlock != nil) {
@@ -643,10 +643,10 @@
                 [self finishedTransaction:transaction queue:queue];
             }
             
-            JoypleAddPaymentAction *action = paymentAction_[payment.productIdentifier];
+            GBAddPaymentAction *action = paymentAction_[payment.productIdentifier];
             [paymentAction_ removeObjectForKey:payment.productIdentifier];
             
-            JoypleError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
+            GBError *errorResult = [self makeBillingError:errorDictionary underlyingError:nil];
             
             if (action.failureBlock != nil) {
                 action.failureBlock(errorResult);
@@ -656,13 +656,13 @@
         
     } failure:^(NSError *error, id JSON) {
         
-        [JoypleLog sendToJoypleServerAboutExceptionLog:@{@"Joyple":@"Received Joyple Purchase Failed Callback!!!",@"UserKey":[JoypleSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
+        [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Received GB Purchase Failed Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
         // Retry...
         
-        JoypleAddPaymentAction *action = paymentAction_[payment.productIdentifier];
+        GBAddPaymentAction *action = paymentAction_[payment.productIdentifier];
         [paymentAction_ removeObjectForKey:payment.productIdentifier];
         
-        JoypleError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
+        GBError *errorResult = [self makeBillingError:[JSON objectForKey:@"error"] underlyingError:error];
         
         if (action.failureBlock != nil) {
             action.failureBlock(errorResult);
@@ -684,7 +684,7 @@
         refreshReceiptSuccessBlock();
         refreshReceiptSuccessBlock = nil;
     } else {
-        refreshReceiptFailureBlock([JoypleError errorWithDomain:JoypleErrorDomain code:0 userInfo:nil]);
+        refreshReceiptFailureBlock([GBError errorWithDomain:GBErrorDomain code:0 userInfo:nil]);
         refreshReceiptFailureBlock = nil;
     }
 }
@@ -696,14 +696,14 @@
     
     if (refreshReceiptFailureBlock) {
         //TODO: Error code & Error Message
-        refreshReceiptFailureBlock([JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
+        refreshReceiptFailureBlock([GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}]);
         refreshReceiptFailureBlock = nil;
     }
 }
 
 #pragma mark - Private Methods
 - (void)refreshReceiptOnSuccess:(void (^)())successBlock
-                        failure:(void (^)(JoypleError *error))failureBlock
+                        failure:(void (^)(GBError *error))failureBlock
 {
     refreshReceiptFailureBlock = failureBlock;
     refreshReceiptSuccessBlock = successBlock;
@@ -715,15 +715,15 @@
 - (void)finishedTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
 {
     self.paymentKey = nil;
-    //    [JoypleRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
+    //    [GBRestoreManager clearRestorePaymentKeyViaTransactionId:transaction.transactionIdentifier];
     [queue finishTransaction:transaction];
     JLogError(@"Delete PaymentKey!!!");
 }
 
-- (JoypleError *)makeBillingError:(NSDictionary *)errorDictionary underlyingError:(NSError *)underlayingError
+- (GBError *)makeBillingError:(NSDictionary *)errorDictionary underlyingError:(NSError *)underlayingError
 {
     if (underlayingError != nil) {
-        return [JoypleError errorWithDomain:JoypleErrorDomain code:[underlayingError code] userInfo:@{NSUnderlyingErrorKey : underlayingError}];//[underlayingError userInfo]];
+        return [GBError errorWithDomain:GBErrorDomain code:[underlayingError code] userInfo:@{NSUnderlyingErrorKey : underlayingError}];//[underlayingError userInfo]];
         
     } else {
         int errorCode = [[errorDictionary objectForKey:@"errorCode"] intValue];
@@ -733,12 +733,12 @@
         int newErrorCode = BILLING_ERROR_BASE + errorCode;
         
         if (newErrorCode == BILLING_ERROR_PAY_BLOCK_USER) {
-            localizedStringKey = JoypleLocalizedString(@"ui_billing_pay_block_user", nil);
+            localizedStringKey = GBLocalizedString(@"ui_billing_pay_block_user", nil);
         } else {
-            localizedStringKey = [NSString stringWithFormat:JoypleLocalizedString(@"ui_billing_common_error (%d)", nil), newErrorCode];
+            localizedStringKey = [NSString stringWithFormat:GBLocalizedString(@"ui_billing_common_error (%d)", nil), newErrorCode];
         }
         
-        return [JoypleError errorWithDomain:JoypleErrorDomain
+        return [GBError errorWithDomain:GBErrorDomain
                                        code:newErrorCode
                                    userInfo:nil];
     }
@@ -752,27 +752,27 @@
      
      NSString *receipt = [rawReceipt stringByBase64Encoding];
      
-     NSMutableArray *restoreInfoArray = [JoypleRestoreManager loadRestorePaymentKeysViaNSMutableArray];
+     NSMutableArray *restoreInfoArray = [GBRestoreManager loadRestorePaymentKeysViaNSMutableArray];
      
      for (NSDictionary *restoreDic in restoreInfoArray) {
      
      NSDictionary *parameter = @{@"payment_key": [restoreDic objectForKey:@"payment_key"],
      @"product_id" : [restoreDic objectForKey:@"product_id"],
-     @"order_id" : [JoypleSetting currentSetting].userKey,
+     @"order_id" : [GBSetting currentSetting].userKey,
      @"receipt" : [restoreDic objectForKey:@"payment_key"],
      @"transaction" : receipt};
      
-     JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
-     JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+     GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_SAVE_RECEIPT param:parameter];
+     GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
      
      JLogVerbose(@"Reuqest to restore a items...");
      
      [request excuteRequestWithBlock:^(id JSON) {
-     [JoypleRestoreManager clearFirstRestorePaymentKey];
+     [GBRestoreManager clearFirstRestorePaymentKey];
      int errorStatus = [[JSON objectForKey:@"status"] intValue];
      NSDictionary *result = [JSON objectForKey:@"result"];
      
-     [self sendToJoypleServerAboutExceptionLog:@{@"Joyple Restore":@"Received Joyple Restore Success Callback!!!",@"UserKey":[JoypleSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
+     [self sendToGBServerAboutExceptionLog:@{@"GB Restore":@"Received GB Restore Success Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
      if (errorStatus != 0) {
      NSArray *paymentKeys = [result objectForKey:@"payment_key"];
      if (resultBlock != nil)
@@ -782,8 +782,8 @@
      resultBlock(nil);
      }
      } failure:^(NSError *error, id JSON) {
-     [JoypleRestoreManager clearFirstRestorePaymentKey];
-     [self sendToJoypleServerAboutExceptionLog:@{@"Joyple Restore":@"Received Joyple Restore Fail Callback!!!",@"UserKey":[JoypleSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
+     [GBRestoreManager clearFirstRestorePaymentKey];
+     [self sendToGBServerAboutExceptionLog:@{@"GB Restore":@"Received GB Restore Fail Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
      if (resultBlock != nil)
      resultBlock(nil);
      }];
@@ -791,12 +791,12 @@
      */
 }
 
-- (void)_requestNewReceipt:(void(^)(BOOL success, JoypleError *error))resultBlock;
+- (void)_requestNewReceipt:(void(^)(BOOL success, GBError *error))resultBlock;
 {
     [self refreshReceiptOnSuccess:^{
         if (resultBlock != nil)
             resultBlock(YES, nil);
-    } failure:^(JoypleError *error) {
+    } failure:^(GBError *error) {
         if (resultBlock != nil)
             resultBlock(NO, error);
     }];

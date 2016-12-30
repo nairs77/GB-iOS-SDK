@@ -1,14 +1,14 @@
 //
-//  JoypleRestoreManager.h
-//  Joyple
+//  GBRestoreManager.h
+//  GB
 //
 //  Created by joyuser on 2015. 11. 4..
-//  Copyright © 2015년 Joycity. All rights reserved.
+//  Copyright © 2015년 GeBros. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface JoypleRestoreManager : NSObject
+@interface GBRestoreManager : NSObject
 
 + (void)saveRestorePaymentKey:(NSString *)paymentKey;
 + (void)clearLastRestorePaymentKey;

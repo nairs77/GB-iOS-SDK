@@ -1,15 +1,15 @@
 //
-//  JoypleProtocol+Store.m
-//  Joyple
+//  GBProtocol+Store.m
+//  GB
 //
 //  Created by Professional on 2014. 6. 13..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleProtocol+Store.h"
-#import "JoypleDeviceUtil.h"
+#import "GBProtocol+Store.h"
+#import "GBDeviceUtil.h"
 
-@interface JoypleProtocol(StoreMethod)
+@interface GBProtocol(StoreMethod)
 
 - (void)_makeProtocolPaymentMarketInfo;
 - (void)_makeProtocolPaymentIabToken:(NSDictionary *)parameter;
@@ -25,11 +25,11 @@
 @end
 
 
-@implementation JoypleProtocol (Store)
+@implementation GBProtocol (Store)
 
-+ (JoypleProtocol *)makeRequestPayment:(NSUInteger)command param:(NSDictionary *)parameter
++ (GBProtocol *)makeRequestPayment:(NSUInteger)command param:(NSDictionary *)parameter
 {
-    JoypleProtocol *protocol = [[self alloc] init];
+    GBProtocol *protocol = [[self alloc] init];
     protocol.command = command;
     
     switch (command) {
@@ -80,19 +80,19 @@
 
 - (void)_makeProtocolPaymentMarketInfo
 {
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/init";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
-                       @"market_code" : [NSNumber numberWithInt:[JoypleSetting currentSetting].marketCode]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
+                       @"market_code" : [NSNumber numberWithInt:[GBSetting currentSetting].marketCode]};
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolPaymentIabToken:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/key";
     self.httpMethod = @"POST";
     
@@ -104,74 +104,74 @@
         extraString = (id)[NSNull null];
     }
     
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"userkey" : userKey,
-                       @"market_code" : [NSNumber numberWithInt:[JoypleSetting currentSetting].marketCode],
-                       @"ip" : [JoypleDeviceUtil deviceIpAddress],
+                       @"market_code" : [NSNumber numberWithInt:[GBSetting currentSetting].marketCode],
+                       @"ip" : [GBDeviceUtil deviceIpAddress],
                        @"extra_data" : extraString};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolPaymentSaveReceipt:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/receipt";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"userkey" : userKey,
-                       @"market_code" : [NSNumber numberWithInt:[JoypleSetting currentSetting].marketCode],
-                       @"ip" : [JoypleDeviceUtil deviceIpAddress],
+                       @"market_code" : [NSNumber numberWithInt:[GBSetting currentSetting].marketCode],
+                       @"ip" : [GBDeviceUtil deviceIpAddress],
                        @"payment_key" : [parameter objectForKey:@"payment_key"],
                        @"product_id" : [parameter objectForKey:@"product_id"],
                        @"order_id" : [parameter objectForKey:@"order_id"],
                        @"receipt" : [parameter objectForKey:@"receipt"],
                        @"transaction" : [parameter objectForKey:@"transaction"],
                        @"is_subscription" : [parameter objectForKey:@"is_subscription"]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolRestore:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/fail/restore";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"userkey" : userKey};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolDownload:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     
-    self.serverURL = [[JoypleSetting currentSetting] gameServer];
+    self.serverURL = [[GBSetting currentSetting] gameServer];
     self.relativePath = @"item/provide";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"payment_key" : [parameter objectForKey:@"payment_key"],
                        @"userkey" : [NSNumber numberWithInt:[userKey intValue]]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolQuery:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     
-    self.serverURL = [[JoypleSetting currentSetting] gameServer];
+    self.serverURL = [[GBSetting currentSetting] gameServer];
     self.relativePath = @"item/info";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"userkey" : [NSNumber numberWithInt:[userKey intValue]]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolCheckSubscription:(NSDictionary *)parameter
 {
-    NSString *userKey = [JoypleSetting currentSetting].userKey;
+    NSString *userKey = [GBSetting currentSetting].userKey;
     NSString *originalTransactionId = nil;
     
     if ([parameter objectForKey:@"original_transaction_id"] != nil) {
@@ -180,52 +180,52 @@
         originalTransactionId = (id)[NSNull null];
     }
     
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/subscription/check";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"userkey" : userKey,
-                       @"market_code" : [NSNumber numberWithInt:[JoypleSetting currentSetting].marketCode],
+                       @"market_code" : [NSNumber numberWithInt:[GBSetting currentSetting].marketCode],
                        @"transaction_id" : [parameter objectForKey:@"transaction_id"],
                        @"original_transaction_id" : originalTransactionId};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolPaymentErrorInfo:(NSDictionary *)info
 {
-    self.serverURL = [[JoypleSetting currentSetting] contentAPIServer];
+    self.serverURL = [[GBSetting currentSetting] contentAPIServer];
     self.relativePath = @"logs/client/add";
     self.httpMethod = @"POST";
     self.body = info;
-    //    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
-    //                       @"market_code" : [NSNumber numberWithInt:[JoypleSetting currentSetting].marketCode]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    //    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
+    //                       @"market_code" : [NSNumber numberWithInt:[GBSetting currentSetting].marketCode]};
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 #pragma mark Subscription Test
 
 - (void)_makeProtocolPayInfo:(NSDictionary *)parameter
 {
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/info";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"payment_key" : [parameter objectForKey:@"payment_key"],
-                       @"userkey" : [JoypleSetting currentSetting].userKey};
-    self.userAgent = [JoypleProtocol defaultHeader];
+                       @"userkey" : [GBSetting currentSetting].userKey};
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolSetLog:(NSDictionary *)parameter
 {
-    self.serverURL = [[JoypleSetting currentSetting] billingServer];
+    self.serverURL = [[GBSetting currentSetting] billingServer];
     self.relativePath = @"pay/set-log";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [JoypleSetting currentSetting].clientSecretKey,
+    self.parameter = @{@"client_secret" : [GBSetting currentSetting].clientSecretKey,
                        @"payment_key" : [parameter objectForKey:@"payment_key"],
                        @"product_price" : [parameter objectForKey:@"product_price"],
                        @"product_name" : [parameter objectForKey:@"product_name"],
                        @"money_type" : [parameter objectForKey:@"money_type"]};
-    self.userAgent = [JoypleProtocol defaultHeader];
+    self.userAgent = [GBProtocol defaultHeader];
 }
 
 @end

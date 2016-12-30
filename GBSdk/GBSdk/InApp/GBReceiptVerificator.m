@@ -1,22 +1,22 @@
 //
-//  JoypleReceiptVerificator.m
-//  Joyple
+//  GBReceiptVerificator.m
+//  GB
 //
 //  Created by Professional on 2014. 6. 17..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleReceiptVerificator.h"
+#import "GBReceiptVerificator.h"
 #import "NSData+Formatter.h"
-#import "JoypleLog.h"
+#import "GBLog.h"
 
 //#define _TEST_VERIFY_
 
-@implementation JoypleReceiptVerificator
+@implementation GBReceiptVerificator
 
 - (void)verifyTransaction:(SKPaymentTransaction*)transaction
                   success:(void (^)(NSString *base64EncodingData))successBlock
-                  failure:(void (^)(JoypleError *error))failureBlock
+                  failure:(void (^)(GBError *error))failureBlock
 {
     BOOL iOS7OrHigher = floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1;
     
@@ -66,7 +66,7 @@
     
     if (receipt == nil) {
         if (failureBlock != nil) {
-            JoypleError *error = [JoypleError errorWithDomain:JoypleErrorDomain code:0 userInfo:nil];
+            GBError *error = [GBError errorWithDomain:GBErrorDomain code:0 userInfo:nil];
             failureBlock(error);
         }
         return;
@@ -95,7 +95,7 @@
             if (!data)
             {
                 JLogVerbose(@"Server Connection Failed");
-                JoypleError *wrapperError = [JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error, NSLocalizedDescriptionKey : NSLocalizedString(@"Connection to Apple failed. Check the underlying error for more info.", @"Error description")}];
+                GBError *wrapperError = [GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error, NSLocalizedDescriptionKey : NSLocalizedString(@"Connection to Apple failed. Check the underlying error for more info.", @"Error description")}];
                 if (failureBlock != nil)
                 {
                     failureBlock(wrapperError);
@@ -138,7 +138,7 @@
             else
             {
                 JLogVerbose(@"Verification Failed With Code %ld", (long)statusCode);
-                JoypleError *serverError = [JoypleError errorWithDomain:JoypleErrorDomain code:statusCode userInfo:nil];
+                GBError *serverError = [GBError errorWithDomain:GBErrorDomain code:statusCode userInfo:nil];
                 if (failureBlock != nil)
                 {
                     failureBlock(serverError);

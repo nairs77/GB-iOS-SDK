@@ -23,8 +23,8 @@
 #define IP_ADDR_IPv6    @"ipv6"
 
 // IDFA
-NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
-#define kJoypleUniqueID		@"com.gebros.joypleID"
+NSString * const kGBUpdatedIDFAHashKey = @"com.gebros.idfahash";
+#define kGBUniqueID		@"com.gebros.joypleID"
 
 @implementation GBDeviceUtil
 
@@ -40,7 +40,7 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
 
 + (NSString *)uniqueDeviceId
 {
-    NSString *retrieveuuid = [SSKeychain passwordForService:kJoypleUniqueID account:@"joyple"];
+    NSString *retrieveuuid = [SSKeychain passwordForService:kGBUniqueID account:@"joyple"];
     
     if([retrieveuuid length] > 0) {
         return retrieveuuid;
@@ -51,7 +51,7 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
             vendorIdentifier = [GBDeviceUtil getUUID];
         }
         
-        [SSKeychain setPassword:vendorIdentifier forService:kJoypleUniqueID account:@"joyple"];
+        [SSKeychain setPassword:vendorIdentifier forService:kGBUniqueID account:@"joyple"];
         
         return vendorIdentifier;
     }
@@ -189,7 +189,7 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
     NSMutableString *header = [[NSMutableString alloc] initWithString:@"udid="];
     
     // UUID
-    [header appendString:[JoypleDeviceUtil uniqueDeviceId]];
+    [header appendString:[GBDeviceUtil uniqueDeviceId]];
     [header appendString:@";"];
     
     // mdn
@@ -203,23 +203,23 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
     
     // OS - version
     [header appendString:@"os-version="];
-    [header appendString:[JoypleDeviceUtil deviceVersion]];
+    [header appendString:[GBDeviceUtil deviceVersion]];
     [header appendString:@";"];
     
     // Device - Model
     [header appendString:@"device="];
-    [header appendString:[JoypleDeviceUtil deviceModel]];
+    [header appendString:[GBDeviceUtil deviceModel]];
     [header appendString:@";"];
     
     // isRooting
     [header appendString:@"rooting="];
-    [header appendString:[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:[JoypleDeviceUtil isRooting]]]];
+    [header appendString:[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:[GBDeviceUtil isRooting]]]];
     [header appendString:@";"];
     
     // Telephone Carrier
     [header appendString:@"carrier="];
     
-    NSString *carrier = [JoypleDeviceUtil telCarrierName];
+    NSString *carrier = [GBDeviceUtil telCarrierName];
     [header appendString:(carrier != nil) ? carrier : @""];
     [header appendString:@";"];
     
@@ -309,9 +309,9 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
     
     NSUserDefaults *idfaUserDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ([idfaUserDefaults objectForKey:kJoypleUpdatedIDFAHashKey]) {
+    if ([idfaUserDefaults objectForKey:kGBUpdatedIDFAHashKey]) {
         
-        NSInteger prevIdfaHash = [idfaUserDefaults integerForKey:kJoypleUpdatedIDFAHashKey];
+        NSInteger prevIdfaHash = [idfaUserDefaults integerForKey:kGBUpdatedIDFAHashKey];
         NSInteger curIdfaHash = [currentAdvertisingId hash];
         
         if (prevIdfaHash == curIdfaHash) {
@@ -320,7 +320,7 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
             
         } else {
             
-            [idfaUserDefaults setInteger:curIdfaHash forKey:kJoypleUpdatedIDFAHashKey];
+            [idfaUserDefaults setInteger:curIdfaHash forKey:kGBUpdatedIDFAHashKey];
             
             return [idfaUserDefaults synchronize];
             
@@ -328,7 +328,7 @@ NSString * const kJoypleUpdatedIDFAHashKey = @"com.gebros.idfahash";
         
     } else {
         
-        [idfaUserDefaults setInteger:[currentAdvertisingId hash] forKey:kJoypleUpdatedIDFAHashKey];
+        [idfaUserDefaults setInteger:[currentAdvertisingId hash] forKey:kGBUpdatedIDFAHashKey];
         
         return [idfaUserDefaults synchronize];
         

@@ -1,16 +1,16 @@
 //
-//  JoypleRestoreManager.m
-//  Joyple
+//  GBRestoreManager.m
+//  GB
 //
 //  Created by joyuser on 2015. 11. 4..
-//  Copyright © 2015년 Joycity. All rights reserved.
+//  Copyright © 2015년 GeBros. All rights reserved.
 //
 
-#import "JoypleRestoreManager.h"
+#import "GBRestoreManager.h"
 
 #define JOYPLE_RESTORE_INFORAMTION @"joyple.restore.inforamtion"
 
-@implementation JoypleRestoreManager
+@implementation GBRestoreManager
 
 + (BOOL)existRestorePaymentkeys
 {

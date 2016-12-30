@@ -12,22 +12,22 @@
 		BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161C21E1613A2005DD9D2 /* GBDeviceUtil.m */; };
 		BB3161C71E1629ED005DD9D2 /* SSKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161C51E1629ED005DD9D2 /* SSKeychain.h */; };
 		BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161C61E1629ED005DD9D2 /* SSKeychain.m */; };
-		BB3161DA1E1633B5005DD9D2 /* JoypleAddPaymentAction.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CA1E1633B5005DD9D2 /* JoypleAddPaymentAction.h */; };
-		BB3161DB1E1633B5005DD9D2 /* JoypleAddPaymentAction.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CB1E1633B5005DD9D2 /* JoypleAddPaymentAction.m */; };
-		BB3161DC1E1633B5005DD9D2 /* JoypleLog+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CC1E1633B5005DD9D2 /* JoypleLog+Store.h */; };
-		BB3161DD1E1633B5005DD9D2 /* JoypleLog+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CD1E1633B5005DD9D2 /* JoypleLog+Store.m */; };
-		BB3161DE1E1633B5005DD9D2 /* JoypleProductRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CE1E1633B5005DD9D2 /* JoypleProductRequestDelegate.h */; };
-		BB3161DF1E1633B5005DD9D2 /* JoypleProductRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CF1E1633B5005DD9D2 /* JoypleProductRequestDelegate.m */; };
-		BB3161E01E1633B5005DD9D2 /* JoypleProtocol+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D01E1633B5005DD9D2 /* JoypleProtocol+Store.h */; };
-		BB3161E11E1633B5005DD9D2 /* JoypleProtocol+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D11E1633B5005DD9D2 /* JoypleProtocol+Store.m */; };
-		BB3161E21E1633B5005DD9D2 /* JoypleReceiptVerificator.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D21E1633B5005DD9D2 /* JoypleReceiptVerificator.h */; };
-		BB3161E31E1633B5005DD9D2 /* JoypleReceiptVerificator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D31E1633B5005DD9D2 /* JoypleReceiptVerificator.m */; };
-		BB3161E41E1633B5005DD9D2 /* JoypleRestoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D41E1633B5005DD9D2 /* JoypleRestoreManager.h */; };
-		BB3161E51E1633B5005DD9D2 /* JoypleRestoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D51E1633B5005DD9D2 /* JoypleRestoreManager.m */; };
-		BB3161E61E1633B5005DD9D2 /* JoypleStoreHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D61E1633B5005DD9D2 /* JoypleStoreHelper.h */; };
-		BB3161E71E1633B5005DD9D2 /* JoypleStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D71E1633B5005DD9D2 /* JoypleStoreHelper.m */; };
-		BB3161E81E1633B5005DD9D2 /* JoypleStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D81E1633B5005DD9D2 /* JoypleStoreService.h */; };
-		BB3161E91E1633B5005DD9D2 /* JoypleStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D91E1633B5005DD9D2 /* JoypleStoreService.m */; };
+		BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CA1E1633B5005DD9D2 /* GBAddPaymentAction.h */; };
+		BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CB1E1633B5005DD9D2 /* GBAddPaymentAction.m */; };
+		BB3161DC1E1633B5005DD9D2 /* GBLog+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CC1E1633B5005DD9D2 /* GBLog+Store.h */; };
+		BB3161DD1E1633B5005DD9D2 /* GBLog+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CD1E1633B5005DD9D2 /* GBLog+Store.m */; };
+		BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CE1E1633B5005DD9D2 /* GBProductRequestDelegate.h */; };
+		BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CF1E1633B5005DD9D2 /* GBProductRequestDelegate.m */; };
+		BB3161E01E1633B5005DD9D2 /* GBProtocol+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D01E1633B5005DD9D2 /* GBProtocol+Store.h */; };
+		BB3161E11E1633B5005DD9D2 /* GBProtocol+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D11E1633B5005DD9D2 /* GBProtocol+Store.m */; };
+		BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D21E1633B5005DD9D2 /* GBReceiptVerificator.h */; };
+		BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */; };
+		BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */; };
+		BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */; };
+		BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D61E1633B5005DD9D2 /* GBStoreHelper.h */; };
+		BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D71E1633B5005DD9D2 /* GBStoreHelper.m */; };
+		BB3161E81E1633B5005DD9D2 /* GBStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D81E1633B5005DD9D2 /* GBStoreService.h */; };
+		BB3161E91E1633B5005DD9D2 /* GBStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D91E1633B5005DD9D2 /* GBStoreService.m */; };
 		BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161EB1E1635D5005DD9D2 /* GBError.h */; };
 		BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161EC1E1635D5005DD9D2 /* GBError.m */; };
 /* End PBXBuildFile section */
@@ -42,22 +42,22 @@
 		BB3161C41E1613CD005DD9D2 /* GBDeviceUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GBDeviceUtil.h; path = GBSdk/Util/GBDeviceUtil.h; sourceTree = "<group>"; };
 		BB3161C51E1629ED005DD9D2 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = GBSdk/Util/SSKeychain.h; sourceTree = "<group>"; };
 		BB3161C61E1629ED005DD9D2 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKeychain.m; path = GBSdk/Util/SSKeychain.m; sourceTree = "<group>"; };
-		BB3161CA1E1633B5005DD9D2 /* JoypleAddPaymentAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleAddPaymentAction.h; path = GBSdk/InApp/JoypleAddPaymentAction.h; sourceTree = "<group>"; };
-		BB3161CB1E1633B5005DD9D2 /* JoypleAddPaymentAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleAddPaymentAction.m; path = GBSdk/InApp/JoypleAddPaymentAction.m; sourceTree = "<group>"; };
-		BB3161CC1E1633B5005DD9D2 /* JoypleLog+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JoypleLog+Store.h"; path = "GBSdk/InApp/JoypleLog+Store.h"; sourceTree = "<group>"; };
-		BB3161CD1E1633B5005DD9D2 /* JoypleLog+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JoypleLog+Store.m"; path = "GBSdk/InApp/JoypleLog+Store.m"; sourceTree = "<group>"; };
-		BB3161CE1E1633B5005DD9D2 /* JoypleProductRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleProductRequestDelegate.h; path = GBSdk/InApp/JoypleProductRequestDelegate.h; sourceTree = "<group>"; };
-		BB3161CF1E1633B5005DD9D2 /* JoypleProductRequestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleProductRequestDelegate.m; path = GBSdk/InApp/JoypleProductRequestDelegate.m; sourceTree = "<group>"; };
-		BB3161D01E1633B5005DD9D2 /* JoypleProtocol+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JoypleProtocol+Store.h"; path = "GBSdk/InApp/JoypleProtocol+Store.h"; sourceTree = "<group>"; };
-		BB3161D11E1633B5005DD9D2 /* JoypleProtocol+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JoypleProtocol+Store.m"; path = "GBSdk/InApp/JoypleProtocol+Store.m"; sourceTree = "<group>"; };
-		BB3161D21E1633B5005DD9D2 /* JoypleReceiptVerificator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleReceiptVerificator.h; path = GBSdk/InApp/JoypleReceiptVerificator.h; sourceTree = "<group>"; };
-		BB3161D31E1633B5005DD9D2 /* JoypleReceiptVerificator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleReceiptVerificator.m; path = GBSdk/InApp/JoypleReceiptVerificator.m; sourceTree = "<group>"; };
-		BB3161D41E1633B5005DD9D2 /* JoypleRestoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleRestoreManager.h; path = GBSdk/InApp/JoypleRestoreManager.h; sourceTree = "<group>"; };
-		BB3161D51E1633B5005DD9D2 /* JoypleRestoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleRestoreManager.m; path = GBSdk/InApp/JoypleRestoreManager.m; sourceTree = "<group>"; };
-		BB3161D61E1633B5005DD9D2 /* JoypleStoreHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleStoreHelper.h; path = GBSdk/InApp/JoypleStoreHelper.h; sourceTree = "<group>"; };
-		BB3161D71E1633B5005DD9D2 /* JoypleStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleStoreHelper.m; path = GBSdk/InApp/JoypleStoreHelper.m; sourceTree = "<group>"; };
-		BB3161D81E1633B5005DD9D2 /* JoypleStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoypleStoreService.h; path = GBSdk/InApp/JoypleStoreService.h; sourceTree = "<group>"; };
-		BB3161D91E1633B5005DD9D2 /* JoypleStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoypleStoreService.m; path = GBSdk/InApp/JoypleStoreService.m; sourceTree = "<group>"; };
+		BB3161CA1E1633B5005DD9D2 /* GBAddPaymentAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBAddPaymentAction.h; path = GBSdk/InApp/GBAddPaymentAction.h; sourceTree = "<group>"; };
+		BB3161CB1E1633B5005DD9D2 /* GBAddPaymentAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBAddPaymentAction.m; path = GBSdk/InApp/GBAddPaymentAction.m; sourceTree = "<group>"; };
+		BB3161CC1E1633B5005DD9D2 /* GBLog+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBLog+Store.h"; path = "GBSdk/InApp/GBLog+Store.h"; sourceTree = "<group>"; };
+		BB3161CD1E1633B5005DD9D2 /* GBLog+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBLog+Store.m"; path = "GBSdk/InApp/GBLog+Store.m"; sourceTree = "<group>"; };
+		BB3161CE1E1633B5005DD9D2 /* GBProductRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBProductRequestDelegate.h; path = GBSdk/InApp/GBProductRequestDelegate.h; sourceTree = "<group>"; };
+		BB3161CF1E1633B5005DD9D2 /* GBProductRequestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBProductRequestDelegate.m; path = GBSdk/InApp/GBProductRequestDelegate.m; sourceTree = "<group>"; };
+		BB3161D01E1633B5005DD9D2 /* GBProtocol+Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBProtocol+Store.h"; path = "GBSdk/InApp/GBProtocol+Store.h"; sourceTree = "<group>"; };
+		BB3161D11E1633B5005DD9D2 /* GBProtocol+Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBProtocol+Store.m"; path = "GBSdk/InApp/GBProtocol+Store.m"; sourceTree = "<group>"; };
+		BB3161D21E1633B5005DD9D2 /* GBReceiptVerificator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBReceiptVerificator.h; path = GBSdk/InApp/GBReceiptVerificator.h; sourceTree = "<group>"; };
+		BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBReceiptVerificator.m; path = GBSdk/InApp/GBReceiptVerificator.m; sourceTree = "<group>"; };
+		BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRestoreManager.h; path = GBSdk/InApp/GBRestoreManager.h; sourceTree = "<group>"; };
+		BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRestoreManager.m; path = GBSdk/InApp/GBRestoreManager.m; sourceTree = "<group>"; };
+		BB3161D61E1633B5005DD9D2 /* GBStoreHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBStoreHelper.h; path = GBSdk/InApp/GBStoreHelper.h; sourceTree = "<group>"; };
+		BB3161D71E1633B5005DD9D2 /* GBStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBStoreHelper.m; path = GBSdk/InApp/GBStoreHelper.m; sourceTree = "<group>"; };
+		BB3161D81E1633B5005DD9D2 /* GBStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBStoreService.h; path = GBSdk/InApp/GBStoreService.h; sourceTree = "<group>"; };
+		BB3161D91E1633B5005DD9D2 /* GBStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBStoreService.m; path = GBSdk/InApp/GBStoreService.m; sourceTree = "<group>"; };
 		BB3161EB1E1635D5005DD9D2 /* GBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBError.h; path = GBSdk/GBError.h; sourceTree = "<group>"; };
 		BB3161EC1E1635D5005DD9D2 /* GBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBError.m; path = GBSdk/GBError.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,22 +118,22 @@
 		BB3161C91E162CFD005DD9D2 /* InApp */ = {
 			isa = PBXGroup;
 			children = (
-				BB3161CA1E1633B5005DD9D2 /* JoypleAddPaymentAction.h */,
-				BB3161CB1E1633B5005DD9D2 /* JoypleAddPaymentAction.m */,
-				BB3161CC1E1633B5005DD9D2 /* JoypleLog+Store.h */,
-				BB3161CD1E1633B5005DD9D2 /* JoypleLog+Store.m */,
-				BB3161CE1E1633B5005DD9D2 /* JoypleProductRequestDelegate.h */,
-				BB3161CF1E1633B5005DD9D2 /* JoypleProductRequestDelegate.m */,
-				BB3161D01E1633B5005DD9D2 /* JoypleProtocol+Store.h */,
-				BB3161D11E1633B5005DD9D2 /* JoypleProtocol+Store.m */,
-				BB3161D21E1633B5005DD9D2 /* JoypleReceiptVerificator.h */,
-				BB3161D31E1633B5005DD9D2 /* JoypleReceiptVerificator.m */,
-				BB3161D41E1633B5005DD9D2 /* JoypleRestoreManager.h */,
-				BB3161D51E1633B5005DD9D2 /* JoypleRestoreManager.m */,
-				BB3161D61E1633B5005DD9D2 /* JoypleStoreHelper.h */,
-				BB3161D71E1633B5005DD9D2 /* JoypleStoreHelper.m */,
-				BB3161D81E1633B5005DD9D2 /* JoypleStoreService.h */,
-				BB3161D91E1633B5005DD9D2 /* JoypleStoreService.m */,
+				BB3161CA1E1633B5005DD9D2 /* GBAddPaymentAction.h */,
+				BB3161CB1E1633B5005DD9D2 /* GBAddPaymentAction.m */,
+				BB3161CC1E1633B5005DD9D2 /* GBLog+Store.h */,
+				BB3161CD1E1633B5005DD9D2 /* GBLog+Store.m */,
+				BB3161CE1E1633B5005DD9D2 /* GBProductRequestDelegate.h */,
+				BB3161CF1E1633B5005DD9D2 /* GBProductRequestDelegate.m */,
+				BB3161D01E1633B5005DD9D2 /* GBProtocol+Store.h */,
+				BB3161D11E1633B5005DD9D2 /* GBProtocol+Store.m */,
+				BB3161D21E1633B5005DD9D2 /* GBReceiptVerificator.h */,
+				BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */,
+				BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */,
+				BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */,
+				BB3161D61E1633B5005DD9D2 /* GBStoreHelper.h */,
+				BB3161D71E1633B5005DD9D2 /* GBStoreHelper.m */,
+				BB3161D81E1633B5005DD9D2 /* GBStoreService.h */,
+				BB3161D91E1633B5005DD9D2 /* GBStoreService.m */,
 			);
 			name = InApp;
 			sourceTree = "<group>";
@@ -161,17 +161,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB3161DC1E1633B5005DD9D2 /* JoypleLog+Store.h in Headers */,
-				BB3161E81E1633B5005DD9D2 /* JoypleStoreService.h in Headers */,
-				BB3161DA1E1633B5005DD9D2 /* JoypleAddPaymentAction.h in Headers */,
+				BB3161DC1E1633B5005DD9D2 /* GBLog+Store.h in Headers */,
+				BB3161E81E1633B5005DD9D2 /* GBStoreService.h in Headers */,
+				BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */,
 				BB3161C71E1629ED005DD9D2 /* SSKeychain.h in Headers */,
-				BB3161E01E1633B5005DD9D2 /* JoypleProtocol+Store.h in Headers */,
+				BB3161E01E1633B5005DD9D2 /* GBProtocol+Store.h in Headers */,
 				BB0DC20B1E151128008ADA92 /* GBSdk.h in Headers */,
-				BB3161DE1E1633B5005DD9D2 /* JoypleProductRequestDelegate.h in Headers */,
-				BB3161E41E1633B5005DD9D2 /* JoypleRestoreManager.h in Headers */,
-				BB3161E61E1633B5005DD9D2 /* JoypleStoreHelper.h in Headers */,
+				BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */,
+				BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */,
+				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
-				BB3161E21E1633B5005DD9D2 /* JoypleReceiptVerificator.h in Headers */,
+				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,16 +246,16 @@
 			files = (
 				BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */,
 				BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */,
-				BB3161E71E1633B5005DD9D2 /* JoypleStoreHelper.m in Sources */,
+				BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */,
 				BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */,
-				BB3161E51E1633B5005DD9D2 /* JoypleRestoreManager.m in Sources */,
-				BB3161E31E1633B5005DD9D2 /* JoypleReceiptVerificator.m in Sources */,
+				BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */,
+				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,
 				BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */,
-				BB3161DF1E1633B5005DD9D2 /* JoypleProductRequestDelegate.m in Sources */,
-				BB3161DD1E1633B5005DD9D2 /* JoypleLog+Store.m in Sources */,
-				BB3161E11E1633B5005DD9D2 /* JoypleProtocol+Store.m in Sources */,
-				BB3161E91E1633B5005DD9D2 /* JoypleStoreService.m in Sources */,
-				BB3161DB1E1633B5005DD9D2 /* JoypleAddPaymentAction.m in Sources */,
+				BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */,
+				BB3161DD1E1633B5005DD9D2 /* GBLog+Store.m in Sources */,
+				BB3161E11E1633B5005DD9D2 /* GBProtocol+Store.m in Sources */,
+				BB3161E91E1633B5005DD9D2 /* GBStoreService.m in Sources */,
+				BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

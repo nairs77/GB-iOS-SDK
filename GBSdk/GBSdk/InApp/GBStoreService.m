@@ -1,87 +1,87 @@
 //
-//  JoypleStoreService.m
-//  Joyple
+//  GBStoreService.m
+//  GB
 //
 //  Created by Professional on 2014. 6. 12..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleStoreService.h"
-#import "JoypleStoreHelper.h"
-#import "JoypleAddPaymentAction.h"
-#import "NSBundle+Joyple.h"
-#import "JoypleRequest.h"
-#import "JoypleProtocol+Store.h"
-#import "JoypleDeviceUtil.h"
-#import "JoypleUtil.h"
-#import "JoypleLog.h"
-#import "JoypleError.h"
+#import "GBStoreService.h"
+#import "GBStoreHelper.h"
+#import "GBAddPaymentAction.h"
+#import "NSBundle+GB.h"
+#import "GBRequest.h"
+#import "GBProtocol+Store.h"
+#import "GBDeviceUtil.h"
+#import "GBUtil.h"
+#import "GBLog.h"
+#import "GBError.h"
 
-@implementation JoypleStoreService
+@implementation GBStoreService
 
-+ (void)startStoreService:(void (^)(BOOL success, JoypleError *error))resultBlock
++ (void)startStoreService:(void (^)(BOOL success, GBError *error))resultBlock
 {
-    if ([JoypleDeviceUtil isRooting]) {
-        resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_INVALID_DEVICE userInfo:nil]);
+    if ([GBDeviceUtil isRooting]) {
+        resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INVALID_DEVICE userInfo:nil]);
         return;
     }
     
-    BOOL result = [JoypleStoreHelper canMakePayments];
+    BOOL result = [GBStoreHelper canMakePayments];
     
     if (!result) {
-        resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_ALLOWED_PAYMENT userInfo:nil]);
+        resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_ALLOWED_PAYMENT userInfo:nil]);
         return;
     }
     
-    [[JoypleStoreHelper defaultStore] requestPaymentsWithMarketInfo:resultBlock];
+    [[GBStoreHelper defaultStore] requestPaymentsWithMarketInfo:resultBlock];
 }
 
-+ (void)startStoreServiceAlone:(NSString *)userKey result:(void (^)(BOOL success, JoypleError *error))resultBlock
++ (void)startStoreServiceAlone:(NSString *)userKey result:(void (^)(BOOL success, GBError *error))resultBlock
 {
     /*
-     if ([JoypleDeviceUtil isRooting]) {
-     resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_INVALID_DEVICE userInfo:nil]);
+     if ([GBDeviceUtil isRooting]) {
+     resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INVALID_DEVICE userInfo:nil]);
      return;
      }
      
-     BOOL result = [JoypleStoreHelper canMakePayments];
+     BOOL result = [GBStoreHelper canMakePayments];
      
      if (!result) {
-     resultBlock(NO, [JoypleError errorWithDomain:JoypleErrorDomain code:BILLING_ERROR_ALLOWED_PAYMENT userInfo:nil]);
+     resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_ALLOWED_PAYMENT userInfo:nil]);
      return;
      }
      
-     [JoypleSetting currentSetting].userKey = userKey;
-     [[JoypleStoreHelper defaultStore] requestPaymentsWithMarketInfo:resultBlock];
+     [GBSetting currentSetting].userKey = userKey;
+     [[GBStoreHelper defaultStore] requestPaymentsWithMarketInfo:resultBlock];
      */
-    [JoypleSetting currentSetting].userKey = userKey;
+    [GBSetting currentSetting].userKey = userKey;
     
-    [JoypleStoreService startStoreService:resultBlock];
+    [GBStoreService startStoreService:resultBlock];
 }
 
 #pragma mark - StoreKit Wrapping
 
 + (void)requestProducts:(NSSet *)identifiers
                 success:(void (^)(NSArray *, NSArray *))successBlock
-                failure:(void (^)(JoypleError *))failureBlock
+                failure:(void (^)(GBError *))failureBlock
 {
     if (identifiers == nil || [identifiers count] == 0) {
         
         //FIXME: Edit Error Code & Error String
-        //NSString *localizeString = JoypleLocalizedString(@"ui_billing_error_invalid_item", nil);
-        JoypleError *failError = [JoypleError errorWithDomain:JoypleErrorDomain
+        //NSString *localizeString = GBLocalizedString(@"ui_billing_error_invalid_item", nil);
+        GBError *failError = [GBError errorWithDomain:GBErrorDomain
                                                          code:BILLING_ERROR_INVALID_ITEM
                                                      userInfo:nil];
         failureBlock(failError);
         return;
     }
     
-    [[JoypleStoreHelper defaultStore] requestProducts:identifiers success:successBlock failure:failureBlock];
+    [[GBStoreHelper defaultStore] requestProducts:identifiers success:successBlock failure:failureBlock];
 }
 
 + (void)addPayment:(NSString *)productIdentifier
            success:(void (^)(NSString *paymentKey))successBlock
-           failure:(void (^)(JoypleError *error))failureBlock
+           failure:(void (^)(GBError *error))failureBlock
 {
     [self addPayment:productIdentifier payload:nil subscription:NO success:successBlock failure:failureBlock];
 }
@@ -90,12 +90,12 @@
            payload:(NSString *)payload
       subscription:(BOOL)subscription
            success:(void (^)(NSString *paymentKey))successBlock
-           failure:(void (^)(JoypleError *error))failureBlock
+           failure:(void (^)(GBError *error))failureBlock
 {
     if (productIdentifier == nil || [productIdentifier length] == 0)
         if (failureBlock != nil) {
-            //            NSString *localizeString = JoypleLocalizedString(@"ui_billing_error_invalid_item", nil);
-            JoypleError *failError = [JoypleError errorWithDomain:JoypleErrorDomain
+            //            NSString *localizeString = GBLocalizedString(@"ui_billing_error_invalid_item", nil);
+            GBError *failError = [GBError errorWithDomain:GBErrorDomain
                                                              code:BILLING_ERROR_INVALID_ITEM
                                                          userInfo:nil];
             failureBlock(failError);
@@ -103,11 +103,11 @@
     
     //TODO: Request payment token
     
-    [JoypleStoreHelper defaultStore].extraData = payload;
-    [JoypleStoreHelper defaultStore].isSubscription = subscription;
+    [GBStoreHelper defaultStore].extraData = payload;
+    [GBStoreHelper defaultStore].isSubscription = subscription;
     
-    //    if ([[JoypleStoreHelper defaultStore] transactions].count != 0) {
-    //        [[JoypleStoreHelper defaultStore] savedReception:^(NSString *paymentKey, JoypleError *error) {
+    //    if ([[GBStoreHelper defaultStore] transactions].count != 0) {
+    //        [[GBStoreHelper defaultStore] savedReception:^(NSString *paymentKey, GBError *error) {
     //
     //            if (paymentKey != nil) {
     //                successBlock(paymentKey);
@@ -119,13 +119,13 @@
     //        return;
     //    }
     
-    [[JoypleStoreHelper defaultStore] preparePayment:^(JoypleError *error) {
+    [[GBStoreHelper defaultStore] preparePayment:^(GBError *error) {
         if (error == nil) {
-            JoypleAddPaymentAction *parameters = [[JoypleAddPaymentAction alloc] init];
+            GBAddPaymentAction *parameters = [[GBAddPaymentAction alloc] init];
             parameters.successBlock = successBlock;
             parameters.failureBlock = failureBlock;
             
-            [[JoypleStoreHelper defaultStore] excutePayment:productIdentifier parameter:parameters];
+            [[GBStoreHelper defaultStore] excutePayment:productIdentifier parameter:parameters];
         } else {
             failureBlock(error);
         }
@@ -135,12 +135,12 @@
 
 + (void)restorePayment:(void (^)(NSArray *paymentKeys))resultBlock
 {
-    [[JoypleStoreHelper defaultStore] restorePayment:resultBlock];
+    [[GBStoreHelper defaultStore] restorePayment:resultBlock];
 }
 
 + (void)retryPaymet:(void (^)(NSString *paymentKey))resultBlock
 {
-    //    [[JoypleStoreHelper defaultStore] retryPayment:resultBlock];
+    //    [[GBStoreHelper defaultStore] retryPayment:resultBlock];
 }
 
 
@@ -148,8 +148,8 @@
 
 + (void)requestDownloadItem:(NSString *)paymentKey result:(void(^)(NSDictionary *itemInfo))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_TEST_DOWNLOAD param:@{@"payment_key": paymentKey}];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_DOWNLOAD param:@{@"payment_key": paymentKey}];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         int errorStutus = [[JSON objectForKey:@"status"] intValue];
@@ -172,13 +172,13 @@
 
 + (void)requestItemInventory:(void(^)(NSArray *items))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_TEST_QUERY param:nil];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_QUERY param:nil];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         NSArray *purchaseItems= [[JSON objectForKey:@"result"] objectForKey:@"item_list"];
         
-        if ([JoypleUtil isValidate:purchaseItems])
+        if ([GBUtil isValidate:purchaseItems])
             resultBlock(purchaseItems);
         else
             resultBlock(nil);
@@ -188,10 +188,10 @@
                             }];
 }
 
-+ (void)requestPayInfo:(NSString *)paymentKey result:(void(^)(NSDictionary *itemInfo, JoypleError *error))resultBlock
++ (void)requestPayInfo:(NSString *)paymentKey result:(void(^)(NSDictionary *itemInfo, GBError *error))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_TEST_INFO param:@{@"payment_key": paymentKey}];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_INFO param:@{@"payment_key": paymentKey}];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         int errorStutus = [[JSON objectForKey:@"status"] intValue];
@@ -203,7 +203,7 @@
         } else {
             
             NSDictionary *errorDictionary = [JSON objectForKey:@"error"];
-            JoypleError *failError = [JoypleError errorWithDomain:JoypleErrorDomain
+            GBError *failError = [GBError errorWithDomain:GBErrorDomain
                                                              code:[[errorDictionary objectForKey:@"errorCode"] intValue]
                                                          userInfo:nil];
             resultBlock(nil, failError);
@@ -213,10 +213,10 @@
     }];
 }
 
-+ (void)requestSetLog:(NSDictionary *)payLog result:(void(^)(NSDictionary *itemInfo, JoypleError *error))resultBlock
++ (void)requestSetLog:(NSDictionary *)payLog result:(void(^)(NSDictionary *itemInfo, GBError *error))resultBlock
 {
-    JoypleProtocol *protocol = [JoypleProtocol makeRequestPayment:JOYPLE_TEST_SET_LOG param:@{@"payment_key": [payLog objectForKey:@"payment_key"], @"product_price" : [payLog objectForKey:@"product_price"], @"product_name" : [payLog objectForKey:@"product_name"], @"money_type" : [payLog objectForKey:@"money_type"]}];
-    JoypleRequest *request = [JoypleRequest makeRequestWithProtocol:protocol];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_SET_LOG param:@{@"payment_key": [payLog objectForKey:@"payment_key"], @"product_price" : [payLog objectForKey:@"product_price"], @"product_name" : [payLog objectForKey:@"product_name"], @"money_type" : [payLog objectForKey:@"money_type"]}];
+    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         int errorStutus = [[JSON objectForKey:@"status"] intValue];
@@ -227,7 +227,7 @@
             resultBlock(result, nil);
         } else {
             NSDictionary *errorDictionary = [JSON objectForKey:@"error"];
-            JoypleError *failError = [JoypleError errorWithDomain:JoypleErrorDomain
+            GBError *failError = [GBError errorWithDomain:GBErrorDomain
                                                              code:[[errorDictionary objectForKey:@"errorCode"] intValue]
                                                          userInfo:nil];
             resultBlock(nil, failError);

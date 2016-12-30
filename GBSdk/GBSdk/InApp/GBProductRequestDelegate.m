@@ -1,18 +1,18 @@
 //
-//  JoypleProductRequestDelegate.m
-//  Joyple
+//  GBProductRequestDelegate.m
+//  GB
 //
 //  Created by Professional on 2014. 6. 16..
-//  Copyright (c) 2014년 Joycity. All rights reserved.
+//  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
-#import "JoypleProductRequestDelegate.h"
-#import "JoypleLog.h"
-#import "JoypleStoreHelper.h"
-#import "JoypleError.h"
-#import "NSBundle+Joyple.h"
+#import "GBProductRequestDelegate.h"
+#import "GBLog.h"
+#import "GBStoreHelper.h"
+#import "GBError.h"
+#import "NSBundle+GB.h"
 
-@implementation JoypleProductRequestDelegate
+@implementation GBProductRequestDelegate
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
@@ -54,7 +54,7 @@
 
     
     if (self.failureBlock) {
-        JoypleError*wrappedError = [JoypleError errorWithDomain:JoypleErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}];
+        GBError*wrappedError = [GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error}];
         self.failureBlock(wrappedError);
     }
 
