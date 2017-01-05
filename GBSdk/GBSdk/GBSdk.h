@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GBError.h"
 
 //! Project version number for GBSdk.
 FOUNDATION_EXPORT double GBSdkVersionNumber;
@@ -25,5 +26,12 @@ FOUNDATION_EXPORT const unsigned char GBSdkVersionString[];
 
 // Logiin
 + (void)Login:(int)authType;
+
++ (void)Logout;
+
+// InApp
++ (void)BuyItem:(NSString *)sku
+        success:(void (^)(NSString *paymentKey))successBlock
+           fail:(void(^)(GBError *error))failureBlock;
 
 @end

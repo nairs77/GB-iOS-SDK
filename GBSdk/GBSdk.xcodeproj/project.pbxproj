@@ -30,6 +30,10 @@
 		BB3161E91E1633B5005DD9D2 /* GBStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D91E1633B5005DD9D2 /* GBStoreService.m */; };
 		BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161EB1E1635D5005DD9D2 /* GBError.h */; };
 		BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161EC1E1635D5005DD9D2 /* GBError.m */; };
+		BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = BB46FBF51E1C93270062D439 /* GBSettings.h */; };
+		BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46FBF61E1C93270062D439 /* GBSettings.m */; };
+		BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBRequest.h */; };
+		BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		BB3161D91E1633B5005DD9D2 /* GBStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBStoreService.m; path = GBSdk/InApp/GBStoreService.m; sourceTree = "<group>"; };
 		BB3161EB1E1635D5005DD9D2 /* GBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBError.h; path = GBSdk/GBError.h; sourceTree = "<group>"; };
 		BB3161EC1E1635D5005DD9D2 /* GBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBError.m; path = GBSdk/GBError.m; sourceTree = "<group>"; };
+		BB46FBF51E1C93270062D439 /* GBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSettings.h; sourceTree = "<group>"; };
+		BB46FBF61E1C93270062D439 /* GBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSettings.m; sourceTree = "<group>"; };
+		BB797B8A1E1BAE1F00014356 /* GBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRequest.h; path = GBSdk/GBRequest.h; sourceTree = "<group>"; };
+		BB797B8B1E1BAE1F00014356 /* GBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRequest.m; path = GBSdk/GBRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,8 @@
 		BB0DC1FC1E151128008ADA92 = {
 			isa = PBXGroup;
 			children = (
+				BB46FBF41E1C90990062D439 /* Account */,
+				BB5986FB1E19DEF0003891F1 /* Network */,
 				BB3161EF1E163871005DD9D2 /* Category */,
 				BB3161EA1E16358D005DD9D2 /* Error */,
 				BB3161C91E162CFD005DD9D2 /* InApp */,
@@ -99,6 +109,8 @@
 				BB0DC2091E151128008ADA92 /* GBSdk.h */,
 				BB3161B91E1600E9005DD9D2 /* GBSdk.m */,
 				BB0DC20A1E151128008ADA92 /* Info.plist */,
+				BB46FBF51E1C93270062D439 /* GBSettings.h */,
+				BB46FBF61E1C93270062D439 /* GBSettings.m */,
 			);
 			path = GBSdk;
 			sourceTree = "<group>";
@@ -154,6 +166,22 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		BB46FBF41E1C90990062D439 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		BB5986FB1E19DEF0003891F1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BB797B8A1E1BAE1F00014356 /* GBRequest.h */,
+				BB797B8B1E1BAE1F00014356 /* GBRequest.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -172,6 +200,8 @@
 				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
+				BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */,
+				BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,8 +275,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */,
+				BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */,
 				BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */,
 				BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */,
+				BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */,
 				BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */,
 				BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */,
 				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,

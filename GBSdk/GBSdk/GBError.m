@@ -25,6 +25,7 @@
 //                return GBLocalizedString(@"error_string_key", nil);
 //        }
     }
-
+    
+    return nil;
 }
 @end

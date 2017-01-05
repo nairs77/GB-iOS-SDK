@@ -15,7 +15,28 @@
     
 }
 
-+ (void)Login:(int)authType {
++ (void)Login:(int)authType
+  withHandler:(AuthCompletionHandler)completionHandler {
+    GBSession *session = [GBSession lastSession];
+    
+    
+    
+    [session login:authType];
+    
+}
+
++ (void)Logout {
+    
+}
+
++ (void)Unregister:(AuthCompletionHandler)completionHandler {
+    
+}
+
+// InApp
++ (void)BuyItem:(NSString *)sku
+        success:(void (^)(NSString *paymentKey))successBlock
+           fail:(void(^)(GBError *error))failureBlock {
     
 }
 
