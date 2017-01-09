@@ -34,6 +34,16 @@
 		BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46FBF61E1C93270062D439 /* GBSettings.m */; };
 		BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBRequest.h */; };
 		BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBRequest.m */; };
+		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; };
+		BB8255F91E236D61006A4FBD /* GBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8255F71E236D61006A4FBD /* GBSession.m */; };
+		BB8255FC1E2371A6006A4FBD /* GBSession+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255FA1E2371A6006A4FBD /* GBSession+Internal.h */; };
+		BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8255FB1E2371A6006A4FBD /* GBSession+Internal.m */; };
+		BB8256001E2377C3006A4FBD /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255FE1E2377C3006A4FBD /* Reachability.h */; };
+		BB8256011E2377C3006A4FBD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8255FF1E2377C3006A4FBD /* Reachability.m */; };
+		BB8256041E238FCC006A4FBD /* GBProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8256021E238FCC006A4FBD /* GBProtocol.h */; };
+		BB8256051E238FCC006A4FBD /* GBProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8256031E238FCC006A4FBD /* GBProtocol.m */; };
+		BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8256061E239034006A4FBD /* GBProtocol+Session.h */; };
+		BB8256091E239034006A4FBD /* GBProtocol+Session.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8256071E239034006A4FBD /* GBProtocol+Session.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +78,16 @@
 		BB46FBF61E1C93270062D439 /* GBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSettings.m; sourceTree = "<group>"; };
 		BB797B8A1E1BAE1F00014356 /* GBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRequest.h; path = GBSdk/GBRequest.h; sourceTree = "<group>"; };
 		BB797B8B1E1BAE1F00014356 /* GBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRequest.m; path = GBSdk/GBRequest.m; sourceTree = "<group>"; };
+		BB8255F61E236D61006A4FBD /* GBSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBSession.h; path = GBSdk/GBSession.h; sourceTree = "<group>"; };
+		BB8255F71E236D61006A4FBD /* GBSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBSession.m; path = GBSdk/GBSession.m; sourceTree = "<group>"; };
+		BB8255FA1E2371A6006A4FBD /* GBSession+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBSession+Internal.h"; path = "GBSdk/GBSession+Internal.h"; sourceTree = "<group>"; };
+		BB8255FB1E2371A6006A4FBD /* GBSession+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBSession+Internal.m"; path = "GBSdk/GBSession+Internal.m"; sourceTree = "<group>"; };
+		BB8255FE1E2377C3006A4FBD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = GBSdk/Reachability.h; sourceTree = "<group>"; };
+		BB8255FF1E2377C3006A4FBD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = GBSdk/Reachability.m; sourceTree = "<group>"; };
+		BB8256021E238FCC006A4FBD /* GBProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBProtocol.h; path = GBSdk/GBProtocol.h; sourceTree = "<group>"; };
+		BB8256031E238FCC006A4FBD /* GBProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBProtocol.m; path = GBSdk/GBProtocol.m; sourceTree = "<group>"; };
+		BB8256061E239034006A4FBD /* GBProtocol+Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBProtocol+Session.h"; path = "GBSdk/GBProtocol+Session.h"; sourceTree = "<group>"; };
+		BB8256071E239034006A4FBD /* GBProtocol+Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBProtocol+Session.m"; path = "GBSdk/GBProtocol+Session.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +189,10 @@
 		BB46FBF41E1C90990062D439 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				BB8255F61E236D61006A4FBD /* GBSession.h */,
+				BB8255F71E236D61006A4FBD /* GBSession.m */,
+				BB8255FA1E2371A6006A4FBD /* GBSession+Internal.h */,
+				BB8255FB1E2371A6006A4FBD /* GBSession+Internal.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -176,8 +200,14 @@
 		BB5986FB1E19DEF0003891F1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BB8255FE1E2377C3006A4FBD /* Reachability.h */,
+				BB8255FF1E2377C3006A4FBD /* Reachability.m */,
 				BB797B8A1E1BAE1F00014356 /* GBRequest.h */,
 				BB797B8B1E1BAE1F00014356 /* GBRequest.m */,
+				BB8256021E238FCC006A4FBD /* GBProtocol.h */,
+				BB8256031E238FCC006A4FBD /* GBProtocol.m */,
+				BB8256061E239034006A4FBD /* GBProtocol+Session.h */,
+				BB8256071E239034006A4FBD /* GBProtocol+Session.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -191,17 +221,22 @@
 			files = (
 				BB3161DC1E1633B5005DD9D2 /* GBLog+Store.h in Headers */,
 				BB3161E81E1633B5005DD9D2 /* GBStoreService.h in Headers */,
+				BB8256041E238FCC006A4FBD /* GBProtocol.h in Headers */,
 				BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */,
 				BB3161C71E1629ED005DD9D2 /* SSKeychain.h in Headers */,
+				BB8255F81E236D61006A4FBD /* GBSession.h in Headers */,
+				BB8256001E2377C3006A4FBD /* Reachability.h in Headers */,
 				BB3161E01E1633B5005DD9D2 /* GBProtocol+Store.h in Headers */,
 				BB0DC20B1E151128008ADA92 /* GBSdk.h in Headers */,
 				BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */,
 				BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */,
 				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
+				BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
 				BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */,
 				BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */,
+				BB8255FC1E2371A6006A4FBD /* GBSession+Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,8 +312,12 @@
 				BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */,
 				BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */,
 				BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */,
+				BB8255F91E236D61006A4FBD /* GBSession.m in Sources */,
+				BB8256051E238FCC006A4FBD /* GBProtocol.m in Sources */,
+				BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */,
 				BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */,
 				BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */,
+				BB8256091E239034006A4FBD /* GBProtocol+Session.m in Sources */,
 				BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */,
 				BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */,
 				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,
@@ -288,6 +327,7 @@
 				BB3161E11E1633B5005DD9D2 /* GBProtocol+Store.m in Sources */,
 				BB3161E91E1633B5005DD9D2 /* GBStoreService.m in Sources */,
 				BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */,
+				BB8256011E2377C3006A4FBD /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

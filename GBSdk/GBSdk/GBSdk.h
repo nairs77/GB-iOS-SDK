@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GBError.h"
+@class GBError;
+@class GBSession;
+@class GBInApp;
 
 //! Project version number for GBSdk.
 FOUNDATION_EXPORT double GBSdkVersionNumber;
@@ -22,16 +24,11 @@ FOUNDATION_EXPORT const unsigned char GBSdkVersionString[];
 
 
 // Initailize
-+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
+//+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
++ (void)InitGBSdK:(int)gameCode clientId:(NSString *)secretKey;
 
-// Logiin
-+ (void)Login:(int)authType;
++ (GBSession *)activeSession;
 
-+ (void)Logout;
-
-// InApp
-+ (void)BuyItem:(NSString *)sku
-        success:(void (^)(NSString *paymentKey))successBlock
-           fail:(void(^)(GBError *error))failureBlock;
++ (GBInApp *)inAppManager;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GBSdk.h"
+#import "GBSession+internal.h"
 
 @implementation GBSdk
 
@@ -15,29 +16,12 @@
     
 }
 
-+ (void)Login:(int)authType
-  withHandler:(AuthCompletionHandler)completionHandler {
-    GBSession *session = [GBSession lastSession];
-    
-    
-    
-    [session login:authType];
-    
++ (GBSession *)activeSession {
+    return [GBSession innerInstance];
 }
 
-+ (void)Logout {
-    
-}
-
-+ (void)Unregister:(AuthCompletionHandler)completionHandler {
-    
-}
-
-// InApp
-+ (void)BuyItem:(NSString *)sku
-        success:(void (^)(NSString *paymentKey))successBlock
-           fail:(void(^)(GBError *error))failureBlock {
-    
++ (GBInApp *)inAppManager {
+    return nil;
 }
 
 @end
