@@ -24,7 +24,6 @@
 - (id)init
 {
     if (self = [super init]) {
-        
     }
     
     return self;
@@ -35,4 +34,21 @@
 
 }
 
+- (void)loginWithAccountBlock:(AuthServiceCompletionHandler)completionHandler
+{
+    
+
+}
+
+- (void)logoutWithAccountBlock:(AuthServiceCompletionHandler)completionHandler
+{
+    
+}
+
+- (BOOL)isThrdPartyOn
+{
+    return false;
+}
+
+- (void)openSessionWithServiceHandler:(AuthServiceCompletionHandler)completionHandler {}
 @end

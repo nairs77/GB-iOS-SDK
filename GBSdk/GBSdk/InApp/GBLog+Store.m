@@ -13,13 +13,13 @@
 @implementation GBLog (Store)
 + (void)sendToGBServerAboutExceptionLog:(NSDictionary *)exceptionLog
 {
-    JLogVerbose(@"Billing Log: %@",exceptionLog);
-    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_EXCEPTION param:exceptionLog];
-    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
-    [request excuteRequestWithBlock:^(id JSON) {
-        
-    } failure:^(NSError *error, id JSON) {
-        
-    }];
+    GBLogVerbose(@"Billing Log: %@",exceptionLog);
+//    GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_TEST_EXCEPTION param:exceptionLog];
+//    GBRequest *request = [GBRequest makeRequestWithProtocol:protocol];
+//    [request excuteRequestWithBlock:^(id JSON) {
+//        
+//    } failure:^(NSError *error, id JSON) {
+//        
+//    }];
 }
 @end

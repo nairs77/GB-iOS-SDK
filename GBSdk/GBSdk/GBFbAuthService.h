@@ -8,8 +8,8 @@
 
 #import "GBAuthService.h"
 
-@interface GBFbAuthService : GBAuthService
+@interface GBFbAuthService : GBAuthService <AuthService>
 
-@property (nonnull, copy) NSDictionary *serviceInfo;
+- (void)loginWithAccountBlock:(AuthServiceCompletionHandler)completionHandler;
 
 @end

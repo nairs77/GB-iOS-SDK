@@ -10,11 +10,11 @@
 #import "GBProtocol+Store.h"
 #import "GBLog+Store.h"
 #import "GBError.h"
-#import "NSBundle+GB.h"
+//#import "NSBundle+GB.h"
 #import "GBDeviceUtil.h"
 #import "GBReceiptVerificator.h"
 #import "NSData+Formatter.h"
-#import "NSString+Hex.h"
+//#import "NSString+Hex.h"
 //#import "GBRestoreManager.h"
 
 #define IS_IOS7_OR_MORE ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
@@ -189,20 +189,21 @@
             
             NSAssert(marketInfo != nil, @"ERROR Initialize");
             
-            NSString *xorBundleID = [NSString stringFromHex:[marketInfo objectForKey:@"bundleID"]];
-            NSData *encodeBundleData = [xorBundleID dataUsingEncoding:NSUTF8StringEncoding];
-            
-            NSString *bundleID = [encodeBundleData dataXORWithData:[GBSetting currentSetting].clientSecretKey];
-            
-            //if ([[GBSetting bundleIdentifier] isEqualToString:bundleID]) {
-            NSString *appBundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
-            
-            if ([appBundleID isEqualToString:bundleID]) {
-                resultBlock(YES, nil);
-            } else {
-                JLogInfo(@"Not Register Bundle ID = %@", bundleID);
-                resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INVALID_APP userInfo:nil]);
-            }
+//            NSString *xorBundleID = [NSString stringFromHex:[marketInfo objectForKey:@"bundleID"]];
+//            NSData *encodeBundleData = [xorBundleID dataUsingEncoding:NSUTF8StringEncoding];
+//            
+//            NSString *bundleID = [encodeBundleData dataXORWithData:[GBSetting currentSetting].clientSecretKey];
+//            
+//            //if ([[GBSetting bundleIdentifier] isEqualToString:bundleID]) {
+//            NSString *appBundleID = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleIdentifierKey];
+//            
+//            if ([appBundleID isEqualToString:bundleID]) {
+//                resultBlock(YES, nil);
+//            } else {
+//                JLogInfo(@"Not Register Bundle ID = %@", bundleID);
+//                resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INVALID_APP userInfo:nil]);
+//            }
+            resultBlock(YES, nil);
             
         } else {
             resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:BILLING_ERROR_INITIALIZE userInfo:nil]);

@@ -42,6 +42,8 @@
 		BB5D2C101E24C3EF00815FBA /* AuthAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */; };
 		BB5D2C131E24C45A00815FBA /* GBFbAuthService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C111E24C45A00815FBA /* GBFbAuthService.h */; };
 		BB5D2C141E24C45A00815FBA /* GBFbAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C121E24C45A00815FBA /* GBFbAuthService.m */; };
+		BB5D2C181E25096A00815FBA /* NSData+Formatter.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C161E25096A00815FBA /* NSData+Formatter.h */; };
+		BB5D2C191E25096A00815FBA /* NSData+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C171E25096A00815FBA /* NSData+Formatter.m */; };
 		BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBRequest.h */; };
 		BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBRequest.m */; };
 		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; };
@@ -96,6 +98,9 @@
 		BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthAccount.h; path = GBSdk/AuthAccount.h; sourceTree = "<group>"; };
 		BB5D2C111E24C45A00815FBA /* GBFbAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBFbAuthService.h; path = GBSdk/GBFbAuthService.h; sourceTree = "<group>"; };
 		BB5D2C121E24C45A00815FBA /* GBFbAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBFbAuthService.m; path = GBSdk/GBFbAuthService.m; sourceTree = "<group>"; };
+		BB5D2C151E24FB9F00815FBA /* GBGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBGlobal.h; sourceTree = "<group>"; };
+		BB5D2C161E25096A00815FBA /* NSData+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Formatter.h"; path = "GBSdk/NSData+Formatter.h"; sourceTree = "<group>"; };
+		BB5D2C171E25096A00815FBA /* NSData+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Formatter.m"; path = "GBSdk/NSData+Formatter.m"; sourceTree = "<group>"; };
 		BB797B8A1E1BAE1F00014356 /* GBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRequest.h; path = GBSdk/GBRequest.h; sourceTree = "<group>"; };
 		BB797B8B1E1BAE1F00014356 /* GBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRequest.m; path = GBSdk/GBRequest.m; sourceTree = "<group>"; };
 		BB8255F61E236D61006A4FBD /* GBSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBSession.h; path = GBSdk/GBSession.h; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 		BB0DC2081E151128008ADA92 /* GBSdk */ = {
 			isa = PBXGroup;
 			children = (
+				BB5D2C151E24FB9F00815FBA /* GBGlobal.h */,
 				BB0DC2091E151128008ADA92 /* GBSdk.h */,
 				BB3161B91E1600E9005DD9D2 /* GBSdk.m */,
 				BB0DC20A1E151128008ADA92 /* Info.plist */,
@@ -202,6 +208,8 @@
 		BB3161EF1E163871005DD9D2 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				BB5D2C161E25096A00815FBA /* NSData+Formatter.h */,
+				BB5D2C171E25096A00815FBA /* NSData+Formatter.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -267,6 +275,7 @@
 				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
 				BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */,
 				BB5D2C0A1E24BDC000815FBA /* AuthService.h in Headers */,
+				BB5D2C181E25096A00815FBA /* NSData+Formatter.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB5D2C131E24C45A00815FBA /* GBFbAuthService.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
@@ -352,6 +361,7 @@
 				BB8255F91E236D61006A4FBD /* GBSession.m in Sources */,
 				BB8256051E238FCC006A4FBD /* GBProtocol.m in Sources */,
 				BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */,
+				BB5D2C191E25096A00815FBA /* NSData+Formatter.m in Sources */,
 				BB0396161E2401E400413257 /* GBAccount.m in Sources */,
 				BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */,
 				BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */,

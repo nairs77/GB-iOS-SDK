@@ -8,6 +8,8 @@
 
 #import "GBError.h"
 
+NSString *const GBErrorDomain = @"com.gebros.sdk.error";
+
 @implementation GBError
 
 

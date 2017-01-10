@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const GBErrorDomain;
+
 @interface GBError : NSError
 
 @end

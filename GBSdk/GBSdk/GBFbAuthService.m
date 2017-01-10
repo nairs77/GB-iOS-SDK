@@ -33,6 +33,16 @@
 
 - (void)registerServiceInfo:(NSDictionary *)serviceInfo
 {
-    [[GBAccountStore  accountStore] registerAuthProvider:self];
+    [[GBAccountStore accountStore] registerAuthService:self];
+}
+
+- (void)loginWithAccountBlock:(AuthServiceCompletionHandler)completionHandler
+{
+//    self.serviceAccount = [GBFbAccount]
+}
+
+- (BOOL)isThrdParty
+{
+    return true;
 }
 @end

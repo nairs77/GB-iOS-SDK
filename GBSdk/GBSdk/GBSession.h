@@ -7,23 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBGlobal.h"
+
 @class GBError;
+@class GBSession;
 
-typedef NS_ENUM(NSUInteger, AuthType) {
-    GUEST,
-    GOOGLE,     //Not Supported
-    FACEBOOK,
-};
-
-
-typedef NS_ENUM(NSUInteger, SessionState) {
-    READY,
-    OPEN,
-    CLOSED,
-};
-
-typedef void(^AuthCompletionHandler)(BOOL success, GBError *error);
-
+typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 
 @interface GBSession : NSObject
 
@@ -31,7 +20,7 @@ typedef void(^AuthCompletionHandler)(BOOL success, GBError *error);
 @property (nonatomic, copy, readonly) NSString *userKey;
 @property (nonatomic, readonly, getter = isOpened) BOOL opened;
 
-- (void)setActiveSession:(GBSession *)aSession;
+//- (void)setActiveSession:(GBSession *)aSession;
 
 - (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
 

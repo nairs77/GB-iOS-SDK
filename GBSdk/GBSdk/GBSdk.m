@@ -17,12 +17,12 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation GBSdk
 
-+ (void)initializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey logLevel:(LogLevel)level {
+//+ (void)initializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey logLevel:(LogLevel)level {
++ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level
+{
     ddLogLevel = (level == DEBUG_MODE)? LOG_LEVEL_VERBOSE : LOG_LEVEL_ERROR;
     
     //NSString *fbAppId = [[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)
-    
-    
     
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
     [[GBFbAuthService sharedAuthService] registerServiceInfo:nil];

@@ -37,8 +37,8 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 - (id)init
 {
     if (self = [super init]) {
- //       [self _setReachability];
-        self.lastAccount = [self _loadAccountFromStore];
+//       [self _setReachability];
+//        self.lastAccount = [self _loadAccountFromStore];
 //        [self setActiveSession:self];
 //        self.currentState = READY;
     }
@@ -49,21 +49,28 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 #pragma mark - Public
 - (SessionState)state
 {
-    return self.currentState;
-}
-
-- (void)setActiveSession:(GBSession *)aSession
-{
-    self.currentSession = aSession;
+    return self.lastAccount.currentState;
 }
 
 - (void)loginWithAuthType:(AuthType)authType
               withHandler:(AuthCompletionHandler)completionHandler;
 {
-    id<AuthAccount> lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
+    id<AuthService>lastService = [[GBAccountStore accountStore] lastService];
+    
+    if (lastService == nil) {
+        lastService = [[GBAccountStore accountStore] serviceWithType:authType];
+    }
+    
+    [lastService loginWithAccountBlock:^(id<AuthService>theService, GBError *error) {
+        
+    }];
+
+/*
+    GBAccountStore *accountStore = [GBAccountStore accountStore];
+    id<AuthAccount> lastAccount = [accountStore lastAccount];
     
     if (lastAccount == nil) {
-        self
+        lastAccount = [accountStore serviceWithType:type];
     } else {
         
     }
@@ -92,20 +99,14 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
         
         //[activeSession _openSessionWithAuthType:authType withHandler:completionHandler];
     }
-    
+*/
 }
 
 #pragma mark - Private Methods
 
-- (id<GBAuthAccount>)_loadAccountFromStore
+- (void)_setActiveSession:(GBSession *)aSession
 {
-    
-}
-
-
-- (NSDictionary *)_loadAccountFromStore
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kGBAccountStoreKey];
+    self.currentSession = aSession;
 }
 
 #pragma mark - Reachability

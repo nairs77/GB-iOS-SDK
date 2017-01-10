@@ -8,16 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+@class GBError;
+@class GBSession;
 @protocol AuthAccount;
 
-@protocol AuthService <NSObject>
+typedef void(^AuthServiceCompletionHandler)(GBSession *newSession, GBError *error);
+
+@protocol AuthService <AuthAccount>
+
+@property (nonatomic, readonly, weak) id<AuthAccount> serviceAccount;
+@property (nonatomic, readonly, getter=isThirdParty) BOOL thirdParty;
+@property (nonatomic, readonly) BOOL lastService;
 
 + (id<AuthService>)sharedAuthService;
 
 - (void)registerServiceInfo:(NSDictionary *)serviceInfo;
 
-- (id<AuthAccount>)serviceAccount;
+- (void)loginWithAccountBlock:(AuthServiceCompletionHandler)completionHandler;
 
-- (id<AuthAccount>)serviceAccountWithInfo:(NSDictionary*)info;
+- (void)logoutWithAccountBlock:(AuthServiceCompletionHandler)completionHandler;
+
+//- (id<AuthAccount>)serviceAccount;
+//
+//- (id<AuthAccount>)serviceAccountWithInfo:(NSDictionary*)info;
 
 @end

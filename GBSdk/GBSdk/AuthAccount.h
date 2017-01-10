@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBGlobal.h"
 
 @protocol AuthAccount <NSObject>
+
+@property (nonatomic, readonly) SessionState currentState;
+@property (nonatomic, readonly) NSString *userKey;
 
 @end
