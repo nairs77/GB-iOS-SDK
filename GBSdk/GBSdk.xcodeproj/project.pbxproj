@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0396111E23EB1F00413257 /* GBAccountStore.h in Headers */ = {isa = PBXBuildFile; fileRef = BB03960F1E23EB1F00413257 /* GBAccountStore.h */; };
+		BB0396121E23EB1F00413257 /* GBAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0396101E23EB1F00413257 /* GBAccountStore.m */; };
+		BB0396151E2401E400413257 /* GBAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB0396131E2401E400413257 /* GBAccount.h */; };
+		BB0396161E2401E400413257 /* GBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0396141E2401E400413257 /* GBAccount.m */; };
 		BB0DC20B1E151128008ADA92 /* GBSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = BB0DC2091E151128008ADA92 /* GBSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161B91E1600E9005DD9D2 /* GBSdk.m */; };
 		BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161C21E1613A2005DD9D2 /* GBDeviceUtil.m */; };
@@ -47,6 +51,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB03960F1E23EB1F00413257 /* GBAccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBAccountStore.h; path = GBSdk/GBAccountStore.h; sourceTree = "<group>"; };
+		BB0396101E23EB1F00413257 /* GBAccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBAccountStore.m; path = GBSdk/GBAccountStore.m; sourceTree = "<group>"; };
+		BB0396131E2401E400413257 /* GBAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBAccount.h; path = GBSdk/GBAccount.h; sourceTree = "<group>"; };
+		BB0396141E2401E400413257 /* GBAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBAccount.m; path = GBSdk/GBAccount.m; sourceTree = "<group>"; };
 		BB0DC2061E151128008ADA92 /* GBSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0DC2091E151128008ADA92 /* GBSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBSdk.h; sourceTree = "<group>"; };
 		BB0DC20A1E151128008ADA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -193,6 +201,10 @@
 				BB8255F71E236D61006A4FBD /* GBSession.m */,
 				BB8255FA1E2371A6006A4FBD /* GBSession+Internal.h */,
 				BB8255FB1E2371A6006A4FBD /* GBSession+Internal.m */,
+				BB03960F1E23EB1F00413257 /* GBAccountStore.h */,
+				BB0396101E23EB1F00413257 /* GBAccountStore.m */,
+				BB0396131E2401E400413257 /* GBAccount.h */,
+				BB0396141E2401E400413257 /* GBAccount.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -230,6 +242,8 @@
 				BB0DC20B1E151128008ADA92 /* GBSdk.h in Headers */,
 				BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */,
 				BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */,
+				BB0396151E2401E400413257 /* GBAccount.h in Headers */,
+				BB0396111E23EB1F00413257 /* GBAccountStore.h in Headers */,
 				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
 				BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
@@ -311,10 +325,12 @@
 			files = (
 				BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */,
 				BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */,
+				BB0396121E23EB1F00413257 /* GBAccountStore.m in Sources */,
 				BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */,
 				BB8255F91E236D61006A4FBD /* GBSession.m in Sources */,
 				BB8256051E238FCC006A4FBD /* GBProtocol.m in Sources */,
 				BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */,
+				BB0396161E2401E400413257 /* GBAccount.m in Sources */,
 				BB3161E71E1633B5005DD9D2 /* GBStoreHelper.m in Sources */,
 				BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */,
 				BB8256091E239034006A4FBD /* GBProtocol+Session.m in Sources */,

@@ -29,6 +29,7 @@ typedef void(^AuthCompletionHandler)(BOOL success, GBError *error);
 
 @property (nonatomic, readonly) SessionState state;
 @property (nonatomic, copy, readonly) NSString *userKey;
+@property (nonatomic, readonly, getter = isOpened) BOOL opened;
 
 - (void)setActiveSession:(GBSession *)aSession;
 

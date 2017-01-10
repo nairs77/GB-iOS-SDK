@@ -21,6 +21,7 @@
 }
 
 + (GBInApp *)inAppManager {
+//    return [GBInApp innerInstance];
     return nil;
 }
 

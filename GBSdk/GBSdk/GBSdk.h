@@ -25,7 +25,7 @@ FOUNDATION_EXPORT const unsigned char GBSdkVersionString[];
 
 // Initailize
 //+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
-+ (void)InitGBSdK:(int)gameCode clientId:(NSString *)secretKey;
++ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey;
 
 + (GBSession *)activeSession;
 

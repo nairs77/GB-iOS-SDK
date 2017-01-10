@@ -8,35 +8,45 @@
 
 #import "GBSession.h"
 #import "GBSession+internal.h"
-#import "GBProtocol.h"
+#import "GBProtocol+Session.h"
 #import "Reachability.h"
+
+NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 
 @interface GBSession ()
 
+//@property (nonatomic, strong) GBSessionStore *store;
 @property (nonatomic) SessionState currentState;
 @property (nonatomic, strong) GBSession *currentSession;
+@property (nonatomic, strong) Reachability *networkConnection;
+@property (nonatomic, weak) id<GBAuthAccount> lastAccount;
+@property (nonatomic) BOOL isNetworkWifi;
+@property (nonatomic) BOOL isNetworkReachable;
 
 @end
 
 @implementation GBSession
 
-+ (GBSession *)activeSession {
++ (GBSession *)activeSession
+{
     return [GBSession innerInstance];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
-        [self _setReachability];
-        
-        //self.currentState = SessionState.READY;
-        [self currentState] = SessionState.READY;
+ //       [self _setReachability];
+        self.lastAccount = [self _loadAccountFromStore];
+//        [self setActiveSession:self];
+//        self.currentState = READY;
     }
     
     return self;
 }
 
-#pragma mark -
-- (SessionState)state {
+#pragma mark - Public
+- (SessionState)state
+{
     return self.currentState;
 }
 
@@ -45,19 +55,19 @@
     self.currentSession = aSession;
 }
 
-- (void)login:(int)authType
-  withHandler:(AuthCompletionHandler)completionHandler {
-
+- (void)loginWithAuthType:(AuthType)authType
+              withHandler:(AuthCompletionHandler)completionHandler;
+{
     GBSession *activeSession = self.currentSession;
     
     BOOL isTryLogin = false;
-    if (activeSession.state != SessionState.OPEN) {
+    if (activeSession.state != OPEN) {
         // Try Login
         //[activeSession loginWithAuthType:authType withHandler:completionHandler];
         isTryLogin = true;
     } else {
         // Check State
-        if (activeSession.state == SessionState.OPEN) {
+        if (activeSession.state == OPEN) {
             // Alreay Opened
             //completionHandler();
         } else {
@@ -74,8 +84,26 @@
 }
 
 #pragma mark - Private Methods
-- (void)_openSessionWithAuthType:(AuthType)authType withHandler:(AuthCompletionHandler)completionHandler {
 
+- (id<GBAuthAccount>)_loadAccount
+{
+    NSDictionary *accountInfo = [self _loadAccountFromStore];
+}
+
+- (NSDictionary *)_loadAccountFromStore
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kGBAccountStoreKey];
+}
+
+- (void)_openSessionWithAuthType:(AuthType)authType
+                     withHandler:(AuthCompletionHandler)completionHandler
+{
+    if (authType == GUEST) {
+        
+    } else if (authType == FACEBOOK) {
+        
+    } else {
+    }
 }
 
 #pragma mark - Reachability
