@@ -7,8 +7,10 @@
 //
 
 #import "GBSession.h"
+#import "GBAccountStore.h"
 #import "GBSession+internal.h"
 #import "GBProtocol+Session.h"
+#import "AuthAccount.h"
 #import "Reachability.h"
 
 NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
@@ -19,7 +21,7 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 @property (nonatomic) SessionState currentState;
 @property (nonatomic, strong) GBSession *currentSession;
 @property (nonatomic, strong) Reachability *networkConnection;
-@property (nonatomic, weak) id<GBAuthAccount> lastAccount;
+@property (nonatomic, weak) id<AuthAccount> lastAccount;
 @property (nonatomic) BOOL isNetworkWifi;
 @property (nonatomic) BOOL isNetworkReachable;
 
@@ -58,6 +60,15 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 - (void)loginWithAuthType:(AuthType)authType
               withHandler:(AuthCompletionHandler)completionHandler;
 {
+    id<AuthAccount> lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
+    
+    if (lastAccount == nil) {
+        self
+    } else {
+        
+    }
+    
+    
     GBSession *activeSession = self.currentSession;
     
     BOOL isTryLogin = false;
@@ -78,32 +89,23 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
     }
     
     if (isTryLogin) {
-        [activeSession _openSessionWithAuthType:authType withHandler:completionHandler];
+        
+        //[activeSession _openSessionWithAuthType:authType withHandler:completionHandler];
     }
     
 }
 
 #pragma mark - Private Methods
 
-- (id<GBAuthAccount>)_loadAccount
+- (id<GBAuthAccount>)_loadAccountFromStore
 {
-    NSDictionary *accountInfo = [self _loadAccountFromStore];
+    
 }
+
 
 - (NSDictionary *)_loadAccountFromStore
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kGBAccountStoreKey];
-}
-
-- (void)_openSessionWithAuthType:(AuthType)authType
-                     withHandler:(AuthCompletionHandler)completionHandler
-{
-    if (authType == GUEST) {
-        
-    } else if (authType == FACEBOOK) {
-        
-    } else {
-    }
 }
 
 #pragma mark - Reachability

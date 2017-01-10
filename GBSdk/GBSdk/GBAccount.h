@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AuthAccount.h"
 
 @class GBError;
 
@@ -15,8 +16,8 @@
 @property (nonatomic, copy) void (^accountBlock)(id<AuthAccount> localAccount, GBError *error);
 
 
-- (void)tryAuthenticateByProvider:(NSDictionary *)parameter;
-- (void)linkServiceByProvider:(NSDictionary *)parameter;
-- (void)logoutByProvider:(BOOL)isDeepLink;
-- (void)unRegisterByProvider;
+//- (void)tryAuthenticateByProvider:(NSDictionary *)parameter;
+//- (void)linkServiceByProvider:(NSDictionary *)parameter;
+//- (void)logoutByProvider:(BOOL)isDeepLink;
+//- (void)unRegisterByProvider;
 @end

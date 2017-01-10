@@ -20,12 +20,17 @@ FOUNDATION_EXPORT const unsigned char GBSdkVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <GBSdk/PublicHeader.h>
 
 
+typedef NS_ENUM(NSUInteger, LogLevel) {
+    DEBUG_MODE,
+    RELEASE_MODE,
+};
+
 @interface GBSdk : NSObject
 
 
 // Initailize
 //+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
-+ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey;
++ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level;
 
 + (GBSession *)activeSession;
 

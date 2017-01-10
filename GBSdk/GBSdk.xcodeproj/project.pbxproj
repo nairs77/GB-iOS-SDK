@@ -36,6 +36,12 @@
 		BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161EC1E1635D5005DD9D2 /* GBError.m */; };
 		BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = BB46FBF51E1C93270062D439 /* GBSettings.h */; };
 		BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46FBF61E1C93270062D439 /* GBSettings.m */; };
+		BB5D2C0A1E24BDC000815FBA /* AuthService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C091E24BDC000815FBA /* AuthService.h */; };
+		BB5D2C0D1E24BFB000815FBA /* GBAuthService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C0B1E24BFB000815FBA /* GBAuthService.h */; };
+		BB5D2C0E1E24BFB000815FBA /* GBAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C0C1E24BFB000815FBA /* GBAuthService.m */; };
+		BB5D2C101E24C3EF00815FBA /* AuthAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */; };
+		BB5D2C131E24C45A00815FBA /* GBFbAuthService.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C111E24C45A00815FBA /* GBFbAuthService.h */; };
+		BB5D2C141E24C45A00815FBA /* GBFbAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C121E24C45A00815FBA /* GBFbAuthService.m */; };
 		BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBRequest.h */; };
 		BB797B8D1E1BAE1F00014356 /* GBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBRequest.m */; };
 		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; };
@@ -84,6 +90,12 @@
 		BB3161EC1E1635D5005DD9D2 /* GBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBError.m; path = GBSdk/GBError.m; sourceTree = "<group>"; };
 		BB46FBF51E1C93270062D439 /* GBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSettings.h; sourceTree = "<group>"; };
 		BB46FBF61E1C93270062D439 /* GBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSettings.m; sourceTree = "<group>"; };
+		BB5D2C091E24BDC000815FBA /* AuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthService.h; path = GBSdk/AuthService.h; sourceTree = "<group>"; };
+		BB5D2C0B1E24BFB000815FBA /* GBAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBAuthService.h; path = GBSdk/GBAuthService.h; sourceTree = "<group>"; };
+		BB5D2C0C1E24BFB000815FBA /* GBAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBAuthService.m; path = GBSdk/GBAuthService.m; sourceTree = "<group>"; };
+		BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthAccount.h; path = GBSdk/AuthAccount.h; sourceTree = "<group>"; };
+		BB5D2C111E24C45A00815FBA /* GBFbAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBFbAuthService.h; path = GBSdk/GBFbAuthService.h; sourceTree = "<group>"; };
+		BB5D2C121E24C45A00815FBA /* GBFbAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBFbAuthService.m; path = GBSdk/GBFbAuthService.m; sourceTree = "<group>"; };
 		BB797B8A1E1BAE1F00014356 /* GBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRequest.h; path = GBSdk/GBRequest.h; sourceTree = "<group>"; };
 		BB797B8B1E1BAE1F00014356 /* GBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRequest.m; path = GBSdk/GBRequest.m; sourceTree = "<group>"; };
 		BB8255F61E236D61006A4FBD /* GBSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBSession.h; path = GBSdk/GBSession.h; sourceTree = "<group>"; };
@@ -205,6 +217,12 @@
 				BB0396101E23EB1F00413257 /* GBAccountStore.m */,
 				BB0396131E2401E400413257 /* GBAccount.h */,
 				BB0396141E2401E400413257 /* GBAccount.m */,
+				BB5D2C091E24BDC000815FBA /* AuthService.h */,
+				BB5D2C0B1E24BFB000815FBA /* GBAuthService.h */,
+				BB5D2C0C1E24BFB000815FBA /* GBAuthService.m */,
+				BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */,
+				BB5D2C111E24C45A00815FBA /* GBFbAuthService.h */,
+				BB5D2C121E24C45A00815FBA /* GBFbAuthService.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -236,6 +254,8 @@
 				BB8256041E238FCC006A4FBD /* GBProtocol.h in Headers */,
 				BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */,
 				BB3161C71E1629ED005DD9D2 /* SSKeychain.h in Headers */,
+				BB5D2C0D1E24BFB000815FBA /* GBAuthService.h in Headers */,
+				BB5D2C101E24C3EF00815FBA /* AuthAccount.h in Headers */,
 				BB8255F81E236D61006A4FBD /* GBSession.h in Headers */,
 				BB8256001E2377C3006A4FBD /* Reachability.h in Headers */,
 				BB3161E01E1633B5005DD9D2 /* GBProtocol+Store.h in Headers */,
@@ -246,7 +266,9 @@
 				BB0396111E23EB1F00413257 /* GBAccountStore.h in Headers */,
 				BB3161E61E1633B5005DD9D2 /* GBStoreHelper.h in Headers */,
 				BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */,
+				BB5D2C0A1E24BDC000815FBA /* AuthService.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
+				BB5D2C131E24C45A00815FBA /* GBFbAuthService.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
 				BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */,
 				BB797B8C1E1BAE1F00014356 /* GBRequest.h in Headers */,
@@ -339,8 +361,10 @@
 				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,
 				BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */,
 				BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */,
+				BB5D2C0E1E24BFB000815FBA /* GBAuthService.m in Sources */,
 				BB3161DD1E1633B5005DD9D2 /* GBLog+Store.m in Sources */,
 				BB3161E11E1633B5005DD9D2 /* GBProtocol+Store.m in Sources */,
+				BB5D2C141E24C45A00815FBA /* GBFbAuthService.m in Sources */,
 				BB3161E91E1633B5005DD9D2 /* GBStoreService.m in Sources */,
 				BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */,
 				BB8256011E2377C3006A4FBD /* Reachability.m in Sources */,
