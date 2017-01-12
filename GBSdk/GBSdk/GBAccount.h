@@ -13,11 +13,13 @@
 
 @interface GBAccount : NSObject <AuthAccount>
 
+@property (nonatomic, readonly) SessionState currentState;
+@property (nonatomic, readonly) NSString *userKey;
+
 @property (nonatomic, copy) void (^accountBlock)(id<AuthAccount> localAccount, GBError *error);
 
-
-//- (void)tryAuthenticateByProvider:(NSDictionary *)parameter;
-//- (void)linkServiceByProvider:(NSDictionary *)parameter;
-//- (void)logoutByProvider:(BOOL)isDeepLink;
-//- (void)unRegisterByProvider;
+- (void)tryAuthenticateByProvider:(NSDictionary *)parameter;
+- (void)linkServiceByProvider:(NSDictionary *)parameter;
+- (void)logoutByProvider:(BOOL)isDeepLink;
+- (void)unRegisterByProvider;
 @end

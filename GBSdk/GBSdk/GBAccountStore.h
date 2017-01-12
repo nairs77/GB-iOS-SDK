@@ -13,9 +13,7 @@
 
 @interface GBAccountStore : NSObject
 
-//@property (nonatomic, readonly, weak) id<AuthAccount> lastAccount;
-@property (nonatomic, readonly, weak) id<AuthService> lastService;
-
+@property (nonatomic, readonly, weak) id<AuthAccount> lastAccount;
 
 + (GBAccountStore *)accountStore;
 
@@ -26,6 +24,6 @@
 - (void)registerAuthService:(id<AuthService>)theService;
 
 - (id<AuthService>)serviceWithType:(AuthType)type;
-//- (id<AuthAccount>)accountWithType:(JoypleAuthType)type;
+- (id<AuthAccount>)accountWithType:(AuthType)type;
 
 @end
