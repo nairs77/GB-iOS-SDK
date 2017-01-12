@@ -9,9 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "GBGlobal.h"
 
+@class GBError;
+
 @protocol AuthAccount <NSObject>
 
-@property (nonatomic, readonly) SessionState currentState;
-@property (nonatomic, readonly) NSString *userKey;
+- (id)initWithAccountInfo:(NSDictionary *)info;
 
+- (void)loginWithAuthType:(AuthType)authType
+                       accountBlock:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+
+- (void)linkServiceWithParameter:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+
+- (void)logOut:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+
+- (void)unRegister:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 @end

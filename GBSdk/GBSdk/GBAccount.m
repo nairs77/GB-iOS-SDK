@@ -10,4 +10,22 @@
 
 @implementation GBAccount
 
+#pragma mark - AuthAccount
+
+- (void)loginWithAuthType:(AuthType)authType
+             accountBlock:(void (^)(id<AuthAccount>, GBError *))accountBlock
+{
+    //
+    
+}
+
+- (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock
+{
+    
+}
+
+- (void)unRegister:(void (^)(id<AuthAccount>, GBError *))accountBlock
+{
+    
+}
 @end

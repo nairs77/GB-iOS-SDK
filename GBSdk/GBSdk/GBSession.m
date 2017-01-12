@@ -13,12 +13,10 @@
 #import "AuthAccount.h"
 #import "Reachability.h"
 
-NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
+
 
 @interface GBSession ()
 
-//@property (nonatomic, strong) GBSessionStore *store;
-@property (nonatomic) SessionState currentState;
 @property (nonatomic, strong) GBSession *currentSession;
 @property (nonatomic, strong) Reachability *networkConnection;
 @property (nonatomic, weak) id<AuthAccount> lastAccount;
@@ -49,19 +47,19 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 #pragma mark - Public
 - (SessionState)state
 {
-    return self.lastAccount.currentState;
+    return OPEN;
 }
 
 - (void)loginWithAuthType:(AuthType)authType
               withHandler:(AuthCompletionHandler)completionHandler;
 {
-    id<AuthService>lastService = [[GBAccountStore accountStore] lastService];
+    id<AuthAccount>lastAccount = [self _lastAccount];
     
-    if (lastService == nil) {
-        lastService = [[GBAccountStore accountStore] serviceWithType:authType];
+    if (lastAccount == nil) {
+        lastAccount = [[GBAccountStore accountStore] serviceWithType:authType];
     }
     
-    [lastService loginWithAccountBlock:^(id<AuthService>theService, GBError *error) {
+    [lastAccount loginWithAuthType:authType accountBlock:^(id<AuthAccount> localAccount, GBError *error) {
         
     }];
 
@@ -103,6 +101,12 @@ NSString * const kGBAccountStoreKey = @"geBros.platform.Store";
 }
 
 #pragma mark - Private Methods
+
+- (id<AuthAccount>)_lastAccount
+{
+    return [[GBAccountStore accountStore] lastAccount];
+}
+
 
 - (void)_setActiveSession:(GBSession *)aSession
 {
