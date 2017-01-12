@@ -101,6 +101,7 @@
 		BB5D2C151E24FB9F00815FBA /* GBGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBGlobal.h; sourceTree = "<group>"; };
 		BB5D2C161E25096A00815FBA /* NSData+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Formatter.h"; path = "GBSdk/NSData+Formatter.h"; sourceTree = "<group>"; };
 		BB5D2C171E25096A00815FBA /* NSData+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Formatter.m"; path = "GBSdk/NSData+Formatter.m"; sourceTree = "<group>"; };
+		BB5D2C1A1E25F61900815FBA /* Singletone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Singletone.h; path = GBSdk/Util/Singletone.h; sourceTree = "<group>"; };
 		BB797B8A1E1BAE1F00014356 /* GBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRequest.h; path = GBSdk/GBRequest.h; sourceTree = "<group>"; };
 		BB797B8B1E1BAE1F00014356 /* GBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRequest.m; path = GBSdk/GBRequest.m; sourceTree = "<group>"; };
 		BB8255F61E236D61006A4FBD /* GBSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBSession.h; path = GBSdk/GBSession.h; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 				BB3161BE1E16045E005DD9D2 /* GBLog.h */,
 				BB3161C41E1613CD005DD9D2 /* GBDeviceUtil.h */,
 				BB3161C21E1613A2005DD9D2 /* GBDeviceUtil.m */,
+				BB5D2C1A1E25F61900815FBA /* Singletone.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";
