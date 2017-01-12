@@ -10,4 +10,12 @@
 
 @implementation GBProtocol
 
++ (NSDictionary *)defaultHeader
+{
+    NSDictionary *pInfo = [[NSBundle mainBundle] infoDictionary];
+    
+    NSString *defaultAgent = [NSString stringWithFormat:@""];
+    
+    return [NSDictionary dictionaryWithObject:defaultAgent forKey:@"User-Agent"];
+}
 @end

@@ -7,6 +7,19 @@
 //
 
 #import "GBSettings.h"
+#import "GBDeviceUtil.h"
+
+NSString *const kACCOUNT_SERVER = @"https://platform.gebros.com";
+NSString *const kBILLING_SERVER = @"https://platform.gebros.com";
+
+@interface GBSettings ()
+
+@property (nonatomic, copy) NSDictionary *pInfo;
+@property (nonatomic, readwrite, copy) NSString *deviceVersion;
+@property (nonatomic, readwrite, copy) NSString *deviceModel;
+@property (nonatomic, readwrite, copy) NSString *appBundleId;
+
+@end
 
 @implementation GBSettings
 
@@ -20,5 +33,18 @@
     return _instance;
 }
 
+- (id)init
+{
+    if (self = [super init]) {
+        self.pInfo = [[NSBundle mainBundle] infoDictionary];
+        self.deviceModel = [GBDeviceUtil deviceModel];
+        self.deviceVersion = [GBDeviceUtil deviceVersion];
+        
+        self.appBundleId = [self.pInfo objectForKey:(NSString *)kCFBundleIdentifierKey];
+        
+    }
+    
+    return self;
+}
 
 @end

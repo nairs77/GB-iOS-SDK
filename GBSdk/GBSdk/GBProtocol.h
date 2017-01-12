@@ -25,4 +25,6 @@ typedef NS_ENUM(NSUInteger, SessionCommand) {
 @property (nonatomic, copy) NSDictionary *body;
 @property (nonatomic) NSUInteger command;
 
++ (NSDictionary *)defaultHeader;
+
 @end

@@ -13,12 +13,12 @@
 
 @protocol AuthAccount <NSObject>
 
+@property (nonatomic, readonly) AuthType authType;
 - (id)initWithAccountInfo:(NSDictionary *)info;
 
-- (void)loginWithAuthType:(AuthType)authType
-                       accountBlock:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+- (void)logIn:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
-- (void)linkServiceWithParameter:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+//- (void)linkServiceWithParameter:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
 - (void)logOut:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 

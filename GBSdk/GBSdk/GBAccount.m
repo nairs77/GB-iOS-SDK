@@ -10,22 +10,60 @@
 
 @implementation GBAccount
 
+- (id)init
+{
+    self = [super init];
+    
+    if (self) {
+        
+    }
+    
+    return self;
+}
+
 #pragma mark - AuthAccount
 
-- (void)loginWithAuthType:(AuthType)authType
-             accountBlock:(void (^)(id<AuthAccount>, GBError *))accountBlock
+- (id)initWithAccountInfo:(NSDictionary *)info
 {
-    //
+    if (self = [super init]) {
+        
+    }
     
+    return self;
+}
+
+- (void)logIn:(void (^)(id<AuthAccount>, GBError *))accountBlock
+{
+    // Override Each Account
 }
 
 - (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
-    
+    // All Account
 }
 
 - (void)unRegister:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
+    // All Account
+}
+
+- (void)loginGB
+{
     
+}
+
+- (void)logoutGB
+{
+    
+}
+
+- (void)unRegisterGB
+{
+    
+}
+
+- (AuthType)authType
+{
+    return GUEST;
 }
 @end

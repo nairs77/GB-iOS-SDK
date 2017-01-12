@@ -7,8 +7,10 @@
 //
 
 #import "GBAuthService.h"
+#import "GBGuestAccount.h"
 
 @implementation GBAuthService
+@synthesize lastService;
 
 + (id<AuthService>)sharedAuthService
 {
@@ -31,24 +33,25 @@
 
 - (void)registerServiceInfo:(NSDictionary *)serviceInfo
 {
-
+    [[GBAccountStore accountStore] registerAuthService:nil];
 }
 
-- (void)loginWithAccountBlock:(AuthServiceCompletionHandler)completionHandler
+- (id<AuthAccount>)serviceAccount
 {
+    return [GBGuestAccount defaultAccount];
+}
+
+- (id<AuthAccount>)serviceAccountWithInfo:(NSDictionary *)info
+{
+    GBGuestAccount *account = [[GBGuestAccount alloc] initWithAccountInfo:info];
     
-
+    return account;
 }
 
-- (void)logoutWithAccountBlock:(AuthServiceCompletionHandler)completionHandler
+- (AuthType)authType
 {
-    
+    return GUEST;
 }
 
-- (BOOL)isThrdPartyOn
-{
-    return false;
-}
 
-- (void)openSessionWithServiceHandler:(AuthServiceCompletionHandler)completionHandler {}
 @end

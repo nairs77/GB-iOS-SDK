@@ -7,7 +7,7 @@
 //
 
 #import "GBLog+Store.h"
-#import "GBRequest.h"
+#import "GBApiRequest.h"
 #import "GBProtocol+Store.h"
 
 @implementation GBLog (Store)

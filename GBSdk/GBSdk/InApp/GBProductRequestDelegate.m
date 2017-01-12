@@ -8,7 +8,7 @@
 
 #import "GBProductRequestDelegate.h"
 #import "GBLog.h"
-#import "GBStoreHelper.h"
+#import "GBInApp.h"
 #import "GBError.h"
 //#import "NSBundle+GB.h"
 

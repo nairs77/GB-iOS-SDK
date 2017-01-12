@@ -10,7 +10,7 @@
 #import <StoreKit/StoreKit.h>
 
 @class GBError;
-@class GBStoreHelper;
+@class GBInApp;
 
 typedef void (^GBProductsRequestSuccessBlock)(NSArray *products, NSArray *invalidIdentifiers);
 typedef void (^GBProductsRequestFailureBlock)(GBError *error);
@@ -19,5 +19,5 @@ typedef void (^GBProductsRequestFailureBlock)(GBError *error);
 
 @property (nonatomic, strong) GBProductsRequestSuccessBlock successBlock;
 @property (nonatomic, strong) GBProductsRequestFailureBlock failureBlock;
-@property (nonatomic, weak) GBStoreHelper *store;
+@property (nonatomic, weak) GBInApp *store;
 @end

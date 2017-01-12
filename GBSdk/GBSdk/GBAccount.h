@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AuthAccount.h"
+#import "Singletone.h"
 
 @class GBError;
 
@@ -15,11 +16,15 @@
 
 @property (nonatomic, readonly) SessionState currentState;
 @property (nonatomic, readonly) NSString *userKey;
+@property (nonatomic, readonly) AuthType authType;
 
 @property (nonatomic, copy) void (^accountBlock)(id<AuthAccount> localAccount, GBError *error);
 
-- (void)tryAuthenticateByProvider:(NSDictionary *)parameter;
-- (void)linkServiceByProvider:(NSDictionary *)parameter;
-- (void)logoutByProvider:(BOOL)isDeepLink;
-- (void)unRegisterByProvider;
+
+- (void)loginGB;
+
+- (void)logoutGB;
+
+- (void)unRegisterGB;
+
 @end

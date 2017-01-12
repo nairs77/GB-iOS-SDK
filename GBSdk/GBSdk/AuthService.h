@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GBGlobal.h"
 
 @class GBError;
 @class GBSession;
 @protocol AuthAccount;
 
-@protocol AuthService <AuthAccount>
+@protocol AuthService <NSObject>
 
-@property (nonatomic, readonly) BOOL lastService;
+@property (nonatomic) BOOL lastService;
+@property (nonatomic, readonly) AuthType authType;
 
 + (id<AuthService>)sharedAuthService;
 

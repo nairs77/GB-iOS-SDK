@@ -18,7 +18,7 @@ return accessorname;\
 }
 
 #define SINGLETON_FOR_CLASS(classname)\
-+ (id) shared##classname {\
++ (id) sharedInstance {\
 static dispatch_once_t pred = 0;\
 static id _sharedObject = nil;\
 dispatch_once(&pred, ^{\

@@ -27,7 +27,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
 
 @implementation GBAccountStore
 
-+ (GBAccountStore *)store
++ (GBAccountStore *)accountStore
 {
     static GBAccountStore *_instance = nil;
     static dispatch_once_t pred;
@@ -56,7 +56,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     return self;
 }
 
-- (id<AuthAccount>)lastServiceAccount
+- (id<AuthAccount>)lastAccount
 {
     if (self.lastAccount == nil) {
         //
@@ -91,11 +91,11 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
             AuthType providerType = [[theDictionary objectForKey:@"providerType"] intValue];
             
             //get the service with the give name and then create a local user using the guid
-            if (providerType == theService.providerType) {
+            if (providerType == theService.authType) {
                 NSString *sns_access_token = [theDictionary objectForKey:@"sns_access_token"];
                 NSString *sns_refresh_token = [theDictionary objectForKey:@"sns_refresh_token"];
                 
-                id<AuthAccount> account = [theService serviceAccountWithDictionary:@{@"sns_access_token" : sns_access_token, @"sns_refresh_token" : sns_refresh_token, @"access_token" : access_token, @"refresh_token" : refresh_token}];
+                id<AuthAccount> account = [theService serviceAccountWithInfo:@{@"sns_access_token" : sns_access_token, @"sns_refresh_token" : sns_refresh_token, @"access_token" : access_token, @"refresh_token" : refresh_token}];
                 [self saveAccount:account];
                 
                 BOOL isPrimary = [(NSNumber*)[theDictionary objectForKey:@"lastAccount"] boolValue];
@@ -113,7 +113,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
 {
     id<AuthService> theService = nil;
     for (id<AuthService> service in self.services) {
-        if (type == service.providerType) {
+        if (type == service.authType) {
             theService = service;
             break;
         }
@@ -121,18 +121,17 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     return theService;
 }
 
-- (id<AuthAccount>)accountWithType:(AuthType)type//(NSString*)accountName
-{
-    id<AuthAccount> theAccount = nil;
-    for (id<AuthAccount> account in self.accounts) {
-        if (type == account.providerType) {
-            //        if (NSOrderedSame == [typ compare:account.]) {
-            theAccount = account;
-            break;
-        }
-    }
-    return theAccount;
-}
+//- (id<AuthAccount>)accountWithType:(AuthType)type//(NSString*)accountName
+//{
+//    id<AuthAccount> theAccount = nil;
+//    for (id<AuthAccount> account in self.accounts) {
+//        if (type == account.authType) {
+//            theAccount = account;
+//            break;
+//        }
+//    }
+//    return theAccount;
+//}
 
 - (void)saveAccount:(id<AuthAccount>)theAccount
 {
@@ -140,7 +139,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     
     for (id<AuthAccount> account in self.accounts) {
         
-        if (theAccount.providerType == account.providerType) {
+        if (theAccount.authType == account.authType) {
             bFound = YES;
             break;
         }
@@ -161,20 +160,20 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     if (isSwitchAccount || (self.lastAccount == nil)) {
         self.lastAccount = theAccount;
         
-        for (id<AuthProvider> service in self.services) {
-            if (service.providerType == theAccount.providerType) {
+        for (id<AuthService> service in self.services) {
+            if (service.authType == theAccount.authType) {
                 service.lastService = YES;
                 break;
             }
         }
     }
-    
+/*
     NSMutableArray *theAccounts = [NSMutableArray array];
     for (id<AuthAccount> account in self.accounts) {
         BOOL isLastAccount = (self.lastAccount == account);
         
         NSArray *keys = [NSArray arrayWithObjects:@"providerType", @"lastAccount", @"sns_access_token", @"sns_refresh_token", nil];
-        NSArray *values = [NSArray arrayWithObjects:[NSNumber numberWithInt:account.providerType], [NSNumber numberWithBool:isLastAccount], [account sns_access_token], [account sns_refresh_token], nil];
+        NSArray *values = [NSArray arrayWithObjects:[NSNumber numberWithInt:account.authType], [NSNumber numberWithBool:isLastAccount], [account sns_access_token], [account sns_refresh_token], nil];
         
         NSDictionary *accountDictionary = [NSDictionary dictionaryWithObjects:values forKeys:keys];
         [theAccounts addObject:accountDictionary];
@@ -182,7 +181,9 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     
     //NSDictionary *servicesDictionary = [NSDictionary dictionaryWithObject:theAccounts forKey:@"accounts"];
     NSDictionary *servicesDictionary = @{@"accounts" : theAccounts, @"access_token" : [self.lastAccount accessToken], @"refresh_token" : [self.lastAccount refreshToken]};
-    
+*/
+    NSMutableArray *theAccounts = [NSMutableArray array];
+    NSDictionary *servicesDictionary = [NSDictionary dictionaryWithObject:theAccounts forKey:@"accounts"];
     [self _saveServiceStoreDictionary:servicesDictionary];
 }
 
@@ -191,7 +192,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     //    for (id<AuthAccount> account in self.accounts)
     //        [account logout:nil];
     
-    for (id<AuthProvider> service in self.services) {
+    for (id<AuthService> service in self.services) {
         service.lastService = NO;
     }
     
@@ -209,9 +210,9 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
 {
     if (self.lastAccount != nil) {
         
-        id<AuthProvider> lastSerivce = [self _lastAuthService];
+        id<AuthService> lastSerivce = [self _lastAuthService];
         
-        if (lastSerivce.providerType == theAccount.providerType) {
+        if (lastSerivce.authType == lastSerivce.authType) {
             self.lastAccount = nil;
             lastSerivce.lastService = NO;
         }
@@ -280,13 +281,13 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     [[NSUserDefaults standardUserDefaults] setObject:theServiceStoreDictionary forKey:kGBAccountStoreKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    JLogVerbose(@"%@", theServiceStoreDictionary);
+    GBLogVerbose(@"%@", theServiceStoreDictionary);
 }
 
 - (id<AuthService>)_lastAuthService
 {
-    id<AuthProvider> theService = nil;
-    for (id<AuthProvider> service in self.services) {
+    id<AuthService> theService = nil;
+    for (id<AuthService> service in self.services) {
         if (service.lastService == YES) {
             theService = service;
             break;

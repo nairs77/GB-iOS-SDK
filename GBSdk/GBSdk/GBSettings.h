@@ -13,8 +13,17 @@
 
 + (GBSettings *)currentSettings;
 
-@property (nonatomic) BOOL hasLasetSession;
-@property (nonatomic, copy) NSString *sessionInfo;
-//@property (nonatomic)
+@property (nonatomic, copy) NSString *clientSecretKey;
+@property (nonatomic, copy) NSString *userKey;
+@property (nonatomic) int marketCode;
 
+@property (nonatomic, readonly) NSString *authServer;
+@property (nonatomic, readonly) NSString *inAppServer;
+
+// Device Info
+@property (nonatomic, readonly) NSString *deviceVersion;
+@property (nonatomic, readonly) NSString *deviceModel;
+
+// App Info
+@property (nonatomic, readonly) NSString *appBundleId;
 @end

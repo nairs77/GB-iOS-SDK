@@ -11,7 +11,7 @@
 #import "GBLog.h"
 #import "GBSession+internal.h"
 #import "GBAuthService.h"
-#import "GBFbAuthService.h"
+#import "GBFacebookService.h"
 
 int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -25,7 +25,7 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
     //NSString *fbAppId = [[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)
     
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
-    [[GBFbAuthService sharedAuthService] registerServiceInfo:nil];
+    [[GBFacebookService sharedAuthService] registerServiceInfo:nil];
 }
 
 + (GBSession *)activeSession {

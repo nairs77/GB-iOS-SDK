@@ -56,10 +56,11 @@
     id<AuthAccount>lastAccount = [self _lastAccount];
     
     if (lastAccount == nil) {
-        lastAccount = [[GBAccountStore accountStore] serviceWithType:authType];
+        lastAccount = [[[GBAccountStore accountStore] serviceWithType:authType] serviceAccount];
+        
     }
     
-    [lastAccount loginWithAuthType:authType accountBlock:^(id<AuthAccount> localAccount, GBError *error) {
+    [lastAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
         
     }];
 

@@ -14,7 +14,7 @@
 #import <netdb.h>
 
 #import <CoreFoundation/CoreFoundation.h>
-#import "JoypleLog.h"
+#import "GBLog.h"
 #import "Reachability.h"
 
 NSString *kReachabilityChangedNotification = @"kNetworkReachabilityChangedNotification";
@@ -27,7 +27,7 @@ static void PrintReachabilityFlags(SCNetworkReachabilityFlags    flags, const ch
 {
 #if kShouldPrintReachabilityFlags
 	
-    JLogVerbose(@"Reachability Flag Status: %c%c %c%c%c%c%c%c%c %s\n",
+    GBLogVerbose(@"Reachability Flag Status: %c%c %c%c%c%c%c%c%c %s\n",
                (flags & kSCNetworkReachabilityFlagsIsWWAN)				  ? 'W' : '-',
                (flags & kSCNetworkReachabilityFlagsReachable)            ? 'R' : '-',
                

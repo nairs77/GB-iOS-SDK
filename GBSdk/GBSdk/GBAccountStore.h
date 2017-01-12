@@ -24,6 +24,6 @@
 - (void)registerAuthService:(id<AuthService>)theService;
 
 - (id<AuthService>)serviceWithType:(AuthType)type;
-- (id<AuthAccount>)accountWithType:(AuthType)type;
+//- (id<AuthAccount>)accountWithType:(AuthType)type;
 
 @end
