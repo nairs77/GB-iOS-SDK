@@ -2,7 +2,7 @@
 //  GBLog+Store.h
 //  GB
 //
-//  Created by joyuser on 2016. 3. 15..
+//  Created by niars77 on 2016. 3. 15..
 //  Copyright © 2016년 Joycity. All rights reserved.
 //
 

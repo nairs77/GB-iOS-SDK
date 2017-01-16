@@ -2,7 +2,7 @@
 //  GBRestoreManager.h
 //  GB
 //
-//  Created by joyuser on 2015. 11. 4..
+//  Created by niars77 on 2015. 11. 4..
 //  Copyright © 2015년 GeBros. All rights reserved.
 //
 

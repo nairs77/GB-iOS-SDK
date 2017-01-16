@@ -1,52 +1,30 @@
 //
 //  GBInApp.h
-//  GB
+//  GBSdk
 //
-//  Created by Professional on 2014. 6. 12..
-//  Copyright (c) 2014년 GeBros. All rights reserved.
+//  Created by nairs77 on 2017. 1. 16..
+//  Copyright © 2017년 GeBros. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <StoreKit/StoreKit.h>
-#import "GBApiRequest.h"
-#import "GBProductRequestDelegate.h"
-#import "GBAddPaymentAction.h"
+#import "GBError.h"
 
-#ifdef _JOYPLE_ANALYTICS_
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#endif
+@interface GBInApp : NSObject
 
-@class GBError;
+- (void)initInApp:(void(^)(BOOL success, GBError *error))resultBlock;
 
-typedef void(^GBErrorHandler)(GBError *error);
+//- (void)reuqestProductInfo:(NSSet *)skus
+//                   success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
+//                   failure:(void(^)(GBError *error))failureBlock;
 
-@interface GBInApp : NSObject<SKPaymentTransactionObserver>
+- (void)requestProducts:(NSSet *)skus
+                success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
+                failure:(void(^)(GBError *error))failureBlock;
 
-@property (nonatomic, strong) NSString *userKey;
+- (void)buyItem:(NSString *)productId
+        success:(void (^)(NSString *paymentKey))successBlock
+        failure:(void (^)(GBError *error))failureBlock;
 
-@property (nonatomic, copy) NSString *extraData;
-@property (nonatomic, assign) BOOL isSubscription;
-
-+ (GBInApp *)InAppManager;
-
-+ (BOOL)canMakePayments;
-
-- (void)requestPaymentsWithMarketInfo:(void(^)(BOOL success, GBError *error))resultBlock;
-- (void)requestProducts:(NSSet *)identifiers
-                success:(GBProductsRequestSuccessBlock)successBlock
-                failure:(GBProductsRequestFailureBlock)failureBlock;
-
-- (void)preparePayment:(GBErrorHandler)handler;
-- (void)excutePayment:(NSString *)productIdentifier parameter:(GBAddPaymentAction *)parameters;
-- (void)restorePayment:(void (^)(NSArray *paymentKeys))resultBlock;
-//- (void)retryPayment:(void (^)(NSArray *retryPaymentKeys))resultBlock;
-// - GBProductRequestDelegate
-
-- (void)addProduct:(SKProduct *)product;
-- (void)removeProductsRequestDelegate:(GBProductRequestDelegate *)delegate;
-
-- (void)savedReception:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
-- (NSArray *)transactions;
+- (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
 
 @end

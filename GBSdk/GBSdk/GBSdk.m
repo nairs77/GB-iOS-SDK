@@ -12,6 +12,7 @@
 #import "GBSession+internal.h"
 #import "GBAuthService.h"
 #import "GBFacebookService.h"
+#import "GBInApp+Internal.h"
 
 int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -22,8 +23,6 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     ddLogLevel = (level == DEBUG_MODE)? LOG_LEVEL_VERBOSE : LOG_LEVEL_ERROR;
     
-    //NSString *fbAppId = [[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)
-    
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
     [[GBFacebookService sharedAuthService] registerServiceInfo:nil];
 }
@@ -33,8 +32,7 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 + (GBInApp *)inAppManager {
-//    return [GBInApp innerInstance];
-    return nil;
+    return [GBInApp innerInstance];
 }
 
 @end

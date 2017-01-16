@@ -13,8 +13,6 @@
 #import "AuthAccount.h"
 #import "Reachability.h"
 
-
-
 @interface GBSession ()
 
 @property (nonatomic, strong) GBSession *currentSession;

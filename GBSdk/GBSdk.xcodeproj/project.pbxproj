@@ -18,8 +18,6 @@
 		BB3161C81E1629ED005DD9D2 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161C61E1629ED005DD9D2 /* SSKeychain.m */; };
 		BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CA1E1633B5005DD9D2 /* GBAddPaymentAction.h */; };
 		BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CB1E1633B5005DD9D2 /* GBAddPaymentAction.m */; };
-		BB3161DC1E1633B5005DD9D2 /* GBLog+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CC1E1633B5005DD9D2 /* GBLog+Store.h */; };
-		BB3161DD1E1633B5005DD9D2 /* GBLog+Store.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CD1E1633B5005DD9D2 /* GBLog+Store.m */; };
 		BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161CE1E1633B5005DD9D2 /* GBProductRequestDelegate.h */; };
 		BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161CF1E1633B5005DD9D2 /* GBProductRequestDelegate.m */; };
 		BB3161E01E1633B5005DD9D2 /* GBProtocol+Store.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D01E1633B5005DD9D2 /* GBProtocol+Store.h */; };
@@ -28,8 +26,8 @@
 		BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */; };
 		BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */; };
 		BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */; };
-		BB3161E61E1633B5005DD9D2 /* GBInApp.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D61E1633B5005DD9D2 /* GBInApp.h */; };
-		BB3161E71E1633B5005DD9D2 /* GBInApp.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D71E1633B5005DD9D2 /* GBInApp.m */; };
+		BB3161E61E1633B5005DD9D2 /* GBInAppHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D61E1633B5005DD9D2 /* GBInAppHelper.h */; };
+		BB3161E71E1633B5005DD9D2 /* GBInAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D71E1633B5005DD9D2 /* GBInAppHelper.m */; };
 		BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161EB1E1635D5005DD9D2 /* GBError.h */; };
 		BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161EC1E1635D5005DD9D2 /* GBError.m */; };
 		BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = BB46FBF51E1C93270062D439 /* GBSettings.h */; };
@@ -61,7 +59,7 @@
 		BB5D33C91E27854800EBA84F /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D33C81E27854800EBA84F /* AFNetworking.h */; };
 		BB797B8C1E1BAE1F00014356 /* GBApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBApiRequest.h */; };
 		BB797B8D1E1BAE1F00014356 /* GBApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBApiRequest.m */; };
-		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; };
+		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB8255F91E236D61006A4FBD /* GBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8255F71E236D61006A4FBD /* GBSession.m */; };
 		BB8255FC1E2371A6006A4FBD /* GBSession+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255FA1E2371A6006A4FBD /* GBSession+Internal.h */; };
 		BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8255FB1E2371A6006A4FBD /* GBSession+Internal.m */; };
@@ -71,6 +69,13 @@
 		BB8256051E238FCC006A4FBD /* GBProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8256031E238FCC006A4FBD /* GBProtocol.m */; };
 		BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8256061E239034006A4FBD /* GBProtocol+Session.h */; };
 		BB8256091E239034006A4FBD /* GBProtocol+Session.m in Sources */ = {isa = PBXBuildFile; fileRef = BB8256071E239034006A4FBD /* GBProtocol+Session.m */; };
+		BBFD65C61E2C61DD00E3635E /* GBInApp.h in Headers */ = {isa = PBXBuildFile; fileRef = BBFD65C41E2C61DD00E3635E /* GBInApp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BBFD65C71E2C61DD00E3635E /* GBInApp.m in Sources */ = {isa = PBXBuildFile; fileRef = BBFD65C51E2C61DD00E3635E /* GBInApp.m */; };
+		BBFD65CA1E2C800500E3635E /* GBInApp+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = BBFD65C81E2C800500E3635E /* GBInApp+Internal.h */; };
+		BBFD65CB1E2C800500E3635E /* GBInApp+Internal.m in Sources */ = {isa = PBXBuildFile; fileRef = BBFD65C91E2C800500E3635E /* GBInApp+Internal.m */; };
+		BBFD65CE1E2CB7D100E3635E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFD65CD1E2CB7D100E3635E /* Bolts.framework */; };
+		BBFD65D01E2CB94C00E3635E /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBFD65CF1E2CB94C00E3635E /* Bolts.framework */; };
+		BBFD65D11E2CBB4A00E3635E /* GBGlobal.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C151E24FB9F00815FBA /* GBGlobal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,8 +104,8 @@
 		BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBReceiptVerificator.m; path = GBSdk/InApp/GBReceiptVerificator.m; sourceTree = "<group>"; };
 		BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBRestoreManager.h; path = GBSdk/InApp/GBRestoreManager.h; sourceTree = "<group>"; };
 		BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBRestoreManager.m; path = GBSdk/InApp/GBRestoreManager.m; sourceTree = "<group>"; };
-		BB3161D61E1633B5005DD9D2 /* GBInApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBInApp.h; path = GBSdk/InApp/GBInApp.h; sourceTree = "<group>"; };
-		BB3161D71E1633B5005DD9D2 /* GBInApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBInApp.m; path = GBSdk/InApp/GBInApp.m; sourceTree = "<group>"; };
+		BB3161D61E1633B5005DD9D2 /* GBInAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBInAppHelper.h; path = GBSdk/InApp/GBInAppHelper.h; sourceTree = "<group>"; };
+		BB3161D71E1633B5005DD9D2 /* GBInAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBInAppHelper.m; path = GBSdk/InApp/GBInAppHelper.m; sourceTree = "<group>"; };
 		BB3161EB1E1635D5005DD9D2 /* GBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBError.h; path = GBSdk/GBError.h; sourceTree = "<group>"; };
 		BB3161EC1E1635D5005DD9D2 /* GBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBError.m; path = GBSdk/GBError.m; sourceTree = "<group>"; };
 		BB46FBF51E1C93270062D439 /* GBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSettings.h; sourceTree = "<group>"; };
@@ -144,6 +149,12 @@
 		BB8256031E238FCC006A4FBD /* GBProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBProtocol.m; path = GBSdk/GBProtocol.m; sourceTree = "<group>"; };
 		BB8256061E239034006A4FBD /* GBProtocol+Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBProtocol+Session.h"; path = "GBSdk/GBProtocol+Session.h"; sourceTree = "<group>"; };
 		BB8256071E239034006A4FBD /* GBProtocol+Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBProtocol+Session.m"; path = "GBSdk/GBProtocol+Session.m"; sourceTree = "<group>"; };
+		BBFD65C41E2C61DD00E3635E /* GBInApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBInApp.h; path = GBSdk/InApp/GBInApp.h; sourceTree = "<group>"; };
+		BBFD65C51E2C61DD00E3635E /* GBInApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBInApp.m; path = GBSdk/InApp/GBInApp.m; sourceTree = "<group>"; };
+		BBFD65C81E2C800500E3635E /* GBInApp+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GBInApp+Internal.h"; path = "GBSdk/InApp/GBInApp+Internal.h"; sourceTree = "<group>"; };
+		BBFD65C91E2C800500E3635E /* GBInApp+Internal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GBInApp+Internal.m"; path = "GBSdk/InApp/GBInApp+Internal.m"; sourceTree = "<group>"; };
+		BBFD65CD1E2CB7D100E3635E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Framework/Facebook/Bolts.framework; sourceTree = "<group>"; };
+		BBFD65CF1E2CB94C00E3635E /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Framework/Facebook/Bolts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +162,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFD65CE1E2CB7D100E3635E /* Bolts.framework in Frameworks */,
 				BB5D33B21E2767E200EBA84F /* FBSDKLoginKit.framework in Frameworks */,
 				BB5D33B11E2767E200EBA84F /* FBSDKCoreKit.framework in Frameworks */,
+				BBFD65D01E2CB94C00E3635E /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +185,7 @@
 				BB3161BB1E160123005DD9D2 /* Util */,
 				BB0DC2081E151128008ADA92 /* GBSdk */,
 				BB0DC2071E151128008ADA92 /* Products */,
+				BBFD65CC1E2CB7D000E3635E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,8 +238,12 @@
 				BB3161D31E1633B5005DD9D2 /* GBReceiptVerificator.m */,
 				BB3161D41E1633B5005DD9D2 /* GBRestoreManager.h */,
 				BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */,
-				BB3161D61E1633B5005DD9D2 /* GBInApp.h */,
-				BB3161D71E1633B5005DD9D2 /* GBInApp.m */,
+				BB3161D61E1633B5005DD9D2 /* GBInAppHelper.h */,
+				BB3161D71E1633B5005DD9D2 /* GBInAppHelper.m */,
+				BBFD65C41E2C61DD00E3635E /* GBInApp.h */,
+				BBFD65C51E2C61DD00E3635E /* GBInApp.m */,
+				BBFD65C81E2C800500E3635E /* GBInApp+Internal.h */,
+				BBFD65C91E2C800500E3635E /* GBInApp+Internal.m */,
 			);
 			name = InApp;
 			sourceTree = "<group>";
@@ -291,6 +309,7 @@
 		BB5D339E1E27239D00EBA84F /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				BBFD65CF1E2CB94C00E3635E /* Bolts.framework */,
 				BB5D33AF1E2767E200EBA84F /* FBSDKCoreKit.framework */,
 				BB5D33B01E2767E200EBA84F /* FBSDKLoginKit.framework */,
 			);
@@ -315,6 +334,14 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		BBFD65CC1E2CB7D000E3635E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BBFD65CD1E2CB7D100E3635E /* Bolts.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -323,8 +350,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5D33B61E277C9B00EBA84F /* AFURLSessionManager.h in Headers */,
-				BB3161DC1E1633B5005DD9D2 /* GBLog+Store.h in Headers */,
 				BB5D33BC1E277CCD00EBA84F /* AFURLRequestSerialization.h in Headers */,
+				BBFD65C61E2C61DD00E3635E /* GBInApp.h in Headers */,
 				BB8256041E238FCC006A4FBD /* GBProtocol.h in Headers */,
 				BB3161DA1E1633B5005DD9D2 /* GBAddPaymentAction.h in Headers */,
 				BB3161C71E1629ED005DD9D2 /* SSKeychain.h in Headers */,
@@ -338,14 +365,16 @@
 				BB3161DE1E1633B5005DD9D2 /* GBProductRequestDelegate.h in Headers */,
 				BB3161E41E1633B5005DD9D2 /* GBRestoreManager.h in Headers */,
 				BB0396151E2401E400413257 /* GBAccount.h in Headers */,
+				BBFD65D11E2CBB4A00E3635E /* GBGlobal.h in Headers */,
 				BB0396111E23EB1F00413257 /* GBAccountStore.h in Headers */,
 				BB5D33A91E2742EA00EBA84F /* GBFacebookAccount.h in Headers */,
-				BB3161E61E1633B5005DD9D2 /* GBInApp.h in Headers */,
+				BB3161E61E1633B5005DD9D2 /* GBInAppHelper.h in Headers */,
 				BB5D33C91E27854800EBA84F /* AFNetworking.h in Headers */,
 				BB8256081E239034006A4FBD /* GBProtocol+Session.h in Headers */,
 				BB5D2C0A1E24BDC000815FBA /* AuthService.h in Headers */,
 				BB5D33C21E277D1D00EBA84F /* AFSecurityPolicy.h in Headers */,
 				BB5D33C61E277D4000EBA84F /* AFNetworkReachabilityManager.h in Headers */,
+				BBFD65CA1E2C800500E3635E /* GBInApp+Internal.h in Headers */,
 				BB5D2C181E25096A00815FBA /* NSData+Formatter.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB5D2C131E24C45A00815FBA /* GBFacebookService.h in Headers */,
@@ -436,21 +465,22 @@
 				BB8255FD1E2371A6006A4FBD /* GBSession+Internal.m in Sources */,
 				BB5D2C191E25096A00815FBA /* NSData+Formatter.m in Sources */,
 				BB0396161E2401E400413257 /* GBAccount.m in Sources */,
-				BB3161E71E1633B5005DD9D2 /* GBInApp.m in Sources */,
+				BB3161E71E1633B5005DD9D2 /* GBInAppHelper.m in Sources */,
 				BB797B8D1E1BAE1F00014356 /* GBApiRequest.m in Sources */,
 				BB5D33B71E277C9B00EBA84F /* AFURLSessionManager.m in Sources */,
 				BB8256091E239034006A4FBD /* GBProtocol+Session.m in Sources */,
 				BB5D33AA1E2742EA00EBA84F /* GBFacebookAccount.m in Sources */,
 				BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */,
 				BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */,
+				BBFD65C71E2C61DD00E3635E /* GBInApp.m in Sources */,
 				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,
 				BB5D33A61E27283600EBA84F /* GBGuestAccount.m in Sources */,
 				BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */,
 				BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */,
+				BBFD65CB1E2C800500E3635E /* GBInApp+Internal.m in Sources */,
 				BB5D33C31E277D1D00EBA84F /* AFSecurityPolicy.m in Sources */,
 				BB5D33C71E277D4000EBA84F /* AFNetworkReachabilityManager.m in Sources */,
 				BB5D2C0E1E24BFB000815FBA /* GBAuthService.m in Sources */,
-				BB3161DD1E1633B5005DD9D2 /* GBLog+Store.m in Sources */,
 				BB3161E11E1633B5005DD9D2 /* GBProtocol+Store.m in Sources */,
 				BB5D2C141E24C45A00815FBA /* GBFacebookService.m in Sources */,
 				BB3161DB1E1633B5005DD9D2 /* GBAddPaymentAction.m in Sources */,
@@ -576,6 +606,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -596,6 +627,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
