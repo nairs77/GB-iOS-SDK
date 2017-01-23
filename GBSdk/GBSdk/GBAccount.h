@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "AuthAccount.h"
 #import "Singletone.h"
+#import "GBProtocol.h"
+#import "GBApiRequest.h"
 
 @class GBError;
 
-@interface GBAccount : NSObject <AuthAccount>
+@interface GBAccount : NSObject <AuthAccount, GBApiRequestDelegate>
 
 @property (nonatomic, readonly) SessionState currentState;
 @property (nonatomic, readonly, copy) NSString *userKey;
@@ -20,11 +22,9 @@
 
 @property (nonatomic, copy) void (^accountBlock)(id<AuthAccount> localAccount, GBError *error);
 
++ (GBAccount *)defaultAccount;
 
-- (void)loginGB;
-
-- (void)logoutGB;
-
-- (void)unRegisterGB;
+- (void)requestWithCommand:(SessionCommand)command
+                     param:(NSDictionary *)parameter;
 
 @end

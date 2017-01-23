@@ -7,6 +7,9 @@
 //
 #import <Foundation/Foundation.h>
 
+#define IS_IOS9_OR_MORE                 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+
+
 @interface GBDeviceUtil : NSObject
 
 + (NSString *)getUUID;

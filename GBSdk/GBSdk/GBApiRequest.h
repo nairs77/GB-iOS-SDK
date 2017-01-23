@@ -15,6 +15,8 @@
 @interface GBApiRequest : NSObject
 
 @property (nonatomic, readonly) NSUInteger reqCommand;
+@property (nonatomic, weak) id<GBApiRequestDelegate> delegate;
+
 + (GBApiRequest *)makeRequestWithProtocol:(GBProtocol *)protocol;
 
 - (void)excuteRequest;
@@ -25,6 +27,6 @@
 @protocol GBApiRequestDelegate <NSObject>
 
 - (void)handleApiSuccess:(GBApiRequest *)request response:(NSDictionary *)response;
-- (void)handleApiFail:(GBApiRequest *)request didWithError:(GBError *)error underlyingError:(NSError *)error;
+- (void)handleApiFail:(GBApiRequest *)request didWithError:(GBError *)error underlyingError:(NSError *)underlyingError;
 
 @end

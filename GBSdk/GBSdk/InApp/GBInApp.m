@@ -21,26 +21,31 @@
 
 @implementation GBInApp
 
-- (void)initInApp:(void(^)(BOOL success, GBError *error))resultBlock
+- (id)init
 {
-    // Get User Key
+    if (self = [super init]) {
+        [GBInAppHelper Helper];
+    }
     
-    if (resultBlock != nil)
-        resultBlock(true, nil);
+    return self;
 }
 
-//- (void)reuqestProductInfo:(NSSet *)productID
-//                   success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
-//                   failure:(void(^)(GBError *error))failureBlock;
 
-- (void)requestProducts:(NSSet *)productID
++ (void)requestProducts:(NSSet *)skus
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
                 failure:(void(^)(GBError *error))failureBlock
 {
+    if (skus == nil || [skus count] == 0) {
+        GBError *error = [GBError errorWithDomain:GBErrorDomain code:INAPP_ERROR_INVALID_ITEM userInfo:nil];
+        
+        failureBlock(error);
+    }
     
+    [[GBInAppHelper Helper] requestProducts:skus success:successBlock failure:failureBlock];
 }
 
-- (void)buyItem:(NSString *)productId
+
++ (void)buyItem:(NSString *)productId
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock
 {
@@ -55,24 +60,24 @@
         return;
     }
     
-    [self _requestPaymentkey:^(NSString *paymentKey, GBError *error) {
+    [[GBInApp innerInstance] _requestPaymentkey:^(NSString *paymentKey, GBError *error) {
         if (error == nil) {
             GBAddPaymentAction *resultAction = [[GBAddPaymentAction alloc] init];
             resultAction.successBlock = successBlock;
             resultAction.failureBlock = failureBlock;
-                                                
-            [self _tryAddPayment:productId
-                      paymentKey:paymentKey
-                          result:resultAction];
+            
+            [[GBInApp innerInstance] _tryAddPayment:productId
+                                         paymentKey:paymentKey
+                                             result:resultAction];
         } else {
             failureBlock(error);
         }
     }];
 }
 
-- (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock
++ (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock
 {
-
+    
 }
 
 

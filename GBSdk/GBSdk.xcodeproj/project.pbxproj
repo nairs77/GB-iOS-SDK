@@ -40,8 +40,6 @@
 		BB5D2C141E24C45A00815FBA /* GBFacebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C121E24C45A00815FBA /* GBFacebookService.m */; };
 		BB5D2C181E25096A00815FBA /* NSData+Formatter.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D2C161E25096A00815FBA /* NSData+Formatter.h */; };
 		BB5D2C191E25096A00815FBA /* NSData+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D2C171E25096A00815FBA /* NSData+Formatter.m */; };
-		BB5D33A51E27283600EBA84F /* GBGuestAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D33A31E27283600EBA84F /* GBGuestAccount.h */; };
-		BB5D33A61E27283600EBA84F /* GBGuestAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D33A41E27283600EBA84F /* GBGuestAccount.m */; };
 		BB5D33A91E2742EA00EBA84F /* GBFacebookAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D33A71E2742EA00EBA84F /* GBFacebookAccount.h */; };
 		BB5D33AA1E2742EA00EBA84F /* GBFacebookAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D33A81E2742EA00EBA84F /* GBFacebookAccount.m */; };
 		BB5D33B11E2767E200EBA84F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5D33AF1E2767E200EBA84F /* FBSDKCoreKit.framework */; };
@@ -120,8 +118,6 @@
 		BB5D2C161E25096A00815FBA /* NSData+Formatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Formatter.h"; path = "GBSdk/NSData+Formatter.h"; sourceTree = "<group>"; };
 		BB5D2C171E25096A00815FBA /* NSData+Formatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Formatter.m"; path = "GBSdk/NSData+Formatter.m"; sourceTree = "<group>"; };
 		BB5D2C1A1E25F61900815FBA /* Singletone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Singletone.h; path = GBSdk/Util/Singletone.h; sourceTree = "<group>"; };
-		BB5D33A31E27283600EBA84F /* GBGuestAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBGuestAccount.h; path = GBSdk/GBGuestAccount.h; sourceTree = "<group>"; };
-		BB5D33A41E27283600EBA84F /* GBGuestAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBGuestAccount.m; path = GBSdk/GBGuestAccount.m; sourceTree = "<group>"; };
 		BB5D33A71E2742EA00EBA84F /* GBFacebookAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBFacebookAccount.h; path = GBSdk/GBFacebookAccount.h; sourceTree = "<group>"; };
 		BB5D33A81E2742EA00EBA84F /* GBFacebookAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBFacebookAccount.m; path = GBSdk/GBFacebookAccount.m; sourceTree = "<group>"; };
 		BB5D33AF1E2767E200EBA84F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Framework/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
@@ -283,8 +279,6 @@
 				BB5D2C0F1E24C3EF00815FBA /* AuthAccount.h */,
 				BB5D2C111E24C45A00815FBA /* GBFacebookService.h */,
 				BB5D2C121E24C45A00815FBA /* GBFacebookService.m */,
-				BB5D33A31E27283600EBA84F /* GBGuestAccount.h */,
-				BB5D33A41E27283600EBA84F /* GBGuestAccount.m */,
 				BB5D33A71E2742EA00EBA84F /* GBFacebookAccount.h */,
 				BB5D33A81E2742EA00EBA84F /* GBFacebookAccount.m */,
 			);
@@ -381,7 +375,6 @@
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
 				BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */,
 				BB797B8C1E1BAE1F00014356 /* GBApiRequest.h in Headers */,
-				BB5D33A51E27283600EBA84F /* GBGuestAccount.h in Headers */,
 				BB8255FC1E2371A6006A4FBD /* GBSession+Internal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +467,6 @@
 				BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */,
 				BBFD65C71E2C61DD00E3635E /* GBInApp.m in Sources */,
 				BB3161E31E1633B5005DD9D2 /* GBReceiptVerificator.m in Sources */,
-				BB5D33A61E27283600EBA84F /* GBGuestAccount.m in Sources */,
 				BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */,
 				BB3161DF1E1633B5005DD9D2 /* GBProductRequestDelegate.m in Sources */,
 				BBFD65CB1E2C800500E3635E /* GBInApp+Internal.m in Sources */,

@@ -7,8 +7,6 @@
 //
 
 #import "GBFacebookService.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @implementation GBFacebookService
 
@@ -54,5 +52,6 @@
 {
     [[GBAccountStore accountStore] registerAuthService:self];
 }
+
 
 @end

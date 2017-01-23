@@ -15,6 +15,7 @@
 
 @property (nonatomic, copy) NSString *clientSecretKey;
 @property (nonatomic, copy) NSString *userKey;
+@property (nonatomic) int gameCode;
 @property (nonatomic) int marketCode;
 
 @property (nonatomic, readonly) NSString *authServer;

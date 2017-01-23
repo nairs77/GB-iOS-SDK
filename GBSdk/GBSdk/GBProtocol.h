@@ -11,6 +11,8 @@
 typedef NS_ENUM(NSUInteger, SessionCommand) {
     SESSION_GUEST_LOGIN,
     SESSION_FB_LOGIN,
+    SESSION_LOGOUT,
+    SESSION_UNREGISTER
 };
 
 @interface GBProtocol : NSObject

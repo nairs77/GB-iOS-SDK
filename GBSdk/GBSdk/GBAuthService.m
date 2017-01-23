@@ -7,7 +7,7 @@
 //
 
 #import "GBAuthService.h"
-#import "GBGuestAccount.h"
+#import "GBAccount.h"
 
 @implementation GBAuthService
 @synthesize lastService;
@@ -38,12 +38,12 @@
 
 - (id<AuthAccount>)serviceAccount
 {
-    return [GBGuestAccount defaultAccount];
+    return [GBAccount defaultAccount];
 }
 
 - (id<AuthAccount>)serviceAccountWithInfo:(NSDictionary *)info
 {
-    GBGuestAccount *account = [[GBGuestAccount alloc] initWithAccountInfo:info];
+    GBAccount *account = [[GBAccount alloc] initWithAccountInfo:info];
     
     return account;
 }

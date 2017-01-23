@@ -14,6 +14,10 @@
 
 #define SESSION_ERROR_BASE                      -100
 
+#define SESSION_ERROR_FB_BASE                   (SESSION_ERROR_BASE - 10)
+#define SESSION_ERROR_FB_USER_CANCELLED         (SESSION_ERROR_FB_BASE - 1)         //-111
+#define SESSION_ERROR_FB_NOT_TOKEN              (SESSION_ERROR_FB_BASE - 2)
+
 #define INAPP_ERROR_BASE                        -200
 #define INAPP_ERROR_INITIALIZE                  (INAPP_ERROR_BASE - 1)
 #define INAPP_ERROR_NOT_ALLOWED_PAYMENT         (INAPP_ERROR_BASE - 2)

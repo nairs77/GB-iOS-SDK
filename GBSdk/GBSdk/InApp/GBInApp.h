@@ -11,20 +11,14 @@
 
 @interface GBInApp : NSObject
 
-- (void)initInApp:(void(^)(BOOL success, GBError *error))resultBlock;
-
-//- (void)reuqestProductInfo:(NSSet *)skus
-//                   success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
-//                   failure:(void(^)(GBError *error))failureBlock;
-
-- (void)requestProducts:(NSSet *)skus
++ (void)requestProducts:(NSSet *)skus
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
                 failure:(void(^)(GBError *error))failureBlock;
 
-- (void)buyItem:(NSString *)productId
++ (void)buyItem:(NSString *)productId
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock;
 
-- (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
++ (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
 
 @end

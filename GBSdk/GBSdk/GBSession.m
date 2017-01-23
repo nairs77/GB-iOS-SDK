@@ -18,6 +18,8 @@
 @interface GBSession ()
 
 @property (nonatomic, strong) GBSession *currentSession;
+@property (nonatomic, readwrite) SessionState state;
+@property (nonatomic, readwrite, copy) NSString *userKey;
 @property (nonatomic, strong) Reachability *networkConnection;
 @property (nonatomic, weak) id<AuthAccount> lastAccount;
 @property (nonatomic) BOOL isNetworkWifi;
@@ -31,7 +33,6 @@
 {
     return [[GBSession innerInstance] currentSession];
 }
-
 
 + (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
 {
@@ -49,7 +50,9 @@
             if (completionHandler != nil) {
 //                [GBSession activeSession].lastAccount = localAccount;
                 GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
-                [GBSession activeSession].currentSession = newSession;
+                newSession.state = OPEN;
+                newSession.userKey = [localAccount userKey];
+                [[GBSession activeSession] _setActiveSession:newSession];
                 completionHandler(newSession, nil);
                 
             }
@@ -71,6 +74,8 @@
 //        self.lastAccount = [self _loadAccountFromStore];
 //        [self setActiveSession:self];
 //        self.currentState = READY;
+        
+        self.currentSession = nil;
     }
     
     return self;
@@ -88,9 +93,14 @@
 #pragma mark - Public
 - (SessionState)state
 {
-    return OPEN;
+    if (self.currentSession == nil) {
+        return READY;
+    } else {
+        return self.currentSession.state;
+    }
 }
 
+/*
 - (void)loginWithAuthType:(AuthType)authType
               withHandler:(AuthCompletionHandler)completionHandler;
 {
@@ -105,7 +115,7 @@
         
     }];
 
-/*
+
     GBAccountStore *accountStore = [GBAccountStore accountStore];
     id<AuthAccount> lastAccount = [accountStore lastAccount];
     
@@ -139,16 +149,10 @@
         
         //[activeSession _openSessionWithAuthType:authType withHandler:completionHandler];
     }
+
+}
 */
-}
-
 #pragma mark - Private Methods
-
-- (id<AuthAccount>)_lastAccount
-{
-    return [[GBAccountStore accountStore] lastAccount];
-}
-
 
 - (void)_setActiveSession:(GBSession *)aSession
 {

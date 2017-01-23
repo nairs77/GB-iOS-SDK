@@ -24,6 +24,4 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 
 + (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
 
-- (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
-
 @end

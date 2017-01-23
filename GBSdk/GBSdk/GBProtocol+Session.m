@@ -7,10 +7,13 @@
 //
 
 #import "GBProtocol+Session.h"
+#import "GBSettings.h"
+#import "GBDeviceUtil.h"
 
 @interface GBProtocol (InnerMethods)
 
-+ (void)_makeLoginProtocol:(NSDictionary *)param;
+- (void)_makeGuestLoginWithParam:(NSDictionary *)param;
+- (void)_makeFBLoginWithParam:(NSDictionary *)param;
 
 @end
 
@@ -19,11 +22,36 @@
 + (GBProtocol *)makeSessionProtocolWithCommand:(SessionCommand)command
                                          param:(NSDictionary *)param {
     GBProtocol *protocol = [[GBProtocol alloc] init];
+    protocol.command = command;
     
-//    if (command == SessionCommand.SESSION_GUEST_LOGIN) {
-//        
-//    }
+    if (command == SESSION_GUEST_LOGIN) {
+        [protocol _makeGuestLoginWithParam:param];
+    } else if (command == SESSION_FB_LOGIN) {
+        [protocol _makeFBLoginWithParam:param];
+    }
     
-    return nil;
+    return protocol;
+}
+
+#pragma mark - Private Methods
+- (void)_makeGuestLoginWithParam:(NSDictionary *)param
+{
+    self.serverUrl = [[GBSettings currentSettings] authServer];
+    self.relativePath = @"/api/login";
+    self.httpMethod = @"POST";
+    
+    self.parameter = @{@"type":[param objectForKey:@"type"], @"userInfo":[param objectForKey:@"info"], @"mcc" : [GBDeviceUtil getMCC]};
+    self.userAgent = [GBProtocol defaultHeader];
+}
+
+- (void)_makeFBLoginWithParam:(NSDictionary *)param
+{
+    self.serverUrl = [[GBSettings currentSettings] authServer];
+    self.relativePath = @"/api/login";
+    self.httpMethod = @"POST";
+    
+    
+    self.parameter = @{@"type":[param objectForKey:@"type"], @"userInfo":[param objectForKey:@"info"], @"mcc" : [GBDeviceUtil getMCC]};
+    self.userAgent = [GBProtocol defaultHeader];
 }
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GBSdk.h"
+#import "GBSettings.h"
 #import "GBLog.h"
 #import "GBSession+internal.h"
 #import "GBAuthService.h"
@@ -25,6 +26,11 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
     [[GBFacebookService sharedAuthService] registerServiceInfo:nil];
+    
+    [GBSettings currentSettings].gameCode = gameCode;
+    
+    [GBSession innerInstance];
+    [GBInApp innerInstance];
 }
 
 //+ (GBSession *)activeSession {
