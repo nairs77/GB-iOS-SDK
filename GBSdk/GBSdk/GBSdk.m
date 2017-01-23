@@ -19,20 +19,20 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 @implementation GBSdk
 
 //+ (void)initializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey logLevel:(LogLevel)level {
-+ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level
++ (void)configureSDKWithInfo:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level
 {
     ddLogLevel = (level == DEBUG_MODE)? LOG_LEVEL_VERBOSE : LOG_LEVEL_ERROR;
-    
+
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
     [[GBFacebookService sharedAuthService] registerServiceInfo:nil];
 }
 
-+ (GBSession *)activeSession {
-    return [GBSession innerInstance];
-}
-
-+ (GBInApp *)inAppManager {
-    return [GBInApp innerInstance];
-}
+//+ (GBSession *)activeSession {
+//    return [GBSession innerInstance];
+//}
+//
+//+ (GBInApp *)inAppManager {
+//    return [GBInApp innerInstance];
+//}
 
 @end

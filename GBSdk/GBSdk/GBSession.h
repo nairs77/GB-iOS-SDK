@@ -20,7 +20,9 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 @property (nonatomic, copy, readonly) NSString *userKey;
 @property (nonatomic, readonly, getter = isOpened) BOOL opened;
 
-//- (void)setActiveSession:(GBSession *)aSession;
++ (GBSession *)activeSession;
+
++ (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
 
 - (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
 
