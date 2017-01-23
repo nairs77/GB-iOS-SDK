@@ -30,10 +30,10 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
 
 // Initailize
 //+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
-+ (void)initGBSdK:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level;
++ (void)configureSDKWithInfo:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level;
 
-+ (GBSession *)activeSession;
-
-+ (GBInApp *)inAppManager;
+//+ (GBSession *)activeSession;
+//
+//+ (GBInApp *)inAppManager;
 
 @end

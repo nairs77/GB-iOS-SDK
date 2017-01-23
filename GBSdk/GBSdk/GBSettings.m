@@ -47,4 +47,18 @@ NSString *const kBILLING_SERVER = @"https://platform.gebros.com";
     return self;
 }
 
+- (NSString *)deviceVersion
+{
+    return self.deviceVersion;
+}
+
+- (NSString *)deviceModel
+{
+    return self.deviceModel;
+}
+
+- (NSString *)appBundleId
+{
+    return self.appBundleId;
+}
 @end

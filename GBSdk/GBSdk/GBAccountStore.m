@@ -77,8 +77,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     //iterate over the dictionary and register an acccount for each
     
     NSDictionary *accountsDictionary = [self.serviceStoreDictionary objectForKey:@"accounts"];
-    NSString *access_token = [self.serviceStoreDictionary objectForKey:@"access_token"];
-    NSString *refresh_token = [self.serviceStoreDictionary objectForKey:@"refresh_token"];
+//    NSString *info = [self.serviceStoreDictionary objectForKey:@"info"];
     
     if (accountsDictionary) {
         NSEnumerator *enumerator = [accountsDictionary objectEnumerator];
@@ -92,10 +91,9 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
             
             //get the service with the give name and then create a local user using the guid
             if (providerType == theService.authType) {
-                NSString *sns_access_token = [theDictionary objectForKey:@"sns_access_token"];
-                NSString *sns_refresh_token = [theDictionary objectForKey:@"sns_refresh_token"];
+                NSString *info = [theDictionary objectForKey:@"info"];
                 
-                id<AuthAccount> account = [theService serviceAccountWithInfo:@{@"sns_access_token" : sns_access_token, @"sns_refresh_token" : sns_refresh_token, @"access_token" : access_token, @"refresh_token" : refresh_token}];
+                id<AuthAccount> account = [theService serviceAccountWithInfo:@{@"info" : info}];
                 [self saveAccount:account];
                 
                 BOOL isPrimary = [(NSNumber*)[theDictionary objectForKey:@"lastAccount"] boolValue];
@@ -167,23 +165,23 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
             }
         }
     }
-/*
+
     NSMutableArray *theAccounts = [NSMutableArray array];
     for (id<AuthAccount> account in self.accounts) {
         BOOL isLastAccount = (self.lastAccount == account);
         
-        NSArray *keys = [NSArray arrayWithObjects:@"providerType", @"lastAccount", @"sns_access_token", @"sns_refresh_token", nil];
-        NSArray *values = [NSArray arrayWithObjects:[NSNumber numberWithInt:account.authType], [NSNumber numberWithBool:isLastAccount], [account sns_access_token], [account sns_refresh_token], nil];
+        NSArray *keys = [NSArray arrayWithObjects:@"providerType", @"lastAccount", @"info", nil];
+        NSArray *values = [NSArray arrayWithObjects:[NSNumber numberWithInt:account.authType], [NSNumber numberWithBool:isLastAccount], [account accountInfo], nil];
         
         NSDictionary *accountDictionary = [NSDictionary dictionaryWithObjects:values forKeys:keys];
         [theAccounts addObject:accountDictionary];
     }
-    
-    //NSDictionary *servicesDictionary = [NSDictionary dictionaryWithObject:theAccounts forKey:@"accounts"];
-    NSDictionary *servicesDictionary = @{@"accounts" : theAccounts, @"access_token" : [self.lastAccount accessToken], @"refresh_token" : [self.lastAccount refreshToken]};
-*/
-    NSMutableArray *theAccounts = [NSMutableArray array];
-    NSDictionary *servicesDictionary = [NSDictionary dictionaryWithObject:theAccounts forKey:@"accounts"];
+
+    NSDictionary *servicesDictionary = @{@"accounts" : theAccounts};
+//    NSDictionary *servicesDictionary = @{@"accounts" : theAccounts, @"access_token" : [self.lastAccount accessToken], @"refresh_token" : [self.lastAccount refreshToken]};
+
+//    NSMutableArray *theAccounts = [NSMutableArray array];
+//    NSDictionary *servicesDictionary = [NSDictionary dictionaryWithObject:theAccounts forKey:@"accounts"];
     [self _saveServiceStoreDictionary:servicesDictionary];
 }
 

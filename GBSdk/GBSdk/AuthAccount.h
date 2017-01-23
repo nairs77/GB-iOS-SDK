@@ -14,7 +14,8 @@
 @protocol AuthAccount <NSObject>
 
 @property (nonatomic, readonly) AuthType authType;
-@property (nonatomic, readonly) NSString *userKey;
+@property (nonatomic, readonly, copy) NSString *userKey;
+@property (nonatomic, readonly, copy) NSString *accountInfo;
 
 - (id)initWithAccountInfo:(NSDictionary *)info;
 

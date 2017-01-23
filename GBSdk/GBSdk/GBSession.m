@@ -8,6 +8,8 @@
 
 #import "GBSession.h"
 #import "GBAccountStore.h"
+#import "GBError.h"
+#import "GBLog.h"
 #import "GBSession+internal.h"
 #import "GBProtocol+Session.h"
 #import "AuthAccount.h"
@@ -27,7 +29,39 @@
 
 + (GBSession *)activeSession
 {
-    return [GBSession innerInstance];
+    return [[GBSession innerInstance] currentSession];
+}
+
+
++ (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
+{
+    id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastAccount];
+    
+    if (lastAccount == nil) {
+        lastAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+        
+    }
+    
+    [lastAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
+        if (localAccount != nil && error == nil) {
+            [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
+            
+            if (completionHandler != nil) {
+//                [GBSession activeSession].lastAccount = localAccount;
+                GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
+                [GBSession activeSession].currentSession = newSession;
+                completionHandler(newSession, nil);
+                
+            }
+        } else {
+            
+            GBLogError(@"error = %@", [error localizedDescription]);
+            
+            if (completionHandler != nil) {
+                completionHandler(nil, error);
+            }
+        }
+    }];
 }
 
 - (id)init
@@ -37,6 +71,15 @@
 //        self.lastAccount = [self _loadAccountFromStore];
 //        [self setActiveSession:self];
 //        self.currentState = READY;
+    }
+    
+    return self;
+}
+
+- (id)initWithAccount:(id<AuthAccount>)account
+{
+    if (self = [self init]) {
+        self.lastAccount = account;
     }
     
     return self;

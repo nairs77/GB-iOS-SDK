@@ -15,7 +15,7 @@
 @interface GBAccount : NSObject <AuthAccount>
 
 @property (nonatomic, readonly) SessionState currentState;
-@property (nonatomic, readonly) NSString *userKey;
+@property (nonatomic, readonly, copy) NSString *userKey;
 @property (nonatomic, readonly) AuthType authType;
 
 @property (nonatomic, copy) void (^accountBlock)(id<AuthAccount> localAccount, GBError *error);

@@ -21,9 +21,9 @@
 @property (nonatomic, readonly) NSString *inAppServer;
 
 // Device Info
-@property (nonatomic, readonly) NSString *deviceVersion;
-@property (nonatomic, readonly) NSString *deviceModel;
+@property (nonatomic, readonly, copy) NSString *deviceVersion;
+@property (nonatomic, readonly, copy) NSString *deviceModel;
 
 // App Info
-@property (nonatomic, readonly) NSString *appBundleId;
+@property (nonatomic, readonly, copy) NSString *appBundleId;
 @end
