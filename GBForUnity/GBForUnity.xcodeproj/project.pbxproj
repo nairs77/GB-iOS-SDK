@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB3161AB1E15FF39005DD9D2 /* GBForUnity.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161AA1E15FF39005DD9D2 /* GBForUnity.m */; };
+		BB3161AB1E15FF39005DD9D2 /* GBForUnity.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB3161AA1E15FF39005DD9D2 /* GBForUnity.mm */; };
 		BB3161AC1E15FF39005DD9D2 /* GBForUnity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB3161A91E15FF39005DD9D2 /* GBForUnity.h */; };
+		BB5703611E421D83005C9B70 /* GBUnityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5703601E421D83005C9B70 /* GBUnityHelper.m */; };
+		BB5703661E421F2E005C9B70 /* GBSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5703651E421F2E005C9B70 /* GBSdk.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +29,10 @@
 /* Begin PBXFileReference section */
 		BB3161A61E15FF39005DD9D2 /* libGBForUnity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBForUnity.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3161A91E15FF39005DD9D2 /* GBForUnity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBForUnity.h; sourceTree = "<group>"; };
-		BB3161AA1E15FF39005DD9D2 /* GBForUnity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBForUnity.m; sourceTree = "<group>"; };
-		BB3161B81E15FFA3005DD9D2 /* GBUnityPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBUnityPlugin.h; sourceTree = "<group>"; };
+		BB3161AA1E15FF39005DD9D2 /* GBForUnity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GBForUnity.mm; sourceTree = "<group>"; };
+		BB57035F1E421D83005C9B70 /* GBUnityHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBUnityHelper.h; sourceTree = "<group>"; };
+		BB5703601E421D83005C9B70 /* GBUnityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBUnityHelper.m; sourceTree = "<group>"; };
+		BB5703651E421F2E005C9B70 /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/GBSdk-higxzxpvwichvmbjqznfhesmvwxw/Build/Products/Debug-iphonesimulator/GBSdk.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5703661E421F2E005C9B70 /* GBSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +52,7 @@
 			children = (
 				BB3161A81E15FF39005DD9D2 /* GBForUnity */,
 				BB3161A71E15FF39005DD9D2 /* Products */,
+				BB5703641E421F2D005C9B70 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,10 +68,19 @@
 			isa = PBXGroup;
 			children = (
 				BB3161A91E15FF39005DD9D2 /* GBForUnity.h */,
-				BB3161AA1E15FF39005DD9D2 /* GBForUnity.m */,
-				BB3161B81E15FFA3005DD9D2 /* GBUnityPlugin.h */,
+				BB3161AA1E15FF39005DD9D2 /* GBForUnity.mm */,
+				BB57035F1E421D83005C9B70 /* GBUnityHelper.h */,
+				BB5703601E421D83005C9B70 /* GBUnityHelper.m */,
 			);
 			path = GBForUnity;
+			sourceTree = "<group>";
+		};
+		BB5703641E421F2D005C9B70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB5703651E421F2E005C9B70 /* GBSdk.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB3161AB1E15FF39005DD9D2 /* GBForUnity.m in Sources */,
+				BB5703611E421D83005C9B70 /* GBUnityHelper.m in Sources */,
+				BB3161AB1E15FF39005DD9D2 /* GBForUnity.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

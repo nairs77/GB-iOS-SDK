@@ -6,8 +6,22 @@
 //  Copyright © 2016년 GeBros. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef GBForUnity_h
+#define GBForUnity_h
 
-@interface GBForUnity : NSObject
+#ifdef __cplusplus
+extern "C" {
+#endif
+    // Init SDK
+    void ConfigureSDKWithGameInfo(const char *clientSecretKey, int gameCode, int marketCode, int logLevel);
+    
+    /* Login */
+    void LoginWithAuthType(int loginType, const char *callbackId);
+    void Logout(const char *callbackId);
+    /* Billing */
+    
+#ifdef __cplusplus
+}
+#endif
 
-@end
+#endif /* GBForUnity_h */
