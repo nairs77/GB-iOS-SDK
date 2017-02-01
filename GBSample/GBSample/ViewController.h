@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)actionLogin:(id)sender;
 
 @end
 

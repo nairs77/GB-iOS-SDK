@@ -13,7 +13,7 @@
 
 @interface GBAccountStore : NSObject
 
-@property (nonatomic, readonly, weak) id<AuthAccount> lastAccount;
+@property (nonatomic, readonly, weak) id<AuthAccount> lastServiceAccount;
 
 + (GBAccountStore *)accountStore;
 

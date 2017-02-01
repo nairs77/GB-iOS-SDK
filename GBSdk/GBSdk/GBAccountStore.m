@@ -56,7 +56,7 @@ NSString * const kGBAccountStoreKey = @"platform.geBros.com.store";
     return self;
 }
 
-- (id<AuthAccount>)lastAccount
+- (id<AuthAccount>)lastServiceAccount
 {
     if (self.lastAccount == nil) {
         //

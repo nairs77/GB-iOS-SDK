@@ -7,6 +7,7 @@
 //
 #import <Foundation/Foundation.h>
 
+#define IS_IOS6_OR_LESS                 ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
 #define IS_IOS9_OR_MORE                 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
 
 

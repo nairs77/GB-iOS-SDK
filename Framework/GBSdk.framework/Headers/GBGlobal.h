@@ -10,12 +10,10 @@ typedef NS_ENUM(NSUInteger, AuthType) {
     GUEST,
     GOOGLE,     //Not Supported
     FACEBOOK,
-    KAKAO,
 };
 
 
 typedef NS_ENUM(NSUInteger, SessionState) {
-    NONE,
     READY,
     OPEN,
     CLOSED,

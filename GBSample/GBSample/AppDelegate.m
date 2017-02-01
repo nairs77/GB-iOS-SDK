@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <GBSdk/GBSdk.h>
 
 @interface AppDelegate ()
 
@@ -18,7 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [GBSdk InitializeWithClientId:70]
+    [GBSdk configureSDKWithInfo:1 clientId:@"" logLevel:DEBUG_MODE];
+    
+    
     return YES;
 }
 

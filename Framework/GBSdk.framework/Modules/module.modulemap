@@ -1,0 +1,6 @@
+framework module GBSdk {
+  umbrella header "GBSdk.h"
+
+  export *
+  module * { export * }
+}

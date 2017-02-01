@@ -7,9 +7,13 @@
 //
 
 #import "ViewController.h"
+//#import <GBSdk/GBSdk.h>
+#import <GBSdk/GBSession.h>
+//#import <GBSdk/GBGlobal.h>
 
 @interface ViewController ()
 
+@property (strong, nonatomic) IBOutlet UIButton		*_loginButton;
 @end
 
 @implementation ViewController
@@ -26,4 +30,13 @@
 }
 
 
+
+#pragma mark - Private Methods
+
+- (IBAction)actionLogin:(id)sender
+{
+    [GBSession loginWithAuthType:GUEST withHandler:^(GBSession *newSession, GBError *error) {
+        NSLog(@"@%@", newSession);
+    }];
+}
 @end

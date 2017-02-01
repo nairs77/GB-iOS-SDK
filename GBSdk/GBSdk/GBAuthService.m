@@ -33,7 +33,7 @@
 
 - (void)registerServiceInfo:(NSDictionary *)serviceInfo
 {
-    [[GBAccountStore accountStore] registerAuthService:nil];
+    [[GBAccountStore accountStore] registerAuthService:self];
 }
 
 - (id<AuthAccount>)serviceAccount

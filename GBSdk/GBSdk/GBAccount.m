@@ -8,6 +8,7 @@
 
 #import "GBAccount.h"
 #import "GBProtocol+Session.h"
+#import "GBLog.h"
 
 @interface GBAccount ()
 
@@ -58,8 +59,11 @@
 
 - (void)logIn:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
+    if (accountBlock != nil)
+        self.accountBlock = accountBlock;
+    
     // Override Each Account
-    [self requestWithCommand:SESSION_GUEST_LOGIN param:nil];
+    [self requestWithCommand:SESSION_GUEST_LOGIN param:@{@"channel" : [NSNumber numberWithInt:0], @"channelID" : @"test@gmail.com", @"gameCode" : [NSNumber numberWithInt:0]}];
 }
 
 - (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock
@@ -93,14 +97,16 @@
     
     if (command == SESSION_FB_LOGIN ||
         command == SESSION_GUEST_LOGIN) {
-        self.userKey = [response objectForKey:@"userKey"];
+        self.userKey = [response objectForKey:@"ACCOUNT_SEQ"];
+        self._account_Info = [response objectForKey:@"CHANNEL_USER_ID"];
     }
     
-    
+    if (self.accountBlock)
+        self.accountBlock(self, nil);
 }
 
 - (void)handleApiFail:(GBApiRequest *)request didWithError:(GBError *)error underlyingError:(NSError *)underlyingError
 {
-    
+    GBLogVerbose(@"%@", underlyingError);
 }
 @end

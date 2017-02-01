@@ -9,7 +9,7 @@
 #import "GBSettings.h"
 #import "GBDeviceUtil.h"
 
-NSString *const kACCOUNT_SERVER = @"https://platform.gebros.com";
+NSString *const kACCOUNT_SERVER = @"http://52.192.103.46:8000";
 NSString *const kBILLING_SERVER = @"https://platform.gebros.com";
 
 @interface GBSettings ()
@@ -60,5 +60,10 @@ NSString *const kBILLING_SERVER = @"https://platform.gebros.com";
 - (NSString *)appBundleId
 {
     return self.appBundleId;
+}
+
+- (NSString *)authServer
+{
+    return kACCOUNT_SERVER;
 }
 @end

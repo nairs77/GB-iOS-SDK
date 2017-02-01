@@ -36,7 +36,7 @@
 
 + (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
 {
-    id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastAccount];
+    id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
     
     if (lastAccount == nil) {
         lastAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];

@@ -9,6 +9,10 @@
 #import "GBApiRequest.h"
 #import "GBProtocol.h"
 #import "AFNetworking.h"
+#import "GBNetworking.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "GBDeviceUtil.h"
+#import "GBError.h"
 
 @interface GBApiRequest()
 
@@ -52,7 +56,19 @@
 
 - (void)excuteRequest
 {
-    
+    id<GBNetworking> networkingManager = [self _networkingManager];
+    [networkingManager HTTPDataRequestWithRequest:self.urlRequest success:^(id operation, id JSON) {
+        
+        int errorCode = [[JSON objectForKey:@"RESULT"] intValue];
+        if (errorCode == ERROR_SUCCESS) {
+            [self.delegate handleApiSuccess:self response:JSON];
+        } else {
+            GBError *error = [GBError errorWithDomain:GBErrorDomain code:errorCode userInfo:nil];
+            [self.delegate handleApiFail:self didWithError:error underlyingError:nil];
+        }
+    } failure:^(id operation, NSError *error) {
+        [self.delegate handleApiFail:self didWithError:nil underlyingError:error];
+    }];
 }
 
 - (void)excuteRequestWithBlock:(void (^)(id JSON))success
@@ -141,5 +157,13 @@
                                                              error:nil];
     
     [self.urlRequest setHTTPBody:dataFromDict];
+}
+
+- (id<GBNetworking>)_networkingManager
+{
+    if (IS_IOS6_OR_LESS)
+        return [AFHTTPRequestOperationManager manager];
+    else
+        return [AFHTTPSessionManager manager];
 }
 @end
