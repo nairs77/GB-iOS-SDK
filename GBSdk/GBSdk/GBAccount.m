@@ -8,6 +8,7 @@
 
 #import "GBAccount.h"
 #import "GBProtocol+Session.h"
+#import "GBDeviceUtil.h"
 #import "GBLog.h"
 
 @interface GBAccount ()
@@ -46,7 +47,7 @@
 - (id)initWithAccountInfo:(NSDictionary *)info
 {
     if (self = [self init]) {
-        
+        self._account_Info = info;
     }
     
     return self;
@@ -63,7 +64,7 @@
         self.accountBlock = accountBlock;
     
     // Override Each Account
-    [self requestWithCommand:SESSION_GUEST_LOGIN param:@{@"channel" : [NSNumber numberWithInt:0], @"channelID" : @"test@gmail.com", @"gameCode" : [NSNumber numberWithInt:0]}];
+    [self requestWithCommand:SESSION_GUEST_LOGIN param:@{@"channel" : [NSNumber numberWithInt:0], @"channelID" : [GBDeviceUtil uniqueDeviceId], @"gameCode" : [NSNumber numberWithInt:0]}];
 }
 
 - (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock

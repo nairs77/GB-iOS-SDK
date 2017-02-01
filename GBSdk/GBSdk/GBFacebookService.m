@@ -53,5 +53,8 @@
     [[GBAccountStore accountStore] registerAuthService:self];
 }
 
-
+- (AuthType)authType
+{
+    return FACEBOOK;
+}
 @end

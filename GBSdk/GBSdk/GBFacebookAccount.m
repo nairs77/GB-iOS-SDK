@@ -150,7 +150,7 @@
 */
             GBLogVerbose(@"FB Info = %@", userInfo);
             
-            NSDictionary *fb_param = @{@"login_type": [NSNumber numberWithInteger:FACEBOOK], @"fb_id" : [userInfo objectForKey:@"id"]};
+            NSDictionary *fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK], @"channelID" : [userInfo objectForKey:@"id"], @"gameCode" : [NSNumber numberWithInt:0]};
             
             [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];            
         }];
