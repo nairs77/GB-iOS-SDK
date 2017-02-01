@@ -285,7 +285,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gebros.platform.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -302,7 +302,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gebros.platform.sample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

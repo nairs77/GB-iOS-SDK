@@ -7,6 +7,7 @@
 //
 
 #import "GBFacebookService.h"
+#import "GBFacebookAccount.h"
 
 @implementation GBFacebookService
 
@@ -51,6 +52,18 @@
 - (void)registerServiceInfo:(NSDictionary *)serviceInfo
 {
     [[GBAccountStore accountStore] registerAuthService:self];
+}
+
+- (id<AuthAccount>)serviceAccount
+{
+    return [GBFacebookAccount defaultAccount];
+}
+
+- (id<AuthAccount>)serviceAccountWithInfo:(NSDictionary *)info
+{
+    GBFacebookAccount *account = [[GBFacebookAccount alloc] initWithAccountInfo:info];
+    
+    return account;
 }
 
 - (AuthType)authType

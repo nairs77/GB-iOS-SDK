@@ -12,5 +12,9 @@
 
 - (IBAction)actionLogin:(id)sender;
 
+- (IBAction)actionFBLogin:(id)sender;
+
+- (IBAction)actionLogout:(id)sender;
+
 @end
 

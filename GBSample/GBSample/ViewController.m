@@ -13,8 +13,9 @@
 
 @interface ViewController ()
 
-@property (strong, nonatomic) IBOutlet UIButton		*_loginButton;
-@property (strong, nonatomic) IBOutlet UIButton		*_fbButton;
+@property (strong, nonatomic) IBOutlet UIButton		*_btnGuestLogin;
+@property (strong, nonatomic) IBOutlet UIButton		*_btnFbLogin;
+@property (strong, nonatomic) IBOutlet UIButton		*_btnLogout;
 @end
 
 @implementation ViewController
@@ -32,7 +33,7 @@
 
 
 
-#pragma mark - Private Methods
+#pragma mark - Public
 
 - (IBAction)actionLogin:(id)sender
 {
@@ -47,5 +48,10 @@
     [GBSession loginWithAuthType:FACEBOOK withHandler:^(GBSession *newSession, GBError *error) {
         
     }];
+}
+
+- (IBAction)actionLogout:(id)sender
+{
+
 }
 @end

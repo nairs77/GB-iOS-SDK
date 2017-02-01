@@ -34,16 +34,44 @@
     return [[GBSession innerInstance] currentSession];
 }
 
-+ (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
++ (void)login:(AuthCompletionHandler)completionHandler
 {
     id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
     
     if (lastAccount == nil) {
-        lastAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+        lastAccount = [[[GBAccountStore accountStore] serviceWithType:GUEST] serviceAccount];
         
     }
     
     [lastAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
+        if (localAccount != nil && error == nil) {
+            [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
+            
+            if (completionHandler != nil) {
+                //                [GBSession activeSession].lastAccount = localAccount;
+                GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
+                newSession.state = OPEN;
+                newSession.userKey = [localAccount userKey];
+                [[GBSession activeSession] _setActiveSession:newSession];
+                completionHandler(newSession, nil);
+                
+            }
+        } else {
+            
+            GBLogError(@"error = %@", [error localizedDescription]);
+            
+            if (completionHandler != nil) {
+                completionHandler(nil, error);
+            }
+        }
+    }];
+}
+
++ (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
+{
+    id<AuthAccount> localAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+    
+    [localAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
         if (localAccount != nil && error == nil) {
             [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
             
