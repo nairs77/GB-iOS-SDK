@@ -52,5 +52,19 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    return [GBSdk application:application openURL:url options:options];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+  sourceApplication:(nullable NSString *)sourceApplication
+         annotation:(nonnull id)annotation
+{
+    return [GBSdk application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+}
 
 @end

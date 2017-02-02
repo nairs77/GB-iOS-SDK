@@ -28,12 +28,15 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
 @interface GBSdk : NSObject
 
 
-// Initailize
-//+ (void)InitializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey;
 + (void)configureSDKWithInfo:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level;
 
-//+ (GBSession *)activeSession;
-//
-//+ (GBInApp *)inAppManager;
++ (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
+
++ (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+  sourceApplication:(nullable NSString *)sourceApplication
+         annotation:(nonnull id)annotation;
 
 @end

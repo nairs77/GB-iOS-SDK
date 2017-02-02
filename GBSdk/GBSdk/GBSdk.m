@@ -14,12 +14,12 @@
 #import "GBAuthService.h"
 #import "GBFacebookService.h"
 #import "GBInApp+Internal.h"
+#import "GBDeviceUtil.h"
 
 int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation GBSdk
 
-//+ (void)initializeWithClientId:(NSString *)clientId secretKey:(NSString *)secretKey logLevel:(LogLevel)level {
 + (void)configureSDKWithInfo:(int)gameCode clientId:(NSString *)secretKey logLevel:(LogLevel)level
 {
     ddLogLevel = (level == DEBUG_MODE)? LOG_LEVEL_VERBOSE : LOG_LEVEL_ERROR;
@@ -27,18 +27,50 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[GBAuthService sharedAuthService] registerServiceInfo:nil];
     [[GBFacebookService sharedAuthService] registerServiceInfo:nil];
     
+    NSDictionary *plist = [[NSBundle mainBundle] infoDictionary];
+    
+    [GBSettings currentSettings].fbAuthPrefix = [plist objectForKey:@"FacebookAppID"];
     [GBSettings currentSettings].gameCode = gameCode;
     
     [GBSession innerInstance];
     [GBInApp innerInstance];
 }
 
-//+ (GBSession *)activeSession {
-//    return [GBSession innerInstance];
-//}
-//
-//+ (GBInApp *)inAppManager {
-//    return [GBInApp innerInstance];
-//}
++ (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+    return [GBSdk application:application
+                      openURL:url
+            sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                   annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
+
++ (BOOL)application:(UIApplication *)application
+            openURL:(nonnull NSURL *)url
+  sourceApplication:(nullable NSString *)sourceApplication
+         annotation:(nonnull id)annotation
+{
+    NSString *fbSceme = [[GBSettings currentSettings] fbAuthPrefix];
+    NSString *prefix = [GBSdk _parseUrlScheme:url];
+    
+    if ([prefix isEqualToString:fbSceme]) {
+        return [GBFacebookService handleOpenUrl:url application:application sourceApplication:sourceApplication annotation:annotation];
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods
++ (NSString *)_parseUrlScheme:(NSURL *)url
+{
+	NSString *absoluteString = [url absoluteString];
+    NSString *urlScheme = [[absoluteString componentsSeparatedByString:@":"] objectAtIndex:0];
+    
+    // Check Facebook prefix
+//    NSString *prefix = [urlScheme substringWithRange:NSMakeRange(0, 2)];
+    
+    return urlScheme;
+}
 
 @end
