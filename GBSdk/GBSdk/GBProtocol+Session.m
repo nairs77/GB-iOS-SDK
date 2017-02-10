@@ -48,7 +48,7 @@
 - (void)_makeFBLoginWithParam:(NSDictionary *)param
 {
     self.serverUrl = [[GBSettings currentSettings] authServer];
-    self.relativePath = @"/api/login";
+    self.relativePath = @"/login";
     self.httpMethod = @"POST";
     
     
