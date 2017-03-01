@@ -64,7 +64,7 @@
 - (void)_makeProtocolPaymentMarketInfo
 {
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"pay/init";
+    self.relativePath = @"Pay/init";
     self.httpMethod = @"POST";
     self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
                        @"market_code" : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode]};
@@ -76,7 +76,7 @@
     NSString *userKey = [GBSettings currentSettings].userKey;
     
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"pay/key";
+    self.relativePath = @"Pay/key";
     self.httpMethod = @"POST";
     
     NSString *extraString = nil;

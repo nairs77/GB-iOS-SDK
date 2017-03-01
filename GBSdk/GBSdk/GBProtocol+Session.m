@@ -37,7 +37,7 @@
 - (void)_makeGuestLoginWithParam:(NSDictionary *)param
 {
     self.serverUrl = [[GBSettings currentSettings] authServer];
-    self.relativePath = @"/Login";
+    self.relativePath = @"/User/Login";
     self.httpMethod = @"POST";
     
 //    self.parameter = @{@"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1], @"mcc" : [GBDeviceUtil getMCC]};

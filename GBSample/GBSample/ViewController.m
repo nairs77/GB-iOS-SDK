@@ -10,12 +10,14 @@
 //#import <GBSdk/GBSdk.h>
 #import <GBSdk/GBSession.h>
 //#import <GBSdk/GBGlobal.h>
+#import <GBSdk/GBInApp.h>
 
 @interface ViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton		*_btnGuestLogin;
 @property (strong, nonatomic) IBOutlet UIButton		*_btnFbLogin;
 @property (strong, nonatomic) IBOutlet UIButton		*_btnLogout;
+@property (strong, nonatomic) IBOutlet UIButton     *_btnBuyItem;
 @end
 
 @implementation ViewController
@@ -53,5 +55,14 @@
 - (IBAction)actionLogout:(id)sender
 {
 
+}
+
+- (IBAction)actionBuyItem:(id)sender
+{
+    [GBInApp buyItem:@"sample_coin_10" success:^(NSString *paymentKey) {
+        NSLog(@"%@", paymentKey);
+    } failure:^(GBError *error) {
+        NSLog((@"%@", error));
+    }];
 }
 @end

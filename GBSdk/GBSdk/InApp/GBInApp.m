@@ -59,7 +59,7 @@
         
         return;
     }
-    
+/*
     [[GBInApp innerInstance] _requestPaymentkey:^(NSString *paymentKey, GBError *error) {
         if (error == nil) {
             GBAddPaymentAction *resultAction = [[GBAddPaymentAction alloc] init];
@@ -73,6 +73,14 @@
             failureBlock(error);
         }
     }];
+*/
+    GBAddPaymentAction *resultAction = [[GBAddPaymentAction alloc] init];
+    resultAction.successBlock = successBlock;
+    resultAction.failureBlock = failureBlock;
+    
+    [[GBInApp innerInstance] _tryAddPayment:productId
+                                 paymentKey:@"1111"
+                                     result:resultAction];
 }
 
 + (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock

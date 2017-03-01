@@ -28,7 +28,7 @@
 		BB3161E51E1633B5005DD9D2 /* GBRestoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D51E1633B5005DD9D2 /* GBRestoreManager.m */; };
 		BB3161E61E1633B5005DD9D2 /* GBInAppHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161D61E1633B5005DD9D2 /* GBInAppHelper.h */; };
 		BB3161E71E1633B5005DD9D2 /* GBInAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161D71E1633B5005DD9D2 /* GBInAppHelper.m */; };
-		BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161EB1E1635D5005DD9D2 /* GBError.h */; };
+		BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161EB1E1635D5005DD9D2 /* GBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3161EE1E1635D5005DD9D2 /* GBError.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161EC1E1635D5005DD9D2 /* GBError.m */; };
 		BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = BB46FBF51E1C93270062D439 /* GBSettings.h */; };
 		BB46FBF81E1C93270062D439 /* GBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = BB46FBF61E1C93270062D439 /* GBSettings.m */; };
@@ -441,7 +441,7 @@
 				TargetAttributes = {
 					BB0DC2051E151128008ADA92 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 75454T433Y;
+						DevelopmentTeam = HSA7Y9Z87R;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -623,7 +623,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 75454T433Y;
+				DEVELOPMENT_TEAM = HSA7Y9Z87R;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -644,7 +644,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 75454T433Y;
+				DEVELOPMENT_TEAM = HSA7Y9Z87R;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
