@@ -72,23 +72,7 @@
         _validateProducts = [NSMutableDictionary dictionary];
         _paymentActions = [NSMutableDictionary dictionary];
         _requestDelegateSet = [NSMutableSet set];
-        //paymentKeys_ = [[NSMutableArray alloc] initWithCapacity:0];
-        //  [self _requestNewReceipt:^(BOOL success, GBError *error) {
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-        //  }];
-        
-        
-        /*
-         __weak typeof(self) weakSelf = self;
-         
-         self.loadRestoreReceipt = ^(void) {
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-         [self _checkPurchaseError];
-         
-         });
-         };
-         */
     }
     
     return self;

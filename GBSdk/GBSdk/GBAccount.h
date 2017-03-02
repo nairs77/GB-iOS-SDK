@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AuthAccount.h"
 #import "Singletone.h"
-#import "GBProtocol.h"
+#import "GBProtocol+Session.h"
 #import "GBApiRequest.h"
 
 @class GBError;

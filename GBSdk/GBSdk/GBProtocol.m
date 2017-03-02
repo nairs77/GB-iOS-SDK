@@ -8,11 +8,13 @@
 
 #import "GBProtocol.h"
 
+//NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
+
 @implementation GBProtocol
 
 + (NSDictionary *)defaultHeader
 {
-    NSDictionary *pInfo = [[NSBundle mainBundle] infoDictionary];
+    //NSDictionary *pInfo = [[NSBundle mainBundle] infoDictionary];
     
     NSString *defaultAgent = [NSString stringWithFormat:@""];
     

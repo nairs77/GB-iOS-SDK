@@ -15,6 +15,7 @@
 		BB0DC22D1E15116B008ADA92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0DC22B1E15116B008ADA92 /* LaunchScreen.storyboard */; };
 		BB2D62F91E672E8E0095B7CF /* GBSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D62F51E672CB90095B7CF /* GBSdk.framework */; };
 		BB2D62FA1E672E8E0095B7CF /* GBSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D62F51E672CB90095B7CF /* GBSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BB997E961E67F5DC0018B0B0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB997E951E67F5DC0018B0B0 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		BB0DC22C1E15116B008ADA92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB0DC22E1E15116B008ADA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB2D62F51E672CB90095B7CF /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/GBSdk-higxzxpvwichvmbjqznfhesmvwxw/Build/Products/Debug-iphoneos/GBSdk.framework"; sourceTree = "<group>"; };
+		BB997E951E67F5DC0018B0B0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2D62F91E672E8E0095B7CF /* GBSdk.framework in Frameworks */,
+				BB997E961E67F5DC0018B0B0 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +104,7 @@
 		BB2D62F41E672CB80095B7CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB997E951E67F5DC0018B0B0 /* StoreKit.framework */,
 				BB2D62F51E672CB90095B7CF /* GBSdk.framework */,
 			);
 			name = Frameworks;
@@ -133,13 +137,18 @@
 		BB0DC2121E15116A008ADA92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = GeBros;
 				TargetAttributes = {
 					BB0DC2191E15116B008ADA92 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = HSA7Y9Z87R;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -225,6 +234,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -273,6 +283,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

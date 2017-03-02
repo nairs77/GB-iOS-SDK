@@ -14,8 +14,10 @@
 - (void)verifyTransaction:(SKPaymentTransaction*)transaction
                   success:(void (^)(NSString *base64EncodingData))successBlock
                   failure:(void (^)(GBError *error))failureBlock;
+/*
 - (void)verifyRequestData:(NSData*)requestData
                       url:(NSString*)urlString
                   success:(void (^)())successBlock
                   failure:(void (^)(NSError *error))failureBlock;
+*/ 
 @end

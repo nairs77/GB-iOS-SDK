@@ -7,7 +7,6 @@
 //
 
 #import "GBAccount.h"
-#import "GBProtocol+Session.h"
 #import "GBDeviceUtil.h"
 #import "GBLog.h"
 
@@ -99,7 +98,7 @@
     if (command == SESSION_FB_LOGIN ||
         command == SESSION_GUEST_LOGIN) {
         self.userKey = [response objectForKey:@"ACCOUNT_SEQ"];
-        self._account_Info = [response objectForKey:@"CHANNEL_USER_ID"];
+        self._account_Info = [NSDictionary dictionaryWithDictionary:response];//[response objectForKey:@"CHANNEL_USER_ID"];
     }
     
     if (self.accountBlock)

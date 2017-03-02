@@ -10,6 +10,9 @@
 #import "GBDeviceUtil.h"
 #import "GBSettings.h"
 
+//NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
+
+
 @interface GBProtocol(StoreMethod)
 
 - (void)_makeProtocolPaymentMarketInfo;
@@ -76,7 +79,7 @@
     NSString *userKey = [GBSettings currentSettings].userKey;
     
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"Pay/key";
+    self.relativePath = @"Pay/BuyItent";
     self.httpMethod = @"POST";
     
     NSString *extraString = nil;
@@ -100,7 +103,7 @@
     NSString *userKey = [GBSettings currentSettings].userKey;
     
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"pay/receipt";
+    self.relativePath = @"Pay/SaveReceipt";
     self.httpMethod = @"POST";
     self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
                        @"userkey" : userKey,
@@ -120,7 +123,7 @@
     NSString *userKey = [GBSettings currentSettings].userKey;
     
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"pay/fail/restore";
+    self.relativePath = @"Pay/RestoreReceipt";
     self.httpMethod = @"POST";
     self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
                        @"userkey" : userKey};

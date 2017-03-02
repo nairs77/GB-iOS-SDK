@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 //#import <GBSdk/GBSdk.h>
-#import <GBSdk/GBSession.h>
+#import "GBSdk/GBSession.h"
 //#import <GBSdk/GBGlobal.h>
-#import <GBSdk/GBInApp.h>
+#import "GBSdk/GBInApp.h"
+
 
 @interface ViewController ()
 
@@ -59,10 +60,18 @@
 
 - (IBAction)actionBuyItem:(id)sender
 {
+    [GBInApp requestProducts:[NSSet setWithObject:@"sample_coin_100"] success:^(NSArray *products, NSArray *invalidProducsts) {
+        
+    } failure:^(GBError *error) {
+        
+    }];
+    
+/*
     [GBInApp buyItem:@"sample_coin_10" success:^(NSString *paymentKey) {
         NSLog(@"%@", paymentKey);
     } failure:^(GBError *error) {
         NSLog((@"%@", error));
     }];
+*/
 }
 @end

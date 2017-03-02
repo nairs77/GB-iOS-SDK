@@ -69,9 +69,14 @@
 
 + (void)loginWithAuthType:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
 {
-    id<AuthAccount> localAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+    id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
     
-    [localAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
+    if (lastAccount == nil) {
+        lastAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+        
+    }
+    
+    [lastAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
         if (localAccount != nil && error == nil) {
             [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
             
