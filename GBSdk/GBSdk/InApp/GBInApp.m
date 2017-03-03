@@ -45,7 +45,9 @@
 }
 
 
-+ (void)buyItem:(NSString *)productId
++ (void)buyItem:(NSString *)userKey
+            sku:(NSString *)productId
+          price:(int)price
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock
 {
@@ -59,8 +61,10 @@
         
         return;
     }
-/*
-    [[GBInApp innerInstance] _requestPaymentkey:^(NSString *paymentKey, GBError *error) {
+
+    NSDictionary *item = @{@"userKey" : userKey, @"productID" : productId, @"price" : [NSString stringWithFormat:@"%d", price]};
+    
+    [[GBInApp innerInstance] _requestPaymentkey:item result:^(NSString *paymentKey, GBError *error) {
         if (error == nil) {
             GBAddPaymentAction *resultAction = [[GBAddPaymentAction alloc] init];
             resultAction.successBlock = successBlock;
@@ -73,14 +77,6 @@
             failureBlock(error);
         }
     }];
-*/
-    GBAddPaymentAction *resultAction = [[GBAddPaymentAction alloc] init];
-    resultAction.successBlock = successBlock;
-    resultAction.failureBlock = failureBlock;
-    
-    [[GBInApp innerInstance] _tryAddPayment:productId
-                                 paymentKey:@"1111"
-                                     result:resultAction];
 }
 
 + (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock
@@ -90,22 +86,19 @@
 
 
 #pragma mark - Private Methods
-- (void)_requestPaymentkey:(void(^)(NSString *paymentKey, GBError *error))resultBlock
+- (void)_requestPaymentkey:(NSDictionary *)parameter result:(void(^)(NSString *paymentKey, GBError *error))resultBlock
 {
-    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_GET_IAB_TOKEN param:nil];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_GET_IAB_TOKEN param:parameter];
     GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
     
     GBLogVerbose(@"Request IAB Token to Billing Server");
     
     [request excuteRequestWithBlock:^(id JSON) {
         
-        int errorStatus = [[JSON objectForKey:@"status"] intValue];
-        NSDictionary *result = [JSON objectForKey:@"result"];
+        int errorStatus = [[JSON objectForKey:@"RESULT"] intValue];
         
         if (errorStatus != 0) { // TRUE
-            NSString *paymentKey = [result objectForKey:@"payment_key"];
-            
-            GBLogError(@"paymentKeys = %@", paymentKey);
+            NSString *paymentKey = [JSON objectForKey:@"PAYMENT_KEY"];
             
             if (resultBlock != nil)
                 resultBlock(paymentKey, nil);

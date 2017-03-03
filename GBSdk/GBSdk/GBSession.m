@@ -85,7 +85,7 @@
                 GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
                 newSession.state = OPEN;
                 newSession.userKey = [localAccount userKey];
-                [[GBSession activeSession] _setActiveSession:newSession];
+                [[GBSession innerInstance] _setActiveSession:newSession];
                 completionHandler(newSession, nil);
                 
             }

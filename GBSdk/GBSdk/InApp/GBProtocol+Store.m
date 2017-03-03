@@ -11,6 +11,11 @@
 #import "GBSettings.h"
 
 //NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
+NSString * const ACCOUNT_SEQ_KEY = @"accountSeq";
+NSString * const MARKET_CODE_KEY = @"marketCode";
+NSString * const GAME_CODE_KEY = @"gameCode";
+NSString * const PRODUCT_ID_KEY = @"productID";
+NSString * const PRICE_KEY = @"price";
 
 
 @interface GBProtocol(StoreMethod)
@@ -69,44 +74,31 @@
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
     self.relativePath = @"Pay/init";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
-                       @"market_code" : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode]};
+
     self.userAgent = [GBProtocol defaultHeader];
 }
 
 - (void)_makeProtocolPaymentIabToken:(NSDictionary *)parameter
 {
-    NSString *userKey = [GBSettings currentSettings].userKey;
-    
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
-    self.relativePath = @"Pay/BuyItent";
+    self.relativePath = @"/Pay/BuyIntent";
     self.httpMethod = @"POST";
     
-    NSString *extraString = nil;
-    
-    if (parameter != nil) {
-        extraString = [parameter objectForKey:@"extra_data"];
-    } else {
-        extraString = (id)[NSNull null];
-    }
-    
-    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
-                       @"userkey" : userKey,
-                       @"market_code" : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
-                       @"ip" : [GBDeviceUtil deviceIpAddress],
-                       @"extra_data" : extraString};
-    self.userAgent = [GBProtocol defaultHeader];
+    self.parameter = @{ACCOUNT_SEQ_KEY : [parameter objectForKey:@"userKey"],
+                       MARKET_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
+                       GAME_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].gameCode],
+                       PRODUCT_ID_KEY : [parameter objectForKey:@"productID"],
+                       PRICE_KEY : [parameter objectForKey:@"price"]};
+
+    self.userAgent = [GBProtocol defaultHeader]; 
 }
 
 - (void)_makeProtocolPaymentSaveReceipt:(NSDictionary *)parameter
 {
-    NSString *userKey = [GBSettings currentSettings].userKey;
-    
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
     self.relativePath = @"Pay/SaveReceipt";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
-                       @"userkey" : userKey,
+    self.parameter = @{
                        @"market_code" : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
                        @"ip" : [GBDeviceUtil deviceIpAddress],
                        @"payment_key" : [parameter objectForKey:@"payment_key"],
@@ -120,13 +112,12 @@
 
 - (void)_makeProtocolRestore:(NSDictionary *)parameter
 {
-    NSString *userKey = [GBSettings currentSettings].userKey;
     
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
     self.relativePath = @"Pay/RestoreReceipt";
     self.httpMethod = @"POST";
-    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
-                       @"userkey" : userKey};
+//    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
+//                       @"userkey" : userKey};
     self.userAgent = [GBProtocol defaultHeader];
 }
 

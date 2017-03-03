@@ -74,7 +74,14 @@
 - (void)excuteRequestWithBlock:(void (^)(id JSON))success
                        failure:(void (^)(NSError *error, id JSON))failure
 {
-    
+    id<GBNetworking> networkingManager = [self _networkingManager];
+//    [networkingManager setRequestSerializer:[AFJSONRequestSerializer serializer]];
+//    [networkingManager setResponseSerializer:[AFJSONResponseSerializer serializer]];
+    [networkingManager HTTPDataRequestWithRequest:self.urlRequest success:^(id operation, id JSON) {
+        success(JSON);
+    } failure:^(id operation, NSError *error) {
+        failure(error, IS_IOS6_OR_LESS ? [(AFHTTPRequestOperation *)operation responseObject] : operation);
+    }];
 }
 
 #pragma mark - Private Methods

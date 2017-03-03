@@ -15,7 +15,9 @@
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
                 failure:(void(^)(GBError *error))failureBlock;
 
-+ (void)buyItem:(NSString *)productId
++ (void)buyItem:(NSString *)userKey
+            sku:(NSString *)productId
+          price:(int)price
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock;
 

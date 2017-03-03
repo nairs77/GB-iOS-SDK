@@ -61,7 +61,14 @@
 - (IBAction)actionBuyItem:(id)sender
 {
     [GBInApp requestProducts:[NSSet setWithObject:@"sample_coin_100"] success:^(NSArray *products, NSArray *invalidProducsts) {
-        
+        if ([products count] > 0) {
+            
+            [GBInApp buyItem:[GBSession activeSession].userKey sku:@"sample_coin_100" price:1000 success:^(NSString *paymentKey) {
+                
+            } failure:^(GBError *error) {
+                
+            }];
+        }
     } failure:^(GBError *error) {
         
     }];

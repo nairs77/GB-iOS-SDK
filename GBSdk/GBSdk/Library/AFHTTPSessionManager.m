@@ -106,8 +106,8 @@
 
 - (void)HTTPDataRequestWithRequest:(NSURLRequest *)request success:(void (^)(id operation, id JSON))success failure:(void (^)(id operation, NSError *error))failure
 {
-//    self.responseSerializer = [AFJSONResponseSerializer serializer];
-//    self.requestSerializer = [AFJSONRequestSerializer serializer];
+    self.responseSerializer = [AFJSONResponseSerializer serializer];
+    self.requestSerializer = [AFJSONRequestSerializer serializer];
     [[self dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (!error) {
             success(response, responseObject);

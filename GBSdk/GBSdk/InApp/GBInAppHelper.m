@@ -280,7 +280,9 @@
 
 - (void)addPayment:(NSString *)productId paymentKey:(NSString *)key result:(GBAddPaymentAction *)resultAction
 {
+    self.paymentKey = key;
     
+    [self excutePayment:productId parameter:resultAction];
 }
 
 - (void)excutePayment:(NSString *)productIdentifier parameter:(id)parameters

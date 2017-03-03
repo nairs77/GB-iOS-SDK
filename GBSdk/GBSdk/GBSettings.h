@@ -13,12 +13,12 @@
 
 + (GBSettings *)currentSettings;
 
-@property (nonatomic, copy) NSString *clientSecretKey;
-@property (nonatomic, copy) NSString *userKey;
+//@property (nonatomic, copy) NSString *clientSecretKey;
+//@property (nonatomic, copy) NSString *userKey;
 @property (nonatomic, copy) NSString *fbAuthPrefix;
 
 @property (nonatomic) int gameCode;
-@property (nonatomic) int marketCode;
+@property (nonatomic, readonly) int marketCode;
 
 @property (nonatomic, readonly) NSString *authServer;
 @property (nonatomic, readonly) NSString *inAppServer;

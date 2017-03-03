@@ -15,6 +15,7 @@ NSString *const kBILLING_SERVER = @"http://sys.gebros.com:7000";
 @interface GBSettings ()
 
 @property (nonatomic, copy) NSDictionary *pInfo;
+@property (nonatomic, readwrite) int _marketCode;
 @property (nonatomic, readwrite, copy) NSString *deviceVersion;
 @property (nonatomic, readwrite, copy) NSString *deviceModel;
 @property (nonatomic, readwrite, copy) NSString *appBundleId;
@@ -41,6 +42,7 @@ NSString *const kBILLING_SERVER = @"http://sys.gebros.com:7000";
         self.deviceVersion = [GBDeviceUtil deviceVersion];
         
         self.appBundleId = [self.pInfo objectForKey:(NSString *)kCFBundleIdentifierKey];
+        self._marketCode = 1;
         
     }
     
@@ -62,8 +64,18 @@ NSString *const kBILLING_SERVER = @"http://sys.gebros.com:7000";
     return self.appBundleId;
 }
 
+- (int)marketCode
+{
+    return self._marketCode;
+}
+
 - (NSString *)authServer
 {
     return kACCOUNT_SERVER;
+}
+
+- (NSString *)inAppServer
+{
+    return kBILLING_SERVER;
 }
 @end
