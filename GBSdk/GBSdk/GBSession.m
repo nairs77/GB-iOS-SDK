@@ -19,9 +19,11 @@
 
 @property (nonatomic, strong) GBSession *currentSession;
 @property (nonatomic, readwrite) SessionState state;
-@property (nonatomic, readwrite, copy) NSString *userKey;
+@property (nonatomic, copy) NSString *userKey;
+@property (nonatomic, copy) NSString *accountInfo;
+
 @property (nonatomic, strong) Reachability *networkConnection;
-@property (nonatomic, weak) id<AuthAccount> lastAccount;
+//@property (nonatomic, weak) id<AuthAccount> lastAccount;
 @property (nonatomic) BOOL isNetworkWifi;
 @property (nonatomic) BOOL isNetworkReachable;
 
@@ -48,10 +50,9 @@
             [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
             
             if (completionHandler != nil) {
-                //                [GBSession activeSession].lastAccount = localAccount;
                 GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
                 newSession.state = OPEN;
-                newSession.userKey = [localAccount userKey];
+//                newSession.userKey = [localAccount userKey];
                 [[GBSession activeSession] _setActiveSession:newSession];
                 completionHandler(newSession, nil);
                 
@@ -99,7 +100,7 @@
         }
     }];
 }
-
+/*
 - (id)init
 {
     if (self = [super init]) {
@@ -113,11 +114,14 @@
     
     return self;
 }
+*/
 
 - (id)initWithAccount:(id<AuthAccount>)account
 {
-    if (self = [self init]) {
-        self.lastAccount = account;
+    if (self = [super init]) {
+        //self.lastAccount = account;
+        self.userKey = [account userKey];
+        self.accountInfo = [account accountInfo];
     }
     
     return self;
@@ -133,6 +137,10 @@
     }
 }
 
+- (NSString *)userInfo
+{
+    return self.accountInfo;
+}
 /*
 - (void)loginWithAuthType:(AuthType)authType
               withHandler:(AuthCompletionHandler)completionHandler;

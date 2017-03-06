@@ -19,5 +19,6 @@ typedef NS_ENUM(NSUInteger, SessionState) {
     READY,
     OPEN,
     CLOSED,
+    ACCESS_FAILED,
 };
 

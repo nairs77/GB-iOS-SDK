@@ -17,7 +17,8 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 @interface GBSession : NSObject
 
 @property (nonatomic, readonly) SessionState state;
-@property (nonatomic, copy, readonly) NSString *userKey;
+@property (nonatomic, readonly) NSString *userKey;
+@property (nonatomic, readonly) NSString *userInfo;
 @property (nonatomic, readonly, getter = isOpened) BOOL opened;
 
 + (GBSession *)activeSession;

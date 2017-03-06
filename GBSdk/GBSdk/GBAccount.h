@@ -16,7 +16,7 @@
 
 @interface GBAccount : NSObject <AuthAccount, GBApiRequestDelegate>
 
-@property (nonatomic, readonly) SessionState currentState;
+//@property (nonatomic, readonly) SessionState currentState;
 @property (nonatomic, readonly, copy) NSString *userKey;
 @property (nonatomic, readonly) AuthType authType;
 

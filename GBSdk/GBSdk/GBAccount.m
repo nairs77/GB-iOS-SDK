@@ -12,6 +12,7 @@
 
 @interface GBAccount ()
 
+//@property (nonatomic, readwrite) SessionState currentState;
 @property (nonatomic, readwrite, copy) NSString *userKey;
 @property (nonatomic, copy) NSDictionary *_account_Info;
 
@@ -98,6 +99,7 @@
     if (command == SESSION_FB_LOGIN ||
         command == SESSION_GUEST_LOGIN) {
         self.userKey = [response objectForKey:@"ACCOUNT_SEQ"];
+        //self.currentState = OPEN;
         self._account_Info = [NSDictionary dictionaryWithDictionary:response];//[response objectForKey:@"CHANNEL_USER_ID"];
     }
     
