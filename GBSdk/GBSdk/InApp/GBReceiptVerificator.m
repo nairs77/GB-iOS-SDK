@@ -36,7 +36,7 @@
     
 #if 0
     if (receipt == nil) {
-        JLogVerbose(@"Failed to serialize receipt into JSON");
+        GBLogVerbose(@"Failed to serialize receipt into JSON");
         if (failureBlock != nil)
         {
             failureBlock(nil);
@@ -50,7 +50,7 @@
         NSData *requestData = [NSJSONSerialization dataWithJSONObject:jsonReceipt options:0 error:&error];
         if (!requestData)
         {
-            JLogVerbose(@"Failed to serialize receipt into JSON");
+            GBLogVerbose(@"Failed to serialize receipt into JSON");
             if (failureBlock != nil)
             {
                 failureBlock(nil);
@@ -94,7 +94,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!data)
             {
-                JLogVerbose(@"Server Connection Failed");
+                GBLogVerbose(@"Server Connection Failed");
                 GBError *wrapperError = [GBError errorWithDomain:GBErrorDomain code:[error code] userInfo:@{NSUnderlyingErrorKey : error, NSLocalizedDescriptionKey : NSLocalizedString(@"Connection to Apple failed. Check the underlying error for more info.", @"Error description")}];
                 if (failureBlock != nil)
                 {
@@ -106,7 +106,7 @@
             NSDictionary *responseJSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
             if (!responseJSON)
             {
-                JLogVerbose(@"Failed To Parse Server Response");
+                GBLogVerbose(@"Failed To Parse Server Response");
                 if (failureBlock != nil)
                 {
                     failureBlock(jsonError);
@@ -127,7 +127,7 @@
             }
             else if (statusCode == sandboxCode)
             {
-                JLogVerbose(@"Verifying Sandbox Receipt");
+                GBLogVerbose(@"Verifying Sandbox Receipt");
                 // From: https://developer.apple.com/library/ios/#technotes/tn2259/_index.html
                 // See also: http://stackoverflow.com/questions/9677193/ios-storekit-can-i-detect-when-im-in-the-sandbox
                 // Always verify your receipt first with the production URL; proceed to verify with the sandbox URL if you receive a 21007 status code. Following this approach ensures that you do not have to switch between URLs while your application is being tested or reviewed in the sandbox or is live in the App Store.
@@ -137,7 +137,7 @@
             }
             else
             {
-                JLogVerbose(@"Verification Failed With Code %ld", (long)statusCode);
+                GBLogVerbose(@"Verification Failed With Code %ld", (long)statusCode);
                 GBError *serverError = [GBError errorWithDomain:GBErrorDomain code:statusCode userInfo:nil];
                 if (failureBlock != nil)
                 {

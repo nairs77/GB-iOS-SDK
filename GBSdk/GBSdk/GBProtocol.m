@@ -8,7 +8,13 @@
 
 #import "GBProtocol.h"
 
-//NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
+NSString * const ACCOUNT_SEQ_KEY = @"accountSeq";
+NSString * const MARKET_CODE_KEY = @"marketCode";
+NSString * const GAME_CODE_KEY = @"gameCode";
+NSString * const PRODUCT_ID_KEY = @"productID";
+NSString * const PRICE_KEY = @"price";
+NSString * const PAYMENT_KEY = @"paymentKey";
+
 
 @implementation GBProtocol
 

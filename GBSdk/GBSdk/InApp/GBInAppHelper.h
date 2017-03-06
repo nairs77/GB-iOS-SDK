@@ -39,7 +39,7 @@ typedef void(^GBErrorHandler)(GBError *error);
                 failure:(GBProductsRequestFailureBlock)failureBlock;
 
 //- (void)preparePayment:(GBErrorHandler)handler;
-- (void)addPayment:(NSString *)productId paymentKey:(NSString *)key result:(GBAddPaymentAction *)resultAction;
+- (void)addPayment:(NSString *)userKey sku:(NSString *)productId paymentKey:(NSString *)key result:(GBAddPaymentAction *)resultAction;
 
 - (void)excutePayment:(NSString *)productIdentifier parameter:(GBAddPaymentAction *)parameters;
 - (void)restorePayment:(void (^)(NSArray *paymentKeys))resultBlock;

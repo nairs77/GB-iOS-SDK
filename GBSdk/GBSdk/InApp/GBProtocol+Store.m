@@ -10,14 +10,6 @@
 #import "GBDeviceUtil.h"
 #import "GBSettings.h"
 
-//NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
-NSString * const ACCOUNT_SEQ_KEY = @"accountSeq";
-NSString * const MARKET_CODE_KEY = @"marketCode";
-NSString * const GAME_CODE_KEY = @"gameCode";
-NSString * const PRODUCT_ID_KEY = @"productID";
-NSString * const PRICE_KEY = @"price";
-
-
 @interface GBProtocol(StoreMethod)
 
 - (void)_makeProtocolPaymentMarketInfo;
@@ -98,15 +90,7 @@ NSString * const PRICE_KEY = @"price";
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
     self.relativePath = @"Pay/SaveReceipt";
     self.httpMethod = @"POST";
-    self.parameter = @{
-                       @"market_code" : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
-                       @"ip" : [GBDeviceUtil deviceIpAddress],
-                       @"payment_key" : [parameter objectForKey:@"payment_key"],
-                       @"product_id" : [parameter objectForKey:@"product_id"],
-                       @"order_id" : [parameter objectForKey:@"order_id"],
-                       @"receipt" : [parameter objectForKey:@"receipt"],
-                       @"transaction" : [parameter objectForKey:@"transaction"],
-                       @"is_subscription" : [parameter objectForKey:@"is_subscription"]};
+    self.parameter = parameter;
     self.userAgent = [GBProtocol defaultHeader];
 }
 

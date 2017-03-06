@@ -2,7 +2,7 @@
 //  GBStoreHelper.m
 //  GB
 //
-//  Created by Professional on 2014. 6. 12..
+//  Created by Professional on 2016. 12. 12..
 //  Copyright (c) 2014년 GeBros. All rights reserved.
 //
 
@@ -11,11 +11,13 @@
 #import "GBLog+Store.h"
 #import "GBError.h"
 //#import "NSBundle+GB.h"
+#import "GBSettings.h"
 #import "GBDeviceUtil.h"
 #import "GBReceiptVerificator.h"
 #import "NSData+Formatter.h"
 //#import "NSString+Hex.h"
 //#import "GBRestoreManager.h"
+
 
 #define IS_IOS7_OR_MORE ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 
@@ -278,8 +280,9 @@
     }];
 }
 
-- (void)addPayment:(NSString *)productId paymentKey:(NSString *)key result:(GBAddPaymentAction *)resultAction
+- (void)addPayment:(NSString *)userKey sku:(NSString *)productId paymentKey:(NSString *)key result:(GBAddPaymentAction *)resultAction
 {
+    self.userKey = userKey;
     self.paymentKey = key;
     
     [self excutePayment:productId parameter:resultAction];
@@ -315,7 +318,8 @@
     
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
     if (IS_IOS7_OR_MORE) {
-        payment.applicationUsername = [NSString stringWithFormat:@"%@%@",self.isSubscription?@"sub":@"", self.paymentKey];
+        //payment.applicationUsername = [NSString stringWithFormat:@"%@%@",self.isSubscription?@"sub":@"", self.paymentKey];
+        payment.applicationUsername = [NSString stringWithFormat:@"%@-%@", self.userKey, self.paymentKey];
     }
     [[SKPaymentQueue defaultQueue] addPayment:payment];
     
@@ -415,7 +419,6 @@
                 break;
             case SKPaymentTransactionStateRestored:
                 GBLogVerbose(@"Purchase Restore!!!");
-//                [GBLog sendToGBServerAboutExceptionLog:@{@"Apple":@"Apple Purchase Restored",@"UserKey":[GBSetting currentSetting].userKey}];
                 [self didRestoreTransaction:transaction queue:queue];
                 break;
             default:
@@ -429,34 +432,7 @@
 - (void)didPurchaseTransaction:(SKPaymentTransaction *)transaction queue:(SKPaymentQueue*)queue
 {
     GBLogVerbose(@"transaction purchased with product %@", transaction.payment.productIdentifier);
-    
-    //- Commented subscription
-/*
-    if (IS_IOS7_OR_MORE) {
-        if ([transaction payment].applicationUsername == nil && !self.paymentKey) {
-            
-            if (transaction.originalTransaction == nil) {
-                [self finishedTransaction:transaction queue:queue];
-                return;
-            }
-            
-            NSDictionary *transactionIds = @{@"transaction_id" : transaction.transactionIdentifier, @"original_transaction_id" : transaction.originalTransaction.transactionIdentifier};
-            
-            GBProtocol *protocol = [GBProtocol makeRequestPayment:JOYPLE_CHECK_SUBSCRIPTION param:transactionIds];
-            GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
-            
-            [request excuteRequestWithBlock:^(id JSON) {
-                [self finishedTransaction:transaction queue:queue];
-                GBLogVerbose(@"Sent to server [%@, %@] transaction ids", transaction.transactionIdentifier, transaction.originalTransaction.transactionIdentifier);
-            } failure:^(NSError *error, id JSON) {
-                GBLogVerbose(@"Sent error [%@, %@] transaction ids", transaction.transactionIdentifier, transaction.originalTransaction.transactionIdentifier);
-            }];
-            
-            return;
-            
-        }
-    }
-*/
+
     GBReceiptVerificator *receiptVerificator = [[GBReceiptVerificator alloc] init];
     
     [receiptVerificator verifyTransaction:transaction success:^(NSString *base64EncodingData) {
@@ -605,13 +581,15 @@
             paymentKey = (id)[NSNull null];
         }
     }
+
+    NSArray *info = [payment.applicationUsername componentsSeparatedByString:@"-"];
     
-    NSDictionary *parameter = @{@"payment_key": paymentKey,
-                                @"product_id" : [payment productIdentifier],
-                                @"order_id" : [NSString stringWithFormat:@"%d", (int)transaction.hash],
-                                @"receipt" : [transaction transactionIdentifier],
-                                @"transaction" : receipt,
-                                @"is_subscription" : [NSNumber numberWithBool:is_subscription]};
+    NSDictionary *parameter = @{PAYMENT_KEY: [info objectAtIndex:1],
+                                PRODUCT_ID_KEY : [payment productIdentifier],
+                                ACCOUNT_SEQ_KEY : [info objectAtIndex:0],
+                                MARKET_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
+                                GAME_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].gameCode],
+                                @"receipt" : receipt};
     
     GBLogVerbose(@"payment Key = %@", self.paymentKey);
     

@@ -70,7 +70,8 @@
             resultAction.successBlock = successBlock;
             resultAction.failureBlock = failureBlock;
             
-            [[GBInApp innerInstance] _tryAddPayment:productId
+            [[GBInApp innerInstance] _tryAddPayment:userKey
+                                                sku:productId
                                          paymentKey:paymentKey
                                              result:resultAction];
         } else {
@@ -121,10 +122,11 @@
     }];
 }
 
-- (void)_tryAddPayment:(NSString *)productId
+- (void)_tryAddPayment:(NSString *)userKey
+                   sku:(NSString *)productId
             paymentKey:(NSString *)key
                 result:(GBAddPaymentAction *)resultAction
 {
-    [[GBInAppHelper Helper] addPayment:productId paymentKey:key result:resultAction];
+    [[GBInAppHelper Helper] addPayment:userKey sku:productId paymentKey:key result:resultAction];
 }
 @end
