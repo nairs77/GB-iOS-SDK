@@ -7,6 +7,7 @@
 //
 
 #import "GBSession.h"
+#import "AuthAccount.h"
 
 @interface GBSession (Internal)
 

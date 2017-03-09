@@ -100,26 +100,36 @@
         }
     }];
 }
-/*
+
++ (void)connectChannel:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
+{
+    id<AuthAccount> channelAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+}
+
+
 - (id)init
 {
     if (self = [super init]) {
-//       [self _setReachability];
-//        self.lastAccount = [self _loadAccountFromStore];
-//        [self setActiveSession:self];
-//        self.currentState = READY;
         
-        self.currentSession = nil;
+        id<AuthAccount> lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
+        
+        if (lastAccount != nil) {
+            self.accountInfo = [lastAccount accountInfo];
+            self.state = READY;
+            [self _setActiveSession:self];
+        } else {
+            self.state = NONE;
+        }
+        
+        //self.currentSession = nil;
     }
     
     return self;
 }
-*/
 
 - (id)initWithAccount:(id<AuthAccount>)account
 {
     if (self = [super init]) {
-        //self.lastAccount = account;
         self.userKey = [account userKey];
         self.accountInfo = [account accountInfo];
     }
@@ -131,7 +141,7 @@
 - (SessionState)state
 {
     if (self.currentSession == nil) {
-        return READY;
+        return NO;
     } else {
         return self.currentSession.state;
     }
@@ -141,58 +151,7 @@
 {
     return self.accountInfo;
 }
-/*
-- (void)loginWithAuthType:(AuthType)authType
-              withHandler:(AuthCompletionHandler)completionHandler;
-{
-    id<AuthAccount>lastAccount = [self _lastAccount];
-    
-    if (lastAccount == nil) {
-        lastAccount = [[[GBAccountStore accountStore] serviceWithType:authType] serviceAccount];
-        
-    }
-    
-    [lastAccount logIn:^(id<AuthAccount> localAccount, GBError *error) {
-        
-    }];
 
-
-    GBAccountStore *accountStore = [GBAccountStore accountStore];
-    id<AuthAccount> lastAccount = [accountStore lastAccount];
-    
-    if (lastAccount == nil) {
-        lastAccount = [accountStore serviceWithType:type];
-    } else {
-        
-    }
-    
-    
-    GBSession *activeSession = self.currentSession;
-    
-    BOOL isTryLogin = false;
-    if (activeSession.state != OPEN) {
-        // Try Login
-        //[activeSession loginWithAuthType:authType withHandler:completionHandler];
-        isTryLogin = true;
-    } else {
-        // Check State
-        if (activeSession.state == OPEN) {
-            // Alreay Opened
-            //completionHandler();
-        } else {
-            // Try Login
-            //[activeSession loginWithAuthType:authType withHandler:completionHandler];
-            isTryLogin = true;
-        }
-    }
-    
-    if (isTryLogin) {
-        
-        //[activeSession _openSessionWithAuthType:authType withHandler:completionHandler];
-    }
-
-}
-*/
 #pragma mark - Private Methods
 
 - (void)_setActiveSession:(GBSession *)aSession

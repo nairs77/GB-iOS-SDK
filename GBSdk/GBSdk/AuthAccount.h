@@ -21,7 +21,7 @@
 
 - (void)logIn:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
-//- (void)linkServiceWithParameter:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+- (void)connectChannel:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
 - (void)logOut:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 

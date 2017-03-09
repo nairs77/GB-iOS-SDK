@@ -40,6 +40,10 @@
 
 - (IBAction)actionLogin:(id)sender
 {
+    SessionState state = [[GBSession activeSession] state];
+    
+    NSLog(@"state = %d", (int)state);
+    
     [GBSession loginWithAuthType:GUEST withHandler:^(GBSession *newSession, GBError *error) {
         NSLog(@"%@", newSession);
         NSLog(@"%@", newSession.userKey);

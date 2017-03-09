@@ -22,20 +22,20 @@
 {
     BOOL result = [super application:application didFinishLaunchingWithOptions:launchOptions];
     
-    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-                                                        UIUserNotificationTypeBadge |
-                                                        UIUserNotificationTypeSound);
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                                 categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
-    } else {
-        // Register for Push Notifications, if running iOS version &lt; 8
-        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                         UIRemoteNotificationTypeAlert |
-                                                         UIRemoteNotificationTypeSound)];
-    }
+//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+//        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+//                                                        UIUserNotificationTypeBadge |
+//                                                        UIUserNotificationTypeSound);
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+//                                                                                 categories:nil];
+//        [application registerUserNotificationSettings:settings];
+//        [application registerForRemoteNotifications];
+//    } else {
+//        // Register for Push Notifications, if running iOS version &lt; 8
+//        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                         UIRemoteNotificationTypeAlert |
+//                                                         UIRemoteNotificationTypeSound)];
+//    }
     
     return result;
 }

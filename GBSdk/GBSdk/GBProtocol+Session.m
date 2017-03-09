@@ -24,10 +24,10 @@
     GBProtocol *protocol = [[GBProtocol alloc] init];
     protocol.command = command;
     
-    if (command == SESSION_GUEST_LOGIN) {
+    if (command == SESSION_GUEST_LOGIN || SESSION_FB_LOGIN) {
         [protocol _makeGuestLoginWithParam:param];
-    } else if (command == SESSION_FB_LOGIN) {
-        [protocol _makeFBLoginWithParam:param];
+    } else if (command == SESSION_CONNECT_CHANNEL) {
+        [protocol _makeConnectChannelWithParam:param];
     }
     
     return protocol;
@@ -39,20 +39,16 @@
     self.serverUrl = [[GBSettings currentSettings] authServer];
     self.relativePath = @"/User/Login";
     self.httpMethod = @"POST";
-    
-//    self.parameter = @{@"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1], @"mcc" : [GBDeviceUtil getMCC]};
     self.parameter = @{@"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1]};
     self.userAgent = [GBProtocol defaultHeader];
 }
 
-- (void)_makeFBLoginWithParam:(NSDictionary *)param
+- (void)_makeConnectChannelWithParam:(NSDictionary *)param
 {
     self.serverUrl = [[GBSettings currentSettings] authServer];
-    self.relativePath = @"/login";
+    self.relativePath = @"/User/ConnectChannel";
     self.httpMethod = @"POST";
-    
-    
-    self.parameter = @{@"type":[param objectForKey:@"type"], @"userInfo":[param objectForKey:@"info"], @"mcc" : [GBDeviceUtil getMCC]};
+    self.parameter = @{@"accouneSeq":[param objectForKey:@"accountSeq"], @"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1], @"checksum" : [param objectForKey:@"checksum"]};
     self.userAgent = [GBProtocol defaultHeader];
 }
 @end

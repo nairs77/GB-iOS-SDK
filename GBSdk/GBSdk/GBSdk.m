@@ -34,6 +34,7 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [GBSession innerInstance];
     [GBInApp innerInstance];
+    
 }
 
 + (BOOL)application:(UIApplication *)application

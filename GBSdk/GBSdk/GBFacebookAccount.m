@@ -17,6 +17,7 @@
 
 @property (nonatomic, copy) NSArray *_permissions;
 @property (nonatomic, copy) NSDictionary *_account_Info;
+@property (nonatomic) BOOL isConnectedChannel;
 
 - (void)_handleLoginResult:(FBSDKLoginManagerLoginResult *)result withError:(NSError *)error;
 
@@ -77,6 +78,13 @@
                                        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
                                        [self _handleLoginResult:result withError:error];
                                    }];
+}
+
+- (void)connectChannel:(void (^)(id<AuthAccount>, GBError *))accountBlock
+{
+    self.isConnectedChannel = YES;
+    
+    [self logIn:accountBlock];
 }
 
 - (NSDictionary *)accountInfo
@@ -150,9 +158,22 @@
 */
             GBLogVerbose(@"FB Info = %@", userInfo);
             
-            NSDictionary *fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK], @"channelID" : [userInfo objectForKey:@"id"], @"gameCode" : [NSNumber numberWithInt:0]};
+            NSDictionary *fb_param = nil;
             
-            [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];            
+            if (self.isConnectedChannel) {
+                fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK],
+                             @"channelID" : [userInfo objectForKey:@"id"],
+                             @"gameCode" : [NSNumber numberWithInt:0]};
+                
+                [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];
+            } else {
+                fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK],
+                             @"channelID" : [userInfo objectForKey:@"id"],
+                             @"gameCode" : [NSNumber numberWithInt:0]};
+                
+                [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];
+            }
+
         }];
         
     }
