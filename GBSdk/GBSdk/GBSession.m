@@ -18,9 +18,9 @@
 @interface GBSession ()
 
 @property (nonatomic, strong) GBSession *currentSession;
-@property (nonatomic, readwrite) SessionState state;
+@property (nonatomic, readwrite) SessionState session_state;
 @property (nonatomic, copy) NSString *userKey;
-@property (nonatomic, copy) NSString *accountInfo;
+@property (nonatomic, copy) NSDictionary *accountInfo;
 
 @property (nonatomic, strong) Reachability *networkConnection;
 //@property (nonatomic, weak) id<AuthAccount> lastAccount;
@@ -51,7 +51,7 @@
             
             if (completionHandler != nil) {
                 GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
-                newSession.state = OPEN;
+                newSession.session_state = OPEN;
 //                newSession.userKey = [localAccount userKey];
                 [[GBSession activeSession] _setActiveSession:newSession];
                 completionHandler(newSession, nil);
@@ -84,7 +84,7 @@
             if (completionHandler != nil) {
 //                [GBSession activeSession].lastAccount = localAccount;
                 GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
-                newSession.state = OPEN;
+                newSession.session_state = OPEN;
                 newSession.userKey = [localAccount userKey];
                 [[GBSession innerInstance] _setActiveSession:newSession];
                 completionHandler(newSession, nil);
@@ -104,6 +104,32 @@
 + (void)connectChannel:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
 {
     id<AuthAccount> channelAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
+    
+    
+    NSDictionary *param = @{@"accountSeq" : [[GBSession activeSession] userKey], @"checksum" : [[GBSession activeSession] _getCheckSum]};
+
+    [channelAccount connectChannel:param accountBlock:^(id<AuthAccount> localAccount, GBError *error) {
+        if (localAccount != nil && error == nil) {
+            [[GBAccountStore accountStore] registerAccount:localAccount switchAccount:YES];
+            
+            if (completionHandler != nil) {
+                //                [GBSession activeSession].lastAccount = localAccount;
+                GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
+                newSession.session_state = OPEN;
+                newSession.userKey = [localAccount userKey];
+                [[GBSession innerInstance] _setActiveSession:newSession];
+                completionHandler(newSession, nil);
+                
+            }
+        } else {
+            
+            GBLogError(@"error = %@", [error localizedDescription]);
+            
+            if (completionHandler != nil) {
+                completionHandler(nil, error);
+            }
+        }
+    }];
 }
 
 
@@ -115,10 +141,10 @@
         
         if (lastAccount != nil) {
             self.accountInfo = [lastAccount accountInfo];
-            self.state = READY;
+            self.session_state = READY;
             [self _setActiveSession:self];
         } else {
-            self.state = NONE;
+            self.session_state = NONE;
         }
         
         //self.currentSession = nil;
@@ -141,15 +167,15 @@
 - (SessionState)state
 {
     if (self.currentSession == nil) {
-        return NO;
+        return NONE;
     } else {
-        return self.currentSession.state;
+        return self.session_state;
     }
 }
 
 - (NSString *)userInfo
 {
-    return self.accountInfo;
+    return [self.accountInfo objectForKey:@"CHANNEL_USER_ID"];
 }
 
 #pragma mark - Private Methods
@@ -157,6 +183,11 @@
 - (void)_setActiveSession:(GBSession *)aSession
 {
     self.currentSession = aSession;
+}
+
+- (NSString *)_getCheckSum
+{
+    return [self.accountInfo objectForKey:@"CHECKSUM"];
 }
 
 #pragma mark - Reachability

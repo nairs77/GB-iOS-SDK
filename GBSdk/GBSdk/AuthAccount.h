@@ -15,13 +15,13 @@
 
 @property (nonatomic, readonly) AuthType authType;
 @property (nonatomic, readonly, copy) NSString *userKey;
-@property (nonatomic, readonly, copy) NSString *accountInfo;
+@property (nonatomic, readonly, copy) NSDictionary *accountInfo;
 
 - (id)initWithAccountInfo:(NSDictionary *)info;
 
 - (void)logIn:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
-- (void)connectChannel:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
+- (void)connectChannel:(NSDictionary *)param accountBlock:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 
 - (void)logOut:(void(^)(id<AuthAccount> localAccount, GBError *error))accountBlock;
 

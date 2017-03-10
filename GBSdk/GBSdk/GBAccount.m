@@ -109,6 +109,8 @@
 
 - (void)handleApiFail:(GBApiRequest *)request didWithError:(GBError *)error underlyingError:(NSError *)underlyingError
 {
-    GBLogVerbose(@"%@", underlyingError);
+    //GBLogVerbose(@"%@", underlyingError);
+    if (self.accountBlock)
+        self.accountBlock(nil, error);
 }
 @end

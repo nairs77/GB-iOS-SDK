@@ -27,5 +27,5 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 
 + (void)login:(AuthCompletionHandler)completionHandler;
 
-
++ (void)connectChannel:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
 @end

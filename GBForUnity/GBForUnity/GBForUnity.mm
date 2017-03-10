@@ -37,7 +37,6 @@ void ConnectChannel(int loginType, const char *callbackId)
 {
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
     
-    [GBSession ]
 }
 
 void Logout(const char *callbackId)

@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GBSdk/GBSdk/GBSdk.m"
-            timestampString = "510755165.181827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "+application:openURL:options:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "GBSdk/GBSdk/Library/AFURLResponseSerialization.m"
             timestampString = "507607578.874399"
             startingColumnNumber = "9223372036854775807"
@@ -138,7 +122,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/GBSession.m"
-                  timestampString = "510755314.95334"
+                  timestampString = "510838848.310175"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -153,60 +137,12 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/GBSession.m"
-                  timestampString = "510755314.955053"
+                  timestampString = "510838848.311908"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "49"
                   endingLineNumber = "49"
                   offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GBSample/GBSample/ViewController.m"
-            timestampString = "510755165.181827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "-actionBuyItem:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[ViewController actionBuyItem:]_block_invoke"
-                  moduleName = "GBSample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSample/GBSample/ViewController.m"
-                  timestampString = "510755314.958473"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[ViewController actionBuyItem:]_block_invoke_2"
-                  moduleName = "GBSample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSample/GBSample/ViewController.m"
-                  timestampString = "510755314.960158"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -250,7 +186,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.966957"
+                  timestampString = "510838848.318313"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
@@ -265,76 +201,12 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.968665"
+                  timestampString = "510838848.32005"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
                   offsetFromSymbolStart = "312">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GBSample/GBSample/ViewController.m"
-            timestampString = "510755165.181827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "-actionBuyItem:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GBSample/GBSample/ViewController.m"
-            timestampString = "510755165.181827"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "-actionBuyItem:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[ViewController actionBuyItem:]_block_invoke_2"
-                  moduleName = "GBSample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSample/GBSample/ViewController.m"
-                  timestampString = "510755314.97554"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__32-[ViewController actionBuyItem:]_block_invoke_3"
-                  moduleName = "GBSample"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSample/GBSample/ViewController.m"
-                  timestampString = "510755314.977347"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -378,7 +250,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.983765"
+                  timestampString = "510838848.326549"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -393,7 +265,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.985549"
+                  timestampString = "510838848.328485"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -408,7 +280,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.987248"
+                  timestampString = "510838848.330371"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -423,7 +295,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.988891"
+                  timestampString = "510838848.332049"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -438,7 +310,7 @@
                   moduleName = "GBSdk"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/InApp/GBInApp.m"
-                  timestampString = "510755314.990637"
+                  timestampString = "510838848.333706"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "116"
@@ -486,13 +358,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GBSample/GBSample/ViewController.m"
-            timestampString = "510755152.973127"
+            filePath = "GBSdk/GBSdk/GBSession.m"
+            timestampString = "510837239.495155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "-actionLogin:"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "+connectChannel:withHandler:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[GBSession connectChannel:withHandler:]"
+                  moduleName = "GBSdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/GBSession.m"
+                  timestampString = "510838848.344246"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "532">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__40+[GBSession connectChannel:withHandler:]_block_invoke"
+                  moduleName = "GBSdk"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nairs77/Work/git/gBros/GB-iOS-SDK/GBSdk/GBSdk/GBSession.m"
+                  timestampString = "510838848.345925"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "112"
+                  endingLineNumber = "112"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GBSdk/GBSdk/GBFacebookAccount.m"
+            timestampString = "510836790.94488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-logIn:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -502,13 +422,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GBSdk/GBSdk/GBSdk.m"
-            timestampString = "510755241.657641"
+            filePath = "GBSdk/GBSdk/GBProtocol+Session.m"
+            timestampString = "510835180.473539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "+configureSDKWithInfo:clientId:logLevel:"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-_makeConnectChannelWithParam:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -519,12 +439,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GBSdk/GBSdk/GBSession.m"
-            timestampString = "510755305.029386"
+            timestampString = "510838374.156454"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "-init"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-_getCheckSum"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -534,13 +454,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GBSdk/GBSdk/GBSession.m"
-            timestampString = "510755369.884806"
+            filePath = "GBSdk/GBSdk/GBFacebookAccount.m"
+            timestampString = "510838525.131675"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-state"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-connectChannel:accountBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

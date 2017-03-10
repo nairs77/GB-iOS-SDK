@@ -52,7 +52,7 @@
 
 - (IBAction)actionFBLogin:(id)sender
 {
-    [GBSession loginWithAuthType:FACEBOOK withHandler:^(GBSession *newSession, GBError *error) {
+    [GBSession connectChannel:FACEBOOK withHandler:^(GBSession *newSession, GBError *error) {
         
     }];
 }

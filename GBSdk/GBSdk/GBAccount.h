@@ -26,5 +26,4 @@
 
 - (void)requestWithCommand:(SessionCommand)command
                      param:(NSDictionary *)parameter;
-
 @end

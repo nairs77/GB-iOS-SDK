@@ -18,6 +18,8 @@
 @property (nonatomic, copy) NSArray *_permissions;
 @property (nonatomic, copy) NSDictionary *_account_Info;
 @property (nonatomic) BOOL isConnectedChannel;
+@property (nonatomic, copy) NSString *userKey;
+@property (nonatomic, copy) NSString *checkSum;
 
 - (void)_handleLoginResult:(FBSDKLoginManagerLoginResult *)result withError:(NSError *)error;
 
@@ -80,9 +82,13 @@
                                    }];
 }
 
-- (void)connectChannel:(void (^)(id<AuthAccount>, GBError *))accountBlock
+- (void)connectChannel:(NSDictionary *)param accountBlock:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
     self.isConnectedChannel = YES;
+    
+    self.userKey = (NSString *)param[@"accountSeq"];
+    self.checkSum = (NSString *)param[@"checksum"];
+    
     
     [self logIn:accountBlock];
 }
@@ -163,13 +169,15 @@
             if (self.isConnectedChannel) {
                 fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK],
                              @"channelID" : [userInfo objectForKey:@"id"],
-                             @"gameCode" : [NSNumber numberWithInt:0]};
+                             @"gameCode" : [NSNumber numberWithInt:1],
+                             @"accountSeq" : self.userKey,
+                             @"checksum" : self.checkSum};
                 
-                [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];
+                [self requestWithCommand:SESSION_CONNECT_CHANNEL param:fb_param];
             } else {
                 fb_param = @{@"channel": [NSNumber numberWithInteger:FACEBOOK],
                              @"channelID" : [userInfo objectForKey:@"id"],
-                             @"gameCode" : [NSNumber numberWithInt:0]};
+                             @"gameCode" : [NSNumber numberWithInt:1]};
                 
                 [self requestWithCommand:SESSION_FB_LOGIN param:fb_param];
             }

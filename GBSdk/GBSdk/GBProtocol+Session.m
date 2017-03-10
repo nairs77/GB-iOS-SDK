@@ -24,7 +24,8 @@
     GBProtocol *protocol = [[GBProtocol alloc] init];
     protocol.command = command;
     
-    if (command == SESSION_GUEST_LOGIN || SESSION_FB_LOGIN) {
+    if (command == SESSION_GUEST_LOGIN ||
+        command == SESSION_FB_LOGIN) {
         [protocol _makeGuestLoginWithParam:param];
     } else if (command == SESSION_CONNECT_CHANNEL) {
         [protocol _makeConnectChannelWithParam:param];
@@ -48,7 +49,8 @@
     self.serverUrl = [[GBSettings currentSettings] authServer];
     self.relativePath = @"/User/ConnectChannel";
     self.httpMethod = @"POST";
-    self.parameter = @{@"accouneSeq":[param objectForKey:@"accountSeq"], @"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1], @"checksum" : [param objectForKey:@"checksum"]};
+//    self.parameter = @{@"accouneSeq":[param objectForKey:@"accountSeq"], @"channel":[param objectForKey:@"channel"], @"channelID":[param objectForKey:@"channelID"], @"gameCode" : [NSNumber numberWithInt:1], @"checksum" : [param objectForKey:@"checksum"]};
+    self.parameter = param;
     self.userAgent = [GBProtocol defaultHeader];
 }
 @end
