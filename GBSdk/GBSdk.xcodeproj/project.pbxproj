@@ -55,6 +55,7 @@
 		BB5D33C61E277D4000EBA84F /* AFNetworkReachabilityManager.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D33C41E277D4000EBA84F /* AFNetworkReachabilityManager.h */; };
 		BB5D33C71E277D4000EBA84F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5D33C51E277D4000EBA84F /* AFNetworkReachabilityManager.m */; };
 		BB5D33C91E27854800EBA84F /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = BB5D33C81E27854800EBA84F /* AFNetworking.h */; };
+		BB78C3101E76DA07009275DC /* GBDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161C41E1613CD005DD9D2 /* GBDeviceUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB797B8C1E1BAE1F00014356 /* GBApiRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = BB797B8A1E1BAE1F00014356 /* GBApiRequest.h */; };
 		BB797B8D1E1BAE1F00014356 /* GBApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = BB797B8B1E1BAE1F00014356 /* GBApiRequest.m */; };
 		BB8255F81E236D61006A4FBD /* GBSession.h in Headers */ = {isa = PBXBuildFile; fileRef = BB8255F61E236D61006A4FBD /* GBSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -403,6 +404,7 @@
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB5D2C131E24C45A00815FBA /* GBFacebookService.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,
+				BB78C3101E76DA07009275DC /* GBDeviceUtil.h in Headers */,
 				BB46FBF71E1C93270062D439 /* GBSettings.h in Headers */,
 				BB797B8C1E1BAE1F00014356 /* GBApiRequest.h in Headers */,
 				BB8255FC1E2371A6006A4FBD /* GBSession+Internal.h in Headers */,
@@ -561,9 +563,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -608,7 +610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -630,9 +632,9 @@
 				FRAMEWORK_SEARCH_PATHS = ../Framework/Facebook;
 				INFOPLIST_FILE = GBSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -651,9 +653,9 @@
 				FRAMEWORK_SEARCH_PATHS = ../Framework/Facebook;
 				INFOPLIST_FILE = GBSdk/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joycity.platform.GBSdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

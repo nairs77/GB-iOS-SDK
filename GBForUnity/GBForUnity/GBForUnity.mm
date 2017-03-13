@@ -9,10 +9,10 @@
 #import "GBUnityPlugin.h"
 #import <GBSdk/GBSdk.h>
 #import <GBSdk/GBSession.h>
-
+/*
 void ConfigureSDKWithGameInfo(const char *clientSecretKey, int gameCode, int marketCode, int logLevel)
 {
-    [GBSdk configureSDKWithInfo:gameCode clientId:"" logLevel:(LogLevel)logLevel];
+    [GBSdk configureSDKWithInfo:gameCode clientId:@"" logLevel:(LogLevel)logLevel];
 }
 
 void Login(const char *callbackId)
@@ -43,3 +43,4 @@ void Logout(const char *callbackId)
 {
     
 }
+*/

@@ -11,6 +11,7 @@
 		BB3161AC1E15FF39005DD9D2 /* GBForUnity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB3161A91E15FF39005DD9D2 /* GBForUnity.h */; };
 		BB5703611E421D83005C9B70 /* GBUnityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5703601E421D83005C9B70 /* GBUnityHelper.m */; };
 		BB5703661E421F2E005C9B70 /* GBSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5703651E421F2E005C9B70 /* GBSdk.framework */; };
+		BB78C2E71E767228009275DC /* GBUnityPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB78C2E61E767228009275DC /* GBUnityPlugin.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		BB5703601E421D83005C9B70 /* GBUnityHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBUnityHelper.m; sourceTree = "<group>"; };
 		BB5703651E421F2E005C9B70 /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/GBSdk-higxzxpvwichvmbjqznfhesmvwxw/Build/Products/Debug-iphonesimulator/GBSdk.framework"; sourceTree = "<group>"; };
 		BB5703721E432824005C9B70 /* GBAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GBAppController.mm; sourceTree = "<group>"; };
+		BB78C2E51E7671AC009275DC /* GBUnityPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBUnityPlugin.h; sourceTree = "<group>"; };
+		BB78C2E61E767228009275DC /* GBUnityPlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GBUnityPlugin.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				BB57035F1E421D83005C9B70 /* GBUnityHelper.h */,
 				BB5703601E421D83005C9B70 /* GBUnityHelper.m */,
 				BB5703721E432824005C9B70 /* GBAppController.mm */,
+				BB78C2E51E7671AC009275DC /* GBUnityPlugin.h */,
+				BB78C2E61E767228009275DC /* GBUnityPlugin.mm */,
 			);
 			path = GBForUnity;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5703611E421D83005C9B70 /* GBUnityHelper.m in Sources */,
+				BB78C2E71E767228009275DC /* GBUnityPlugin.mm in Sources */,
 				BB3161AB1E15FF39005DD9D2 /* GBForUnity.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +249,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 75454T433Y;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -253,6 +260,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 75454T433Y;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
