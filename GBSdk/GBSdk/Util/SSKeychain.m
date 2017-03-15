@@ -22,11 +22,11 @@ NSString *const kSSKeychainWhereKey = @"svce";
 CFTypeRef SSKeychainAccessibilityType = NULL;
 #endif
 
-@interface SSKeychain ()
+@interface SSKeychainTool ()
 + (NSMutableDictionary *)_queryForService:(NSString *)service account:(NSString *)account;
 @end
 
-@implementation SSKeychain
+@implementation SSKeychainTool
 
 #pragma mark - Getting Accounts
 

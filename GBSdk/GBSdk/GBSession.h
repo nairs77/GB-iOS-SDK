@@ -18,8 +18,10 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 
 @property (nonatomic, readonly) SessionState state;
 @property (nonatomic, readonly) NSString *userKey;
+@property (nonatomic, readonly) NSDictionary *sessionInfo;
 @property (nonatomic, readonly) NSString *userInfo;
 @property (nonatomic, readonly, getter = isOpened) BOOL opened;
+@property (nonatomic, readonly, getter = isConnectedChannel) BOOL connectedChannel;
 
 + (GBSession *)activeSession;
 
@@ -28,4 +30,6 @@ typedef void(^AuthCompletionHandler)(GBSession *newSession, GBError *error);
 + (void)login:(AuthCompletionHandler)completionHandler;
 
 + (void)connectChannel:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler;
+
++ (void)logout:(AuthCompletionHandler)completionHandler;
 @end

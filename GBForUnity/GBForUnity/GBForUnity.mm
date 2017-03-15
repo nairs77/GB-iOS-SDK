@@ -6,41 +6,55 @@
 //  Copyright © 2016년 GeBros. All rights reserved.
 //
 
-#import "GBUnityPlugin.h"
-#import <GBSdk/GBSdk.h>
-#import <GBSdk/GBSession.h>
-/*
-void ConfigureSDKWithGameInfo(const char *clientSecretKey, int gameCode, int marketCode, int logLevel)
+#import "GBForUnity.h"
+#import <GBSdk/GBGlobal.h>
+#import <GBSdk/GBError.h>
+
+@implementation GBForUnity
+
++ (NSString *)makeSessionResponse:(SessionState)state data:(NSDictionary *)aInfo error:(GBError *)error
 {
-    [GBSdk configureSDKWithInfo:gameCode clientId:@"" logLevel:(LogLevel)logLevel];
+    NSDictionary *sessionResponse = nil;
+    
+    if (error != nil) {
+        // error
+        NSDictionary *dicError = [GBForUnity _makeErrorResponse:error];
+        sessionResponse = @{@"result" : @{@"status" : [NSNumber numberWithBool:NO],
+                                          @"error" : dicError, @"state" : SessionString(state)}};
+    } else {
+        // success
+        sessionResponse = @{@"result" : @{@"status" : [NSNumber numberWithBool:YES], @"data" : aInfo, @"state" : SessionString(state)}};
+    }
+    
+    return [GBForUnity _makeResponse:sessionResponse];
 }
 
-void Login(const char *callbackId)
++ (NSString *)makeStatusResponse:(GBError *)error
 {
-    __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
+    NSDictionary *responseData = nil;
     
-    [GBSession login:^(GBSession *newSession, GBError *error) {
-        
-    }];
+    if (error == nil)
+        responseData = @{@"result" : @{@"status" : [NSNumber numberWithBool:YES]}};
+    else
+        responseData = [GBForUnity _makeErrorResponse:error];
+    
+    return [GBForUnity _makeResponse:responseData];
 }
 
-void LoginWithAuthType(int loginType, const char *callbackId)
+#pragma mark - Private
+
++ (NSString *)_makeResponse:(NSDictionary *)responseData
 {
-    __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
+    NSError *jsonError = nil;
     
-    [GBSession loginWithAuthType:(AuthType)loginType withHandler:^(GBSession *newSession, GBError *error) {
-        
-    }];
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:responseData options:0 error:&jsonError];
+    NSString * jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    return jsonString;
 }
 
-void ConnectChannel(int loginType, const char *callbackId)
++ (NSDictionary *)_makeErrorResponse:(GBError *)error
 {
-    __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
-    
+    return @{@"errorCode" : [NSNumber numberWithInteger:[error code]], @"errorMessage" : [error localizedDescription]};
 }
-
-void Logout(const char *callbackId)
-{
-    
-}
-*/
+@end

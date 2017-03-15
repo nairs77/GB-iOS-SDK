@@ -16,20 +16,17 @@
 @interface GBInApp ()
 
 - (void)_requestPaymentkey:(void(^)(NSString *paymentKey, GBError *error))errorHandler;
+- (void)_restoreItems:(void(^)(NSArray *paymentKeys))resultBlock;
 
 @end
 
 @implementation GBInApp
 
-- (id)init
+#pragma mark Static Method
++ (void)initInApp
 {
-    if (self = [super init]) {
-        [GBInAppHelper Helper];
-    }
-    
-    return self;
+    [GBInApp innerInstance];
 }
-
 
 + (void)requestProducts:(NSSet *)skus
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
@@ -80,12 +77,21 @@
     }];
 }
 
-+ (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock
++ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock
 {
-    
+    [[GBInApp innerInstance] _restoreItems:resultBlock];
 }
 
+#pragma mark - Public
 
+- (id)init
+{
+    if (self = [super init]) {
+        [GBInAppHelper Helper];
+    }
+    
+    return self;
+}
 #pragma mark - Private Methods
 - (void)_requestPaymentkey:(NSDictionary *)parameter result:(void(^)(NSString *paymentKey, GBError *error))resultBlock
 {
@@ -129,4 +135,24 @@
 {
     [[GBInAppHelper Helper] addPayment:userKey sku:productId paymentKey:key result:resultAction];
 }
+
+- (void)_restoreItems:(void(^)(NSArray *paymentKeys))resultBlock
+{
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_RESTORE param:nil];
+    GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
+    
+    GBLogVerbose(@"Request Restore to Billing Server");
+    
+    [request excuteRequestWithBlock:^(id JSON) {
+        
+        NSArray *paymentKeys = [JSON objectForKey:@"PAYMENT_KEY"];
+        resultBlock(paymentKeys);
+        
+    } failure:^(NSError *error, id JSON) {
+        if (resultBlock != nil) {
+            resultBlock(nil);
+        }
+    }];
+}
+
 @end

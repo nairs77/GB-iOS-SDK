@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB1424EA1E7972F40088AAF1 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1424E91E7972F40088AAF1 /* StoreKit.framework */; };
 		BB3161AB1E15FF39005DD9D2 /* GBForUnity.mm in Sources */ = {isa = PBXBuildFile; fileRef = BB3161AA1E15FF39005DD9D2 /* GBForUnity.mm */; };
 		BB3161AC1E15FF39005DD9D2 /* GBForUnity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB3161A91E15FF39005DD9D2 /* GBForUnity.h */; };
 		BB5703611E421D83005C9B70 /* GBUnityHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5703601E421D83005C9B70 /* GBUnityHelper.m */; };
@@ -28,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB1424E91E7972F40088AAF1 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BB3161A61E15FF39005DD9D2 /* libGBForUnity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGBForUnity.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3161A91E15FF39005DD9D2 /* GBForUnity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBForUnity.h; sourceTree = "<group>"; };
 		BB3161AA1E15FF39005DD9D2 /* GBForUnity.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GBForUnity.mm; sourceTree = "<group>"; };
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB1424EA1E7972F40088AAF1 /* StoreKit.framework in Frameworks */,
 				BB5703661E421F2E005C9B70 /* GBSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +88,7 @@
 		BB5703641E421F2D005C9B70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB1424E91E7972F40088AAF1 /* StoreKit.framework */,
 				BB5703651E421F2E005C9B70 /* GBSdk.framework */,
 			);
 			name = Frameworks;

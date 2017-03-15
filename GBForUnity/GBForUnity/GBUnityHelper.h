@@ -8,5 +8,11 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
-extern char *MakeStringCopy(const char *str);
-extern void SendToUnity(const char *callbackObject, int success, const char *result);
+#ifdef __cplusplus
+extern "C" {
+#endif
+    char *MakeStringCopy(const char *str);
+    void SendToUnity(const char *callbackObject, int success, const char *result);
+#ifdef __cplusplus
+}
+#endif

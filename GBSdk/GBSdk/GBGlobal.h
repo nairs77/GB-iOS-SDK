@@ -22,3 +22,4 @@ typedef NS_ENUM(NSUInteger, SessionState) {
     ACCESS_FAILED,
 };
 
+#define SessionString(enum) [@[@"NONE",@"READY",@"OPEN", @"CLOSED", @"ACCESS_FAILED"] objectAtIndex:enum]

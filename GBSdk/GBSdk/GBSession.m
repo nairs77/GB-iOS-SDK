@@ -132,6 +132,16 @@
     }];
 }
 
++ (void)logout:(AuthCompletionHandler)completionHandler
+{
+    id<AuthAccount>lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
+    
+    [lastAccount logOut:^(id<AuthAccount> localAccount, GBError *error) {
+        [[GBAccountStore accountStore] unregisterAccounts];
+        
+        
+    }];
+}
 
 - (id)init
 {
@@ -173,9 +183,24 @@
     }
 }
 
+- (NSDictionary *)sessionInfo
+{
+    return self.accountInfo;
+}
+
 - (NSString *)userInfo
 {
     return [self.accountInfo objectForKey:@"CHANNEL_USER_ID"];
+}
+
+- (BOOL)isConnectedChannel
+{
+    id<AuthAccount> lastAccount = [[GBAccountStore accountStore] lastServiceAccount];
+    
+    if (lastAccount == nil)
+        return NO;
+    
+    return ([lastAccount authType] == FACEBOOK) ? YES : NO;
 }
 
 #pragma mark - Private Methods

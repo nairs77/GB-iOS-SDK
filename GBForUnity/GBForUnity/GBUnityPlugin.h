@@ -18,8 +18,7 @@ extern "C" {
     bool isOpened();
     bool isReady();
     bool isAllowedEULA();
-    
-    const char* getActiveSession();
+    bool isConnectedChannel();
     
     /* Login */
     void Login(const char *callbackId);
@@ -28,10 +27,10 @@ extern "C" {
     void Logout(const char *callbackId);
     /* Billing */
     void StartStoreService(int userKey, const char *callbackObjectName);
-    void RequestProductsInfo(const char *skus, const char *callbackObjectName);
-    void BuyItem(const char *sku, int price, const char *callbackObjectName);
-    void RestoreItems(const char *callbackObjectName);
-
+    void RequestProducts(const char *skus, const char *callbackObjectName);
+    void BuyItem(const char *userkey, const char *sku, int price, const char *callbackObjectName);
+    void ReStoreItems(const char *callbackObjectName);
+    
     /* Utility */
     const char* GetMobileCountryCode();
     const char* GetLanguage();

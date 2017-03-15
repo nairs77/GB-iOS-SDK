@@ -40,7 +40,7 @@ NSString * const kGBUpdatedIDFAHashKey = @"com.gebros.idfahash";
 
 + (NSString *)uniqueDeviceId
 {
-    NSString *retrieveuuid = [SSKeychain passwordForService:kGBUniqueID account:@"joyple"];
+    NSString *retrieveuuid = [SSKeychainTool passwordForService:kGBUniqueID account:@"joyple"];
     
     if([retrieveuuid length] > 0) {
         return retrieveuuid;
@@ -51,7 +51,7 @@ NSString * const kGBUpdatedIDFAHashKey = @"com.gebros.idfahash";
             vendorIdentifier = [GBDeviceUtil getUUID];
         }
         
-        [SSKeychain setPassword:vendorIdentifier forService:kGBUniqueID account:@"joyple"];
+        [SSKeychainTool setPassword:vendorIdentifier forService:kGBUniqueID account:@"joyple"];
         
         return vendorIdentifier;
     }

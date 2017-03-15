@@ -32,8 +32,8 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
     [GBSettings currentSettings].fbAuthPrefix = [NSString stringWithFormat:@"fb%@", [plist objectForKey:@"FacebookAppID"]];
     [GBSettings currentSettings].gameCode = gameCode;
     
-    [GBSession innerInstance];
-    [GBInApp innerInstance];
+    [GBSession activeSession];
+    [GBInApp initInApp];
     
 }
 

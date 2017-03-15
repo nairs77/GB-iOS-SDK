@@ -11,6 +11,7 @@
 
 @interface GBInApp : NSObject
 
++ (void)initInApp;
 + (void)requestProducts:(NSSet *)skus
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
                 failure:(void(^)(GBError *error))failureBlock;
@@ -21,6 +22,6 @@
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock;
 
-+ (void)restoreItem:(void(^)(NSString *paymentKey, GBError *error))resultBlock;
++ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock;
 
 @end

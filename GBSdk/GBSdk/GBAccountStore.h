@@ -18,7 +18,7 @@
 + (GBAccountStore *)accountStore;
 
 - (void)registerAccount:(id<AuthAccount>)theAccount switchAccount:(BOOL)isChange;
-//- (void)unregisterAccount:(id<AuthAccount>)theAccount unlink:(BOOL)isUnlink;
+- (void)unregisterAccount:(id<AuthAccount>)theAccount unlink:(BOOL)isUnlink;
 - (void)unregisterAccounts;
 
 - (void)registerAuthService:(id<AuthService>)theService;

@@ -82,7 +82,7 @@ extern NSString *const kSSKeychainWhereKey;
  This was originally inspired by EMKeychain and SDKeychain (both of which are now gone). Thanks to the authors.
  SSKeychain has since switched to a simpler implementation that was abstracted from [SSToolkit](http://sstoolk.it).
  */
-@interface SSKeychain : NSObject
+@interface SSKeychainTool : NSObject
 
 ///-----------------------
 /// @name Getting Accounts

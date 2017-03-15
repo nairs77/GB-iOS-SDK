@@ -69,12 +69,12 @@
 
 - (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
-    // All Account
+    accountBlock(self, nil);
 }
 
-- (void)unRegister:(void (^)(id<AuthAccount>, GBError *))accountBlock
+- (void)connectChannel:(NSDictionary *)param accountBlock:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
-    // All Account
+    
 }
 
 - (AuthType)authType

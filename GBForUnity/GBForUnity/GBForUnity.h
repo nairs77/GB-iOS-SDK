@@ -5,16 +5,14 @@
 //  Created by nairs77 on 2016. 12. 30..
 //  Copyright © 2016년 GeBros. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+#import <GBSdk/GBGlobal.h>
 
-#ifndef GBForUnity_h
-#define GBForUnity_h
+@class GBError;
 
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-//
-//#ifdef __cplusplus
-//}
-//#endif
+@interface GBForUnity : NSObject
 
-#endif /* GBForUnity_h */
++ (NSString *)makeSessionResponse:(SessionState)state data:(NSDictionary *)aInfo error:(GBError *)error;
++ (NSString *)makeStatusResponse:(GBError *)error;
+
+@end
