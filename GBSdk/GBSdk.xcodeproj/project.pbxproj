@@ -93,6 +93,7 @@
 		BB0DC2061E151128008ADA92 /* GBSdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBSdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0DC2091E151128008ADA92 /* GBSdk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBSdk.h; sourceTree = "<group>"; };
 		BB0DC20A1E151128008ADA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB14259D1E7A6BEF0088AAF1 /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = ../Framework/GBSdk.framework; sourceTree = "<group>"; };
 		BB3161B91E1600E9005DD9D2 /* GBSdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSdk.m; sourceTree = "<group>"; };
 		BB3161BE1E16045E005DD9D2 /* GBLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GBLog.h; path = GBSdk/Util/GBLog.h; sourceTree = "<group>"; };
 		BB3161C21E1613A2005DD9D2 /* GBDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GBDeviceUtil.m; path = GBSdk/Util/GBDeviceUtil.m; sourceTree = "<group>"; };
@@ -357,6 +358,7 @@
 		BBFD65CC1E2CB7D000E3635E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB14259D1E7A6BEF0088AAF1 /* GBSdk.framework */,
 				BBFD65CD1E2CB7D100E3635E /* Bolts.framework */,
 			);
 			name = Frameworks;

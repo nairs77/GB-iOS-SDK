@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 //#import <GBSdk/GBSdk.h>
-#import "GBSdk/GBSession.h"
+#import <GBSdk/GBSession.h>
 //#import <GBSdk/GBGlobal.h>
-#import "GBSdk/GBInApp.h"
+#import <GBSdk/GBInApp.h>
 
 
 @interface ViewController ()

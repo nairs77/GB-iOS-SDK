@@ -47,9 +47,6 @@
     // Facebook 연동
     [FBSDKAppEvents activateApp];
     
-    // IDFA 수집
-//    [[Joyple accountService] collectAdvertisingId];
-    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -65,8 +62,6 @@
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
     
     GBLogVerbose(@"My Device token is: %@", devToken);
-    
-    //[Joyple registerPushNotificationToken:devToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -82,21 +77,6 @@
     GBLogVerbose(@"%s Receive ... %@", __FUNCTION__, userInfo);
 }
 
-- (BOOL)application:(UIApplication*)application
-            openURL:(NSURL*)url
-  sourceApplication:(NSString*)sourceApplication
-         annotation:(id)annotation
-{
-    BOOL superResult = [super application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    
-#if 1
-    BOOL result = [JoypleAccountService handleOpenUrl:url application:application sourceApplication:sourceApplication annotation:annotation];
-#else
-    BOOL result = [JoypleAccountService handleOpenUrl:url sourceApplication:sourceApplication annotation:annotation];
-#endif
-    return superResult || result;
-}
-
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -106,6 +86,8 @@
     BOOL superResult = [super application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
     
     BOOL result = [GBSdk application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    
+    return superResult || result;
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -118,4 +100,4 @@
 }
 @end
 
-IMPL_APP_CONTROLLER_SUBCLASS(JoypleAppController);
+IMPL_APP_CONTROLLER_SUBCLASS(GBAppController);

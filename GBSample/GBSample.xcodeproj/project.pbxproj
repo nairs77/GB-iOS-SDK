@@ -13,24 +13,11 @@
 		BB0DC2281E15116B008ADA92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0DC2261E15116B008ADA92 /* Main.storyboard */; };
 		BB0DC22A1E15116B008ADA92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB0DC2291E15116B008ADA92 /* Assets.xcassets */; };
 		BB0DC22D1E15116B008ADA92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB0DC22B1E15116B008ADA92 /* LaunchScreen.storyboard */; };
-		BB2D62F91E672E8E0095B7CF /* GBSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D62F51E672CB90095B7CF /* GBSdk.framework */; };
-		BB2D62FA1E672E8E0095B7CF /* GBSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2D62F51E672CB90095B7CF /* GBSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BB997E961E67F5DC0018B0B0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB997E951E67F5DC0018B0B0 /* StoreKit.framework */; };
+		BB1425A01E7A6C1F0088AAF1 /* GBSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB14259F1E7A6C1F0088AAF1 /* GBSdk.framework */; };
+		BB1425A41E7A6C2A0088AAF1 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1425A11E7A6C2A0088AAF1 /* Bolts.framework */; };
+		BB1425A51E7A6C2A0088AAF1 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1425A21E7A6C2A0088AAF1 /* FBSDKCoreKit.framework */; };
+		BB1425A61E7A6C2A0088AAF1 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1425A31E7A6C2A0088AAF1 /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		BB2D62FB1E672E8F0095B7CF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BB2D62FA1E672E8E0095B7CF /* GBSdk.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BB0DC21A1E15116B008ADA92 /* GBSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,8 +30,10 @@
 		BB0DC2291E15116B008ADA92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB0DC22C1E15116B008ADA92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB0DC22E1E15116B008ADA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB2D62F51E672CB90095B7CF /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/GBSdk-higxzxpvwichvmbjqznfhesmvwxw/Build/Products/Debug-iphoneos/GBSdk.framework"; sourceTree = "<group>"; };
-		BB997E951E67F5DC0018B0B0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BB14259F1E7A6C1F0088AAF1 /* GBSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GBSdk.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/GBSdk-higxzxpvwichvmbjqznfhesmvwxw/Build/Products/Debug-iphoneos/GBSdk.framework"; sourceTree = "<group>"; };
+		BB1425A11E7A6C2A0088AAF1 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Framework/Facebook/Bolts.framework; sourceTree = "<group>"; };
+		BB1425A21E7A6C2A0088AAF1 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../Framework/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		BB1425A31E7A6C2A0088AAF1 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../Framework/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +41,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB2D62F91E672E8E0095B7CF /* GBSdk.framework in Frameworks */,
-				BB997E961E67F5DC0018B0B0 /* StoreKit.framework in Frameworks */,
+				BB1425A41E7A6C2A0088AAF1 /* Bolts.framework in Frameworks */,
+				BB1425A51E7A6C2A0088AAF1 /* FBSDKCoreKit.framework in Frameworks */,
+				BB1425A61E7A6C2A0088AAF1 /* FBSDKLoginKit.framework in Frameworks */,
+				BB1425A01E7A6C1F0088AAF1 /* GBSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +95,10 @@
 		BB2D62F41E672CB80095B7CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BB997E951E67F5DC0018B0B0 /* StoreKit.framework */,
-				BB2D62F51E672CB90095B7CF /* GBSdk.framework */,
+				BB1425A11E7A6C2A0088AAF1 /* Bolts.framework */,
+				BB1425A21E7A6C2A0088AAF1 /* FBSDKCoreKit.framework */,
+				BB1425A31E7A6C2A0088AAF1 /* FBSDKLoginKit.framework */,
+				BB14259F1E7A6C1F0088AAF1 /* GBSdk.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,7 +113,6 @@
 				BB0DC2161E15116B008ADA92 /* Sources */,
 				BB0DC2171E15116B008ADA92 /* Frameworks */,
 				BB0DC2181E15116B008ADA92 /* Resources */,
-				BB2D62FB1E672E8F0095B7CF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -316,7 +308,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = HSA7Y9Z87R;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = ../Framework;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/nairs77/Work/git/gBros/GB-iOS-SDK/Framework",
+					"/Users/nairs77/Work/git/gBros/GB-iOS-SDK/Framework/Facebook",
+				);
 				INFOPLIST_FILE = GBSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -334,7 +329,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = HSA7Y9Z87R;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = ../Framework;
+				FRAMEWORK_SEARCH_PATHS = (
+					"/Users/nairs77/Work/git/gBros/GB-iOS-SDK/Framework",
+					"/Users/nairs77/Work/git/gBros/GB-iOS-SDK/Framework/Facebook",
+				);
 				INFOPLIST_FILE = GBSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

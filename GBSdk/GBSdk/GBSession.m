@@ -103,6 +103,9 @@
 
 + (void)connectChannel:(AuthType)type withHandler:(AuthCompletionHandler)completionHandler
 {
+    if ([[GBSession activeSession] state] != OPEN)
+        return;
+        
     id<AuthAccount> channelAccount = [[[GBAccountStore accountStore] serviceWithType:type] serviceAccount];
     
     
@@ -176,11 +179,7 @@
 #pragma mark - Public
 - (SessionState)state
 {
-    if (self.currentSession == nil) {
-        return NONE;
-    } else {
-        return self.session_state;
-    }
+    return self.session_state;
 }
 
 - (NSDictionary *)sessionInfo
