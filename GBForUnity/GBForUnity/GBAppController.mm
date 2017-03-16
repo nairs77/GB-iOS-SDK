@@ -9,7 +9,6 @@
 #import <UnityAppController.h>
 #import <GBSdk/GBSdk.h>
 #import <GBSdk/GBSession.h>
-#import <GBSdk/GBLog.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface GBAppController : UnityAppController
@@ -22,20 +21,20 @@
 {
     BOOL result = [super application:application didFinishLaunchingWithOptions:launchOptions];
     
-//    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-//        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
-//                                                        UIUserNotificationTypeBadge |
-//                                                        UIUserNotificationTypeSound);
-//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-//                                                                                 categories:nil];
-//        [application registerUserNotificationSettings:settings];
-//        [application registerForRemoteNotifications];
-//    } else {
-//        // Register for Push Notifications, if running iOS version &lt; 8
-//        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-//                                                         UIRemoteNotificationTypeAlert |
-//                                                         UIRemoteNotificationTypeSound)];
-//    }
+    //    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+    //        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+    //                                                        UIUserNotificationTypeBadge |
+    //                                                        UIUserNotificationTypeSound);
+    //        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+    //                                                                                 categories:nil];
+    //        [application registerUserNotificationSettings:settings];
+    //        [application registerForRemoteNotifications];
+    //    } else {
+    //        // Register for Push Notifications, if running iOS version &lt; 8
+    //        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+    //                                                         UIRemoteNotificationTypeAlert |
+    //                                                         UIRemoteNotificationTypeSound)];
+    //    }
     
     return result;
 }
@@ -51,7 +50,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    GBLogVerbose(@"My token is: %@", deviceToken);
+    //GBLogVerbose(@"My token is: %@", deviceToken);
     
     //[super application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
     
@@ -61,20 +60,20 @@
                            stringByReplacingOccurrencesOfString:@">" withString:@""]
                           stringByReplacingOccurrencesOfString: @" " withString: @""];
     
-    GBLogVerbose(@"My Device token is: %@", devToken);
+    //GBLogVerbose(@"My Device token is: %@", devToken);
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     //[super application:application didFailToRegisterForRemoteNotificationsWithError:error];
-    GBLogVerbose(@"Failed to get token, error = %@", error);
+    //GBLogVerbose(@"Failed to get token, error = %@", error);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
     //[super application:application didReceiveRemoteNotification:userInfo];
-    GBLogVerbose(@"%s Receive ... %@", __FUNCTION__, userInfo);
+    //GBLogVerbose(@"%s Receive ... %@", __FUNCTION__, userInfo);
 }
 
 
@@ -96,7 +95,9 @@
 {
     BOOL superResult = [super application:application openURL:url options:options];
     
-    BOOL result = [GBSdk application:application openURL:url sourceApplication:options[] annotation:options[]];
+    BOOL result = [GBSdk application:application openURL:url options:options];
+    
+    return superResult || result;
 }
 @end
 
