@@ -96,6 +96,7 @@ void StartStoreService(int userKey, const char *callbackObjectName)
 {
     
 }
+
 void RequestProducts(const char *skus, const char *callbackObjectName)
 {
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
@@ -136,6 +137,57 @@ void RequestProducts(const char *skus, const char *callbackObjectName)
                          SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
                      }];
 
+}
+
+void RequestProductsInfo(const char *skus, const char *callbackObjectName)
+{
+    __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
+    
+    NSString *prouductIds = [NSString stringWithUTF8String:skus];
+    
+    NSArray *identifiers = [prouductIds componentsSeparatedByString:@","];
+    
+    [GBInApp requestProducts:[NSSet setWithArray:identifiers]
+                     success:^(NSArray *products, NSArray *invalidProductIdentifiers) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            NSInteger count = [products count];
+                            
+                            if (count == 0) {
+                                NSString *resultJson = [GBForUnity makeStatusResponse:[GBError errorWithDomain:GBErrorDomain code:-1 userInfo:nil]];
+                                SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
+                            } else {
+                                
+                                NSMutableDictionary *items = [NSMutableDictionary dictionary];
+                                [items setObject:[NSNumber numberWithInt:count] forKey:@"count"];
+                                
+                                for (int i = 0; i < count; i++) {
+                                    SKProduct *product = [products objectAtIndex:i];
+                                    
+                                    NSString *itemName = [NSString strv´∞√vcq5634ingWithFormat:@"item%d", i];
+                                    NSDictionary *item = @{@"description":[product localizedDescription],
+                                                           @"title" : [product localizedTitle],
+                                                           @"product_id": [product productIdentifier],
+                                                           @"price" : [[product price] stringValue],
+                                                           @"currency" : [[product priceLocale] objectForKey:NSLocaleCurrencyCode],
+                                                           @"currency_symbol" : [[product priceLocale] objectForKey:NSLocaleCurrencySymbol]};
+                                    
+                                    [items setObject:item forKey:itemName];
+                                }
+                                
+                                NSString *resultJson = [[JoypleForUnity sharedInstance] makeDataResponse:items error:nil];
+                                SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
+                            }
+                            
+                            
+                        });
+                    }
+                    failure:^(JoypleError *error) {
+                        NSString *resultJson = [[JoypleForUnity sharedInstance] makeStatusResponse:error];
+                        
+                        SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
+                    }];
+    
 }
 
 void BuyItem(const char *userkey, const char *sku, int price, const char *callbackObjectName)

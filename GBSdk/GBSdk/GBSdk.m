@@ -39,7 +39,7 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 + (BOOL)application:(UIApplication *)application
             openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
     return [GBSdk application:application
                       openURL:url

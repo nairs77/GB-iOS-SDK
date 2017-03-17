@@ -28,6 +28,7 @@ extern "C" {
     /* Billing */
     void StartStoreService(int userKey, const char *callbackObjectName);
     void RequestProducts(const char *skus, const char *callbackObjectName);
+    void RequestProductsInfo(const char *skus, const char *callbackObjectName);
     void BuyItem(const char *userkey, const char *sku, int price, const char *callbackObjectName);
     void ReStoreItems(const char *callbackObjectName);
     
