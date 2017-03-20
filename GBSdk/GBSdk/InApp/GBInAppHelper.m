@@ -565,7 +565,7 @@
     
     NSString *paymentKey = self.paymentKey;
     BOOL is_subscription = self.isSubscription;
-    
+/*
     if (IS_IOS7_OR_MORE) {
         if (paymentKey == nil) {
             if (![payment.applicationUsername hasPrefix:@"sub"]) {
@@ -581,7 +581,7 @@
             paymentKey = (id)[NSNull null];
         }
     }
-
+*/
     NSArray *info = [payment.applicationUsername componentsSeparatedByString:@"-"];
     
     NSDictionary *parameter = @{PAYMENT_KEY: [info objectAtIndex:1],
@@ -591,22 +591,19 @@
                                 GAME_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].gameCode],
                                 @"receipt" : receipt};
     
-    GBLogVerbose(@"payment Key = %@", self.paymentKey);
+    GBLogVerbose(@"payment Key = %@", [info objectAtIndex:1]);
     
     GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_SAVE_RECEIPT param:parameter];
     GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
     
     [request excuteRequestWithBlock:^(id JSON) {
         
-        int errorStatus = [[JSON objectForKey:@"status"] intValue];
-        NSDictionary *result = [JSON objectForKey:@"result"];
+        int errorStatus = [[JSON objectForKey:@"RESULT"] intValue];
         
-//        [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Received GB Purchase Success Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
-        
-        if (errorStatus != 0) {
+        if (errorStatus == ERROR_SUCCESS) {
             [self finishedTransaction:transaction queue:queue];
             
-            NSString *paymentKey = [result objectForKey:@"payment_key"];
+            NSString *paymentKey = [JSON objectForKey:@"PAYMENT_KEY"];
             
             GBAddPaymentAction *action = _paymentActions[payment.productIdentifier];
             [_paymentActions removeObjectForKey:payment.productIdentifier];
@@ -617,6 +614,7 @@
             
         } else {
             // Between SDK and Server failed
+/*
             NSDictionary *errorDictionary = [JSON objectForKey:@"error"];
             
             //if ([[errorDictionary objectForKey:@"errorCode"] intValue] == -106) {
@@ -626,11 +624,13 @@
             if ([[errorDictionary objectForKey:@"errorCode"] intValue] + INAPP_ERROR_BASE != INAPP_ERROR_SERVER_INTERNAL) {
                 [self finishedTransaction:transaction queue:queue];
             }
+*/
             
             GBAddPaymentAction *action = _paymentActions[payment.productIdentifier];
             [_paymentActions removeObjectForKey:payment.productIdentifier];
-            
-            GBError *errorResult = [GBInAppHelper makeInAppError:errorDictionary underlyingError:nil];
+  
+            NSDictionary *errorDic = @{@"errorCode" : [NSNumber numberWithInteger:errorStatus]};
+            GBError *errorResult = [GBInAppHelper makeInAppError:errorDic underlyingError:nil];
             
             if (action.failureBlock != nil) {
                 action.failureBlock(errorResult);
@@ -640,13 +640,12 @@
         
     } failure:^(NSError *error, id JSON) {
         
-//        [GBLog sendToGBServerAboutExceptionLog:@{@"GB":@"Received GB Purchase Failed Callback!!!",@"UserKey":[GBSetting currentSetting].userKey,@"Callback JSON":JSON!=nil?JSON:@"null"}];
-        // Retry...
-        
         GBAddPaymentAction *action = _paymentActions[payment.productIdentifier];
         [_paymentActions removeObjectForKey:payment.productIdentifier];
         
-        GBError *errorResult = [GBInAppHelper makeInAppError:[JSON objectForKey:@"error"] underlyingError:error];
+        int errorStatus = [[JSON objectForKey:@"RESULT"] intValue];
+        NSDictionary *errorDic = @{@"errorCode" : [NSNumber numberWithInteger:errorStatus]};
+        GBError *errorResult = [GBInAppHelper makeInAppError:errorDic underlyingError:error];
         
         if (action.failureBlock != nil) {
             action.failureBlock(errorResult);

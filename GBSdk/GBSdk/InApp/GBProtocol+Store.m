@@ -100,8 +100,9 @@
     self.serverUrl = [[GBSettings currentSettings] inAppServer];
     self.relativePath = @"Pay/RestoreReceipt";
     self.httpMethod = @"POST";
-//    self.parameter = @{@"client_secret" : [GBSettings currentSettings].clientSecretKey,
-//                       @"userkey" : userKey};
+    self.parameter = @{ACCOUNT_SEQ_KEY : [parameter objectForKey:@"userKey"],
+                       MARKET_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].marketCode],
+                       GAME_CODE_KEY : [NSNumber numberWithInt:[GBSettings currentSettings].gameCode]};
     self.userAgent = [GBProtocol defaultHeader];
 }
 

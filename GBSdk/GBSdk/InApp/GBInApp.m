@@ -77,9 +77,9 @@
     }];
 }
 
-+ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock
++ (void)restoreItem:(NSString *)userKey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock;
 {
-    [[GBInApp innerInstance] _restoreItems:resultBlock];
+    [[GBInApp innerInstance] _restoreItems:userKey resultBlock:resultBlock];
 }
 
 #pragma mark - Public
@@ -136,16 +136,24 @@
     [[GBInAppHelper Helper] addPayment:userKey sku:productId paymentKey:key result:resultAction];
 }
 
-- (void)_restoreItems:(void(^)(NSArray *paymentKeys))resultBlock
+- (void)_restoreItems:(NSString *)userkey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock
 {
-    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_RESTORE param:nil];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_RESTORE param:@{@"userKey" : userkey}];
     GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
     
     GBLogVerbose(@"Request Restore to Billing Server");
     
     [request excuteRequestWithBlock:^(id JSON) {
         
-        NSArray *paymentKeys = [JSON objectForKey:@"PAYMENT_KEY"];
+        NSArray *result = JSON;
+        
+        NSInteger count = [result count];
+        
+        NSMutableArray *paymentKeys = [NSMutableArray arrayWithCapacity:count];
+        for (NSInteger i = 0; i < count; i++) {
+            [paymentKeys addObject:[[result objectAtIndex:i] objectForKey:@"PAYMENT_KEY"]];
+        }
+        
         resultBlock(paymentKeys);
         
     } failure:^(NSError *error, id JSON) {

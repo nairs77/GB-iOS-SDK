@@ -41,6 +41,17 @@
     return [GBForUnity _makeResponse:responseData];
 }
 
++ (NSString *)makeDataResponse:(NSDictionary *)data error:(GBError *)error
+{
+    NSDictionary *responseData = nil;
+    
+    if (error == nil)
+        responseData = @{@"result" : @{@"data" : data}};
+    else
+        responseData = @{@"result" : @{@"error" : [self _makeErrorResponse:error]}};
+    
+    return [self _makeResponse:responseData];
+}
 #pragma mark - Private
 
 + (NSString *)_makeResponse:(NSDictionary *)responseData

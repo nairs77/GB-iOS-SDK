@@ -142,7 +142,11 @@
     [lastAccount logOut:^(id<AuthAccount> localAccount, GBError *error) {
         [[GBAccountStore accountStore] unregisterAccounts];
         
+        GBSession *newSession = [[GBSession alloc] initWithAccount:localAccount];
+        newSession.session_state = CLOSED;
+        newSession.userKey = nil;
         
+        completionHandler(newSession, nil);
     }];
 }
 

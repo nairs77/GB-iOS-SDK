@@ -14,5 +14,5 @@
 
 + (NSString *)makeSessionResponse:(SessionState)state data:(NSDictionary *)aInfo error:(GBError *)error;
 + (NSString *)makeStatusResponse:(GBError *)error;
-
++ (NSString *)makeDataResponse:(NSDictionary *)data error:(GBError *)error;
 @end

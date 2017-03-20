@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton		*_btnFbLogin;
 @property (strong, nonatomic) IBOutlet UIButton		*_btnLogout;
 @property (strong, nonatomic) IBOutlet UIButton     *_btnBuyItem;
+@property (strong, nonatomic) IBOutlet UIButton     *_btnRestoreItem;
 @end
 
 @implementation ViewController
@@ -68,7 +69,7 @@
         if ([products count] > 0) {
             
             [GBInApp buyItem:[GBSession activeSession].userKey sku:@"sample_coin_100" price:1000 success:^(NSString *paymentKey) {
-                
+                NSLog(@"paymentKey = %@", paymentKey);
             } failure:^(GBError *error) {
                 
             }];
@@ -76,13 +77,12 @@
     } failure:^(GBError *error) {
         
     }];
-    
-/*
-    [GBInApp buyItem:@"sample_coin_10" success:^(NSString *paymentKey) {
-        NSLog(@"%@", paymentKey);
-    } failure:^(GBError *error) {
-        NSLog((@"%@", error));
+}
+
+- (IBAction)actionRestoreItem:(id)sender
+{
+    [GBInApp restoreItem:[GBSession activeSession].userKey resultBlock:^(NSArray *paymentKeys) {
+        NSLog(@"Arrays = %@", paymentKeys);
     }];
-*/
 }
 @end

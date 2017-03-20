@@ -16,5 +16,6 @@
 
 - (IBAction)actionLogout:(id)sender;
 
+- (IBAction)actionRestoreItem:(id)sender;
 @end
 

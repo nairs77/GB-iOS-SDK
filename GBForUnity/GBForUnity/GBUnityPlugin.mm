@@ -74,8 +74,14 @@ void ConnectChannel(int loginType, const char *callbackId)
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
     
     [GBSession connectChannel:(AuthType)loginType withHandler:^(GBSession *newSession, GBError *error) {
-        NSString *result = [GBForUnity makeSessionResponse:OPEN data:[newSession sessionInfo] error:error];
-        SendToUnity([objectName UTF8String], (error == nil) ? 1 : 0, [result UTF8String]);
+        NSString *resultJson = nil;
+        if (error != nil) {
+            resultJson = [GBForUnity makeSessionResponse:ACCESS_FAILED data:nil error:error];
+            SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
+        } else {
+            resultJson = [GBForUnity makeSessionResponse:OPEN data:[newSession sessionInfo] error:nil];
+            SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
+        }
     }];
     
 }
@@ -126,8 +132,8 @@ void RequestProducts(const char *skus, const char *callbackObjectName)
                                      else
                                          [validateProductIds appendString:[product productIdentifier]];
                                  }
-                                 
-                                 SendToUnity([objectName UTF8String], 1, [validateProductIds UTF8String]);
+                                 NSString *resultJson = [GBForUnity makeDataResponse:@{@"valid" : validateProductIds} error:nil];
+                                 SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
                              }
                          });
                      }
@@ -159,12 +165,12 @@ void RequestProductsInfo(const char *skus, const char *callbackObjectName)
                             } else {
                                 
                                 NSMutableDictionary *items = [NSMutableDictionary dictionary];
-                                [items setObject:[NSNumber numberWithInt:count] forKey:@"count"];
+                                [items setObject:[NSNumber numberWithInteger:count] forKey:@"count"];
                                 
                                 for (int i = 0; i < count; i++) {
                                     SKProduct *product = [products objectAtIndex:i];
                                     
-                                    NSString *itemName = [NSString strv´∞√vcq5634ingWithFormat:@"item%d", i];
+                                    NSString *itemName = [NSString stringWithFormat:@"item%d", i];
                                     NSDictionary *item = @{@"description":[product localizedDescription],
                                                            @"title" : [product localizedTitle],
                                                            @"product_id": [product productIdentifier],
@@ -175,15 +181,15 @@ void RequestProductsInfo(const char *skus, const char *callbackObjectName)
                                     [items setObject:item forKey:itemName];
                                 }
                                 
-                                NSString *resultJson = [[JoypleForUnity sharedInstance] makeDataResponse:items error:nil];
+                                NSString *resultJson = [GBForUnity makeDataResponse:items error:nil];
                                 SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
                             }
                             
                             
                         });
                     }
-                    failure:^(JoypleError *error) {
-                        NSString *resultJson = [[JoypleForUnity sharedInstance] makeStatusResponse:error];
+                    failure:^(GBError *error) {
+                        NSString *resultJson = [GBForUnity makeStatusResponse:error];
                         
                         SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
                     }];
@@ -201,7 +207,8 @@ void BuyItem(const char *userkey, const char *sku, int price, const char *callba
                  sku:productId
                price:price
              success:^(NSString *paymentKey) {
-                 SendToUnity([objectName UTF8String], 1, [paymentKey UTF8String]);
+                 NSString *resultJson = [GBForUnity makeDataResponse:@{@"payment_key": paymentKey} error:nil];
+                 SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
              } failure:^(GBError *error) {
                  NSString *resultJson = [GBForUnity makeStatusResponse:error];
                  SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
@@ -209,11 +216,12 @@ void BuyItem(const char *userkey, const char *sku, int price, const char *callba
     
 }
 
-void ReStoreItems(const char *callbackObjectName)
+void ReStoreItems(const char *userkey, const char *callbackObjectName)
 {
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
+    NSString *userKey = [NSString stringWithUTF8String:userkey];
     
-    [GBInApp restoreItem:^(NSArray *paymentKeys) {
+    [GBInApp restoreItem:userKey resultBlock:^(NSArray *paymentKeys) {
         
         NSInteger count = [paymentKeys count];
         
@@ -222,15 +230,20 @@ void ReStoreItems(const char *callbackObjectName)
             
             for (int i = 0; i < count; i++) {
                 NSString *key = [paymentKeys objectAtIndex:i];
-                if (i != 0)
+                
+                [keys appendString:key];
+                
+                if (i != count - 1)
                     [keys appendString:@","];
-                else
-                    [keys appendString:key];
             }
             
-            SendToUnity([objectName UTF8String], 1, [keys UTF8String]);
+            NSString *resultJson = [GBForUnity makeDataResponse:@{@"restore_keys" : keys} error:nil];
+            SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
         } else {
-            SendToUnity([objectName UTF8String], 0, NULL);
+            NSString *resultJson = [GBForUnity makeStatusResponse:[GBError errorWithDomain:GBErrorDomain
+                                                                                      code:INAPP_ERROR_SERVER_NO_RESTORE
+                                                                                  userInfo:nil]];
+            SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
         }
         
     }];

@@ -69,6 +69,10 @@
 
 - (void)logOut:(void (^)(id<AuthAccount>, GBError *))accountBlock
 {
+    //accountBlock(self, nil);
+    self.userKey = nil;
+    self._account_Info = nil;
+    
     accountBlock(self, nil);
 }
 

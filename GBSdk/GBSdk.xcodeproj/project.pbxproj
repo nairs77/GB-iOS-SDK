@@ -11,6 +11,7 @@
 		BB0396121E23EB1F00413257 /* GBAccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0396101E23EB1F00413257 /* GBAccountStore.m */; };
 		BB0396151E2401E400413257 /* GBAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = BB0396131E2401E400413257 /* GBAccount.h */; };
 		BB0396161E2401E400413257 /* GBAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0396141E2401E400413257 /* GBAccount.m */; };
+		BB0851CC1E7EEC4900C34841 /* GBLog.h in Headers */ = {isa = PBXBuildFile; fileRef = BB3161BE1E16045E005DD9D2 /* GBLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB0DC20B1E151128008ADA92 /* GBSdk.h in Headers */ = {isa = PBXBuildFile; fileRef = BB0DC2091E151128008ADA92 /* GBSdk.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BB3161BA1E1600E9005DD9D2 /* GBSdk.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161B91E1600E9005DD9D2 /* GBSdk.m */; };
 		BB3161C31E1613A2005DD9D2 /* GBDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3161C21E1613A2005DD9D2 /* GBDeviceUtil.m */; };
@@ -403,6 +404,7 @@
 				BB5D33C61E277D4000EBA84F /* AFNetworkReachabilityManager.h in Headers */,
 				BBFD65CA1E2C800500E3635E /* GBInApp+Internal.h in Headers */,
 				BB5D2C181E25096A00815FBA /* NSData+Formatter.h in Headers */,
+				BB0851CC1E7EEC4900C34841 /* GBLog.h in Headers */,
 				BB3161ED1E1635D5005DD9D2 /* GBError.h in Headers */,
 				BB5D2C131E24C45A00815FBA /* GBFacebookService.h in Headers */,
 				BB3161E21E1633B5005DD9D2 /* GBReceiptVerificator.h in Headers */,

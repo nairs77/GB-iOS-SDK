@@ -42,7 +42,7 @@ NSString *const kBILLING_SERVER = @"http://sys.gebros.com:7000";
         self.deviceVersion = [GBDeviceUtil deviceVersion];
         
         self.appBundleId = [self.pInfo objectForKey:(NSString *)kCFBundleIdentifierKey];
-        self._marketCode = 1;
+        self._marketCode = 2;
         
     }
     

@@ -30,7 +30,7 @@ extern "C" {
     void RequestProducts(const char *skus, const char *callbackObjectName);
     void RequestProductsInfo(const char *skus, const char *callbackObjectName);
     void BuyItem(const char *userkey, const char *sku, int price, const char *callbackObjectName);
-    void ReStoreItems(const char *callbackObjectName);
+    void ReStoreItems(const char *userkey, const char *callbackObjectName);
     
     /* Utility */
     const char* GetMobileCountryCode();

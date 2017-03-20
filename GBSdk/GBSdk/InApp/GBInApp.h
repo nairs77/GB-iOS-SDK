@@ -22,6 +22,6 @@
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock;
 
-+ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock;
++ (void)restoreItem:(NSString *)userkey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock;
 
 @end

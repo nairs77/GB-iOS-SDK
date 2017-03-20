@@ -82,22 +82,18 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    BOOL superResult = [super application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    return [GBSdk application:application
+                      openURL:url
+            sourceApplication:sourceApplication
+                   annotation:annotation];
     
-    BOOL result = [GBSdk application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-    
-    return superResult || result;
 }
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<NSString*, id> *)options
 {
-    BOOL superResult = [super application:application openURL:url options:options];
-    
-    BOOL result = [GBSdk application:application openURL:url options:options];
-    
-    return superResult || result;
+    return [GBSdk application:application openURL:url options:options];
 }
 @end
 
