@@ -15,6 +15,8 @@
 
 @interface GBInApp ()
 
+@property (nonnull, copy) NSString *userKey;
+
 - (void)_requestPaymentkey:(void(^)(NSString *paymentKey, GBError *error))errorHandler;
 - (void)_restoreItems:(void(^)(NSArray *paymentKeys))resultBlock;
 
@@ -22,10 +24,22 @@
 
 @implementation GBInApp
 
+@synthesize userKey;
+
 #pragma mark Static Method
-+ (void)initInApp
++ (void)initInApp:(NSString *)userKey resultBlock:(void (^)(BOOL success, GBError *error))resultBlock
 {
-    [GBInApp innerInstance];
+    
+    [[GBInApp innerInstance] setUserKey:userKey];
+    
+    BOOL result = [GBInAppHelper canMakePayments];
+    
+    if (!result) {
+        resultBlock(NO, [GBError errorWithDomain:GBErrorDomain code:INAPP_ERROR_NOT_ALLOWED_PAYMENT userInfo:nil]);
+        return;
+    };
+    
+    resultBlock(YES, nil);
 }
 
 + (void)requestProducts:(NSSet *)skus
@@ -42,8 +56,7 @@
 }
 
 
-+ (void)buyItem:(NSString *)userKey
-            sku:(NSString *)productId
++ (void)buyItem:(NSString *)productId
           price:(int)price
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock
@@ -59,7 +72,7 @@
         return;
     }
 
-    NSDictionary *item = @{@"userKey" : userKey, @"productID" : productId, @"price" : [NSString stringWithFormat:@"%d", price]};
+    NSDictionary *item = @{@"userKey" : [[GBInApp innerInstance] userKey], @"productID" : productId, @"price" : [NSString stringWithFormat:@"%d", price]};
     
     [[GBInApp innerInstance] _requestPaymentkey:item result:^(NSString *paymentKey, GBError *error) {
         if (error == nil) {
@@ -67,7 +80,7 @@
             resultAction.successBlock = successBlock;
             resultAction.failureBlock = failureBlock;
             
-            [[GBInApp innerInstance] _tryAddPayment:userKey
+            [[GBInApp innerInstance] _tryAddPayment:[[GBInApp innerInstance] userKey]
                                                 sku:productId
                                          paymentKey:paymentKey
                                              result:resultAction];
@@ -77,9 +90,9 @@
     }];
 }
 
-+ (void)restoreItem:(NSString *)userKey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock;
++ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock;
 {
-    [[GBInApp innerInstance] _restoreItems:userKey resultBlock:resultBlock];
+    [[GBInApp innerInstance] _restoreItems:resultBlock];
 }
 
 #pragma mark - Public
@@ -128,17 +141,17 @@
     }];
 }
 
-- (void)_tryAddPayment:(NSString *)userKey
+- (void)_tryAddPayment:(NSString *)aUserKey
                    sku:(NSString *)productId
             paymentKey:(NSString *)key
                 result:(GBAddPaymentAction *)resultAction
 {
-    [[GBInAppHelper Helper] addPayment:userKey sku:productId paymentKey:key result:resultAction];
+    [[GBInAppHelper Helper] addPayment:aUserKey sku:productId paymentKey:key result:resultAction];
 }
 
-- (void)_restoreItems:(NSString *)userkey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock
+- (void)_restoreItems:(void(^)(NSArray *paymentKeys))resultBlock
 {
-    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_RESTORE param:@{@"userKey" : userkey}];
+    GBProtocol *protocol = [GBProtocol makeRequestPayment:GB_RESTORE param:@{@"userKey" : userKey}];
     GBApiRequest *request = [GBApiRequest makeRequestWithProtocol:protocol];
     
     GBLogVerbose(@"Request Restore to Billing Server");

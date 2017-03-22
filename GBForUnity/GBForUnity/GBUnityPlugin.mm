@@ -100,7 +100,19 @@ void Logout(const char *callbackId)
 
 void StartStoreService(int userKey, const char *callbackObjectName)
 {
+    __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
     
+    NSString *userKeyString = [NSString stringWithFormat:@"%d", userKey];
+    
+    [GBInApp initInApp:userKeyString
+           resultBlock:^(BOOL success, GBError *error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        NSString *resultJson = [GBForUnity makeStatusResponse:error];
+                        
+                        SendToUnity([objectName UTF8String], (error == nil) ? 1 : 0, [resultJson UTF8String]);
+                    });
+                }];
 }
 
 void RequestProducts(const char *skus, const char *callbackObjectName)
@@ -196,15 +208,13 @@ void RequestProductsInfo(const char *skus, const char *callbackObjectName)
     
 }
 
-void BuyItem(const char *userkey, const char *sku, int price, const char *callbackObjectName)
+void BuyItem(const char *sku, int price, const char *callbackObjectName)
 {
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
     
     NSString *productId = [NSString stringWithUTF8String:sku];
-    NSString *userKey = [NSString stringWithUTF8String:userkey];
     
-    [GBInApp buyItem:userKey
-                 sku:productId
+    [GBInApp buyItem:productId
                price:price
              success:^(NSString *paymentKey) {
                  NSString *resultJson = [GBForUnity makeDataResponse:@{@"payment_key": paymentKey} error:nil];
@@ -216,12 +226,11 @@ void BuyItem(const char *userkey, const char *sku, int price, const char *callba
     
 }
 
-void ReStoreItems(const char *userkey, const char *callbackObjectName)
+void ReStoreItems(const char *callbackObjectName)
 {
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackObjectName];
-    NSString *userKey = [NSString stringWithUTF8String:userkey];
     
-    [GBInApp restoreItem:userKey resultBlock:^(NSArray *paymentKeys) {
+    [GBInApp restoreItem:^(NSArray *paymentKeys) {
         
         NSInteger count = [paymentKeys count];
         

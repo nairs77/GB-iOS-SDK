@@ -33,8 +33,6 @@ int ddLogLevel = LOG_LEVEL_VERBOSE;
     [GBSettings currentSettings].gameCode = gameCode;
     
     [GBSession activeSession];
-    [GBInApp initInApp];
-    
 }
 
 + (BOOL)application:(UIApplication *)application

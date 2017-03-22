@@ -11,17 +11,16 @@
 
 @interface GBInApp : NSObject
 
-+ (void)initInApp;
++ (void)initInApp:(NSString *)userKey resultBlock:(void (^)(BOOL success, GBError *error))resultBlock;
 + (void)requestProducts:(NSSet *)skus
                 success:(void(^)(NSArray *products, NSArray *invalidProducsts))successBlock
                 failure:(void(^)(GBError *error))failureBlock;
 
-+ (void)buyItem:(NSString *)userKey
-            sku:(NSString *)productId
++ (void)buyItem:(NSString *)productId
           price:(int)price
         success:(void (^)(NSString *paymentKey))successBlock
         failure:(void (^)(GBError *error))failureBlock;
 
-+ (void)restoreItem:(NSString *)userkey resultBlock:(void(^)(NSArray *paymentKeys))resultBlock;
++ (void)restoreItem:(void(^)(NSArray *paymentKeys))resultBlock;
 
 @end

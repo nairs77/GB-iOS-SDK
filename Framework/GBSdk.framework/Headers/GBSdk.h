@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
 
 + (BOOL)application:(nullable UIApplication *)application
             openURL:(nonnull NSURL *)url
-            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options;
+            options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options;
 
 + (BOOL)application:(nullable UIApplication *)application
             openURL:(nonnull NSURL *)url

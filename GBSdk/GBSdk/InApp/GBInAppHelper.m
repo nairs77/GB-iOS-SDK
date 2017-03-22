@@ -563,8 +563,8 @@
 {
     SKPayment *payment = transaction.payment;
     
-    NSString *paymentKey = self.paymentKey;
-    BOOL is_subscription = self.isSubscription;
+//    NSString *paymentKey = self.paymentKey;
+//    BOOL is_subscription = self.isSubscription;
 /*
     if (IS_IOS7_OR_MORE) {
         if (paymentKey == nil) {
